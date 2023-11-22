@@ -72,8 +72,8 @@ class _LoginState extends State<Login> {
                           child: TextFormField(
                             obscureText: obscureText,
                             decoration: InputDecoration(
-                              prefixIcon:Icon(Icons.looks),
-                              // prefixIcon:Image.asset(""),
+                              // prefixIcon:Icon(Icons.looks),
+                              prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
                               hintText: "********",
                               contentPadding: EdgeInsets.symmetric(vertical: 3.0),
                               suffixIcon:  IconButton(
@@ -91,6 +91,35 @@ class _LoginState extends State<Login> {
                           ),
                         ),
                       ),
+                      SizedBox(height: 20,),
+                      TextButton(child:Text("Forgot Password?",style: TextStyle(color: Colors.black),),onPressed: (){},),
+                      SizedBox(height: 30,),
+                      // Row(
+                      //   children:[
+                      //     Text("Remind me nextime"),
+                      //   ],
+                      // ),
+                      Container(
+                        height: 45,
+                        width: 290,
+                        child: ElevatedButton(onPressed: (){},
+                          style:ElevatedButton.styleFrom(backgroundColor: Colors.black,
+                            // padding: const EdgeInsets.symmetric(horizontal: 30),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30)
+                            ),
+                          ),
+
+                          child: Text("Log in",style:TextStyle(color: Colors.white)),),
+                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Don't have an account?"),
+                        SizedBox(width: 3,),
+                        TextButton(onPressed: (){}, child: Text("Sign up",style:TextStyle(fontWeight: FontWeight.w500,color: Colors.black)))
+                      ],
+                    )
                   ]
                 ),),],
               ),
