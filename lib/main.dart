@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-        '/': (context) =>Login(),
+        '/': (context) =>SignUp(),
         MyRoutes.SignUpRoutes: (context) => SignUp(),
         MyRoutes.LoginRoutes: (context) => Login(),
           }

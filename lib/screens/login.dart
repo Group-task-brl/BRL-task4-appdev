@@ -117,7 +117,9 @@ class _LoginState extends State<Login> {
                       children: [
                         Text("Don't have an account?"),
                         SizedBox(width: 3,),
-                        TextButton(onPressed: (){}, child: Text("Sign up",style:TextStyle(fontWeight: FontWeight.w500,color: Colors.black)))
+                        TextButton(onPressed: (){
+                          Navigator.pushReplacementNamed(context, MyRoutes.SignUpRoutes);
+                        }, child: Text("Sign up",style:TextStyle(fontWeight: FontWeight.w500,color: Colors.black)))
                       ],
                     )
                   ]
