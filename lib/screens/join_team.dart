@@ -87,7 +87,9 @@ class _join_teamState extends State<join_team> {
                       ),
                     ),
                     SizedBox(height: 15,),
-                    ElevatedButton(onPressed: (){},
+                    ElevatedButton(onPressed: (){
+                      joinTeamAPI();
+                    },
 
                         child:Text("Join"),),
                   ],
