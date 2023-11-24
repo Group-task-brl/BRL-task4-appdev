@@ -2,6 +2,8 @@
 // only push here in dev branch 
 // do not merge in main branch
 
+import 'package:brl_task4/screens/dashboard.dart';
+import 'package:brl_task4/screens/join_team.dart';
 import 'package:brl_task4/screens/signup.dart';
 import 'package:brl_task4/screens/login.dart';
 import 'package:brl_task4/utils/Routes.dart';
@@ -19,9 +21,12 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-        '/': (context) =>SignUp(),
+          '/':(context)=>dashb_mem(),
+        // '/': (context) =>SignUp(),
         MyRoutes.SignUpRoutes: (context) => SignUp(),
         MyRoutes.LoginRoutes: (context) => Login(),
+        MyRoutes.dashb_memRoutes: (context) => dashb_mem(),
+        MyRoutes.join_teamRoutes: (context) => join_team(),
           }
         );
   }
