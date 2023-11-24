@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class TeamDetailsScreen extends StatelessWidget {
   final List<Domain> selectedDomains;
 
-  TeamDetailsScreen(this.selectedDomains);
+  TeamDetailsScreen(this.selectedDomains, String teamId);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,6 @@ class TeamDetailsScreen extends StatelessWidget {
           return ListTile(
             title: Text(selectedDomains[index].name),
             onTap: () {
-              // Navigate to the screen where the leader can enter the email of team members
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -55,11 +54,11 @@ class InviteMembersScreen extends StatelessWidget {
               ),
 
             ),
-    
+            
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-               
+              
               },
               child: Text('Send Invitation Code'),
             ),

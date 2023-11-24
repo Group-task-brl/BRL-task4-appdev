@@ -1,5 +1,7 @@
 
+import 'dart:convert';
 import 'package:brl_task4/create&join-Team/Domain-team.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 
@@ -19,10 +21,13 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
   ];
 
   List<Domain> selectedDomains = [];
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: const Text('Create Team'),
       ),
@@ -30,7 +35,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TextField( 
+            TextField(
               controller: teamNameController,
               decoration: const InputDecoration(labelText: 'Team Name'),
             ),
@@ -51,10 +56,11 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => TeamDetailsScreen(selectedDomains),
+                    builder: (context) => TeamDetailsScreen(selectedDomains , teamNameController.text),
                   ),
                 );
-                createTeam();
+               
+                createTeam(); // finally chal gya 
                 
               },
               child: const Text('Create Team'),
@@ -65,9 +71,68 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
     );
   }
 
-  void createTeam() {
+Future<void> createTeam() async {
+  var headers = {
+    'Content-Type': 'application/json',
+  };
+
+  var request = http.Request(
+    'POST',
+    Uri.parse('http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com/team/createTeam'),
+  );
+
+  List<Map<String, dynamic>> domainList = selectedDomains.map((domain) {
+    return {
+      "name": domain.name, 
+      "members": [],
+    };
+  }).toList();
+
+  request.body = json.encode({
+    "teamName": teamNameController.text,
+    "leaderEmail": "euclidstellar@gmail.com",
+    "domains": domainList,
+  });
+
+  request.headers.addAll(headers);
+
+  try {
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      _showErrorSnackBar('Team created successfully');
+      print(await response.stream.bytesToString());
+     
+    } else {
+      _showErrorSnackBar(response.reasonPhrase!);
+      print(response.reasonPhrase);
+      
+    }
+  } catch (error) {
+    _showErrorSnackBar('Error creating team: $error');
+    print('Error creating team: $error');
    
   }
+}
+
+void _showErrorSnackBar(String errorMessage) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(errorMessage),
+      duration: Duration(seconds: 3),
+      action: SnackBarAction(
+        label: 'Dismiss',
+        onPressed: () {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        },
+      ),
+    ),
+  );
+}
+
+
+
+
 }
 
 class Domain {
