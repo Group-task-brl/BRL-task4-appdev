@@ -1,17 +1,18 @@
 
+
 import 'package:brl_task4/create&join-Team/create-team.dart';
 import 'package:flutter/material.dart';
 
 class TeamDetailsScreen extends StatelessWidget {
   final List<Domain> selectedDomains;
-
-  TeamDetailsScreen(this.selectedDomains, String teamId);
+  final String teamname ;
+  TeamDetailsScreen( this.teamname ,this.selectedDomains, String teamId);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Team Details'),
+        title:  Text('$teamname'),
       ),
       body: ListView.builder(
         itemCount: selectedDomains.length,

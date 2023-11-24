@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'package:brl_task4/create&join-Team/Domain-team.dart';
 import 'package:http/http.dart' as http;
@@ -22,7 +21,6 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
 
   List<Domain> selectedDomains = [];
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -53,15 +51,15 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => TeamDetailsScreen(selectedDomains , teamNameController.text),
-                  ),
-                );
-               
-                createTeam(); // finally chal gya 
-                
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => TeamDetailsScreen(
+                //         selectedDomains, teamNameController.text),
+                //   ),
+                // );
+
+                createTeam(); // finally chal gya
               },
               child: const Text('Create Team'),
             ),
@@ -71,68 +69,75 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
     );
   }
 
-Future<void> createTeam() async {
-  var headers = {
-    'Content-Type': 'application/json',
-  };
-
-  var request = http.Request(
-    'POST',
-    Uri.parse('http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com/team/createTeam'),
-  );
-
-  List<Map<String, dynamic>> domainList = selectedDomains.map((domain) {
-    return {
-      "name": domain.name, 
-      "members": [],
+  Future<void> createTeam() async {
+    var headers = {
+      'Content-Type': 'application/json',
     };
-  }).toList();
 
-  request.body = json.encode({
-    "teamName": teamNameController.text,
-    "leaderEmail": "euclidstellar@gmail.com",
-    "domains": domainList,
-  });
+    var request = http.Request(
+      'POST',
+      Uri.parse(
+          'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/team/createTeam'),
+    );
 
-  request.headers.addAll(headers);
+    List<Map<String, dynamic>> domainList = selectedDomains.map((domain) {
+      return {
+        "name": domain.name,
+        "members": [],
+      };
+    }).toList();
 
-  try {
-    http.StreamedResponse response = await request.send();
+    request.body = json.encode({
+      "teamName": teamNameController.text,
+      "leaderEmail": "euclidstellar@gmail.com",
+      "domains": domainList,
+    });
 
-    if (response.statusCode == 200) {
-      _showErrorSnackBar('Team created successfully');
-      print(await response.stream.bytesToString());
-     
-    } else {
-      _showErrorSnackBar(response.reasonPhrase!);
-      print(response.reasonPhrase);
-      
+    request.headers.addAll(headers);
+
+    try {
+      http.StreamedResponse response = await request.send();
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> responseData =
+            jsonDecode(await response.stream.bytesToString());
+        final String teamId = responseData['team']['_id'];
+        print(teamId);
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                TeamDetailsScreen(teamNameController.text, selectedDomains, teamId),
+          ),
+        );
+
+        _showErrorSnackBar('Team created successfully');
+        print(await response.stream.bytesToString());
+      } else {
+        _showErrorSnackBar(response.reasonPhrase!);
+        print(response.reasonPhrase);
+      }
+    } catch (error) {
+      _showErrorSnackBar('Error creating team: $error');
+      print('Error creating team: $error');
     }
-  } catch (error) {
-    _showErrorSnackBar('Error creating team: $error');
-    print('Error creating team: $error');
-   
   }
-}
 
-void _showErrorSnackBar(String errorMessage) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Text(errorMessage),
-      duration: Duration(seconds: 3),
-      action: SnackBarAction(
-        label: 'Dismiss',
-        onPressed: () {
-          ScaffoldMessenger.of(context).hideCurrentSnackBar();
-        },
+  void _showErrorSnackBar(String errorMessage) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(errorMessage),
+        duration: Duration(seconds: 3),
+        action: SnackBarAction(
+          label: 'Dismiss',
+          onPressed: () {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          },
+        ),
       ),
-    ),
-  );
-}
-
-
-
-
+    );
+  }
 }
 
 class Domain {
