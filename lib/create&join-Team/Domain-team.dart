@@ -100,8 +100,7 @@ class InviteMembersScreen extends StatelessWidget {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                // Call a function to send the invitation code
-                // You can pass the domain and the entered emails to your backend
+                
                 _sendInvitation();
               },
               child: Text('Send Invitation Code'),
