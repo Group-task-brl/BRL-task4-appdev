@@ -172,11 +172,12 @@ class _SignUpState extends State<SignUp> {
                               if (_formKey.currentState!.validate()) {
                                 if (passController.text == comfpassController.text) {}}
                             else {
-                              // _formKey.currentState!.showSnackBar(
+
+                                ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text("Password mismatch"),
-                                );
-                              // );
+                                ),
+                              );
                             }
                           },
                             style:ElevatedButton.styleFrom(backgroundColor: Colors.black,
