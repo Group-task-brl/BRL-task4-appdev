@@ -170,7 +170,9 @@ class _SignUpState extends State<SignUp> {
                           width: 290,
                           child: ElevatedButton(onPressed: (){
                               if (_formKey.currentState!.validate()) {
-                                if (passController.text == comfpassController.text) {}}
+                                if (passController.text == comfpassController.text) {
+                                  Navigator.pushNamed(context, MyRoutes.LoginRoutes);
+                                }}
                             else {
 
                                 ScaffoldMessenger.of(context).showSnackBar(
