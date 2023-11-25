@@ -2,6 +2,8 @@
 import 'package:brl_task4/create&join-Team/create-team.dart';
 import 'package:flutter/material.dart';
 
+import '../Utils/Routes.dart';
+
 class TeamDetailsScreen extends StatelessWidget {
   final List<Domain> selectedDomains;
 
@@ -59,7 +61,7 @@ class InviteMembersScreen extends StatelessWidget {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-               
+               Navigator.pushReplacementNamed(context, MyRoutes.jointeamRoutes);
               },
               child: Text('Send Invitation Code'),
             ),
