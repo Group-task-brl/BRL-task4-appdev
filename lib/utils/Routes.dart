@@ -1,0 +1,8 @@
+class MyRoutes {
+  static String SignUpRoutes = "/SignUp";
+  static String LoginRoutes = "/Login";
+  static String dashbMemRoutes = "/dashb_mem";
+  static String jointeamRoutes = "/join_team";
+  static String tdetailRoutes = "/t_detail";
+
+}
