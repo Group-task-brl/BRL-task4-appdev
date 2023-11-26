@@ -104,7 +104,7 @@ class _LoginState extends State<Login> {
                         width: 290,
                         child: ElevatedButton(onPressed: (){
                           // Navigator.pushReplacementNamed(context, MyRoutes.);
-                          // Navigator.pushReplacementNamed(context, MyRoutes.dashbMemRoutes);
+                          Navigator.pushReplacementNamed(context, MyRoutes.dashbMemRoutes);
                         },
                           style:ElevatedButton.styleFrom(backgroundColor: Colors.black,
                             // padding: const EdgeInsets.symmetric(horizontal: 30),
