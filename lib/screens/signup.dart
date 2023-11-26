@@ -9,6 +9,28 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+
+  Future <void> SignApi() async {
+    final String apiUrl = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/user/signup';
+    final response = await http.post(
+        Uri.parse(apiUrl),
+        body:({
+             'name':nameController.text,
+            'email':emailController.text,
+            'password':passController.text,
+          })
+        );
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(response.body),),);
+    if (response.statusCode == 200) {
+      print('API Response: ${response.body}');
+      await Navigator.pushNamed(context, MyRoutes.LoginRoutes);
+
+    } else {
+      print('Failed to join the team. Status Code: ${response.statusCode}');
+      print('Error Message: ${response.body}');
+    }
+    }
   final _formKey = GlobalKey<FormState>();
   TextEditingController emailController =TextEditingController();
   TextEditingController nameController =TextEditingController();
@@ -171,7 +193,7 @@ class _SignUpState extends State<SignUp> {
                           child: ElevatedButton(onPressed: (){
                               if (_formKey.currentState!.validate()) {
                                 if (passController.text == comfpassController.text) {
-                                  Navigator.pushNamed(context, MyRoutes.LoginRoutes);
+                                          SignApi();
                                 }}
                             else {
 

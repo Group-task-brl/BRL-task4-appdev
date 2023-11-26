@@ -1,5 +1,8 @@
+ import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+ import '../models/storeToken.dart';
 import '../Utils/Routes.dart';
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -9,6 +12,38 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final SecureStorage secureStorage=SecureStorage();
+
+  TextEditingController emailController =TextEditingController();
+  TextEditingController passController =TextEditingController();
+
+  Future <void> LoginApi() async {
+    final String apiUrl = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/user/login';
+    final response = await http.post(
+        Uri.parse(apiUrl),
+        body:({
+          'email':emailController.text,
+          'password':passController.text,
+        })
+    );
+      print(response.body);
+    if (response.statusCode == 200) {
+
+      dynamic generateResponse = jsonDecode(response.body);
+      Token.fromJson(generateResponse);
+      secureStorage.writeSecureData('accessToken',generateResponse);
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Login Successful"),),);
+      print('API Response: ${response.body}');
+      await Navigator.pushNamed(context, MyRoutes.dashbMemRoutes);
+
+    } else {
+      print('Failed to join the team. Status Code: ${response.statusCode}');
+      print('Error Message: ${response.body}');
+    }
+  }
+
   final _formKey = GlobalKey<FormState>();
   bool obscureText= true;
   @override
@@ -52,9 +87,10 @@ class _LoginState extends State<Login> {
                         width: 290,
                         color: Colors.grey,
                         child: TextFormField(
+                          controller: emailController,
                           decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.person_outline),
-                            hintText: "Username",
+                            prefixIcon: Icon(Icons.email_outlined),
+                            hintText: "Email",
                             contentPadding: EdgeInsets.symmetric(vertical: 2.0),
                             border:OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30.0),
@@ -70,6 +106,7 @@ class _LoginState extends State<Login> {
                           width: 290,
                           color: Colors.grey,
                           child: TextFormField(
+                            controller: passController,
                             obscureText: obscureText,
                             decoration: InputDecoration(
                               // prefixIcon:Icon(Icons.looks),
@@ -103,7 +140,7 @@ class _LoginState extends State<Login> {
                         height: 45,
                         width: 290,
                         child: ElevatedButton(onPressed: (){
-                          Navigator.pushReplacementNamed(context, MyRoutes.dashbMemRoutes);
+                          LoginApi();
                         },
                           style:ElevatedButton.styleFrom(backgroundColor: Colors.black,
                             // padding: const EdgeInsets.symmetric(horizontal: 30),
