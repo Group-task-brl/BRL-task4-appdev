@@ -11,6 +11,10 @@ import 'package:brl_task4/utils/Routes.dart';
 import'package:flutter/material.dart';
 
 import 'create&join-Team/create-team.dart';
+import 'home_page/bottomnavbar.dart';
+import 'home_page/home_page_home.dart';
+import 'home_page/teams.dart';
+import 'home_page/tasks.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -22,6 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
+        // home: BottomNavBar(),
         initialRoute: '/',
         routes: {
           // '/':(context)=>join_team(),
