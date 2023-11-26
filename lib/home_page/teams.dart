@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../Utils/Routes.dart';
 
 class TeamPage extends StatelessWidget {
   @override
@@ -9,7 +10,9 @@ class TeamPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, MyRoutes.CreateTeamScreen);
+              },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.all(16.0),
                 shape: RoundedRectangleBorder(
@@ -35,7 +38,9 @@ class TeamPage extends StatelessWidget {
             ),
             SizedBox(height: 16), 
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, MyRoutes.jointeamRoutes);
+              },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.all(16.0),
                 shape: RoundedRectangleBorder(
