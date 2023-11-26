@@ -2,8 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
- import '../models/storeToken.dart';
-import '../Utils/Routes.dart';
+ import '../home_page/bottomnavbar.dart';
+import '../models/storeToken.dart';
+import '../utils/Routes.dart';
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -36,7 +37,7 @@ class _LoginState extends State<Login> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Login Successful"),),);
       print('API Response: ${response.body}');
-      await Navigator.pushNamed(context, MyRoutes.dashbMemRoutes);
+      await Navigator.pushNamed(context, MyRoutes.BottomNavBar);
 
     } else {
       print('Failed to join the team. Status Code: ${response.statusCode}');
