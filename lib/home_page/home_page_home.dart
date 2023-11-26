@@ -15,26 +15,53 @@ class _HomeNavState extends State<HomeNav> {
 
   @override
   Widget build(BuildContext context) {
+    // return Scaffold(
+    //   body: _pages[_selectedIndex],
+    //   bottomNavigationBar: BottomNavigationBar(
+    //     items: [
+    //       BottomNavigationBarItem(
+    //         icon: Icon(Icons.group),
+    //         label: 'Teams',
+    //       ),
+    //       BottomNavigationBarItem(
+    //         icon: Icon(Icons.list),
+    //         label: 'To-Do List',
+    //       ),
+    //     ],
+    //     currentIndex: _selectedIndex,
+    //     onTap: (index) {
+    //       setState(() {
+    //         _selectedIndex = index;
+    //       });
+    //     },
+    //   ),
+    // );
     return Scaffold(
-      body: _pages[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
+      appBar: AppBar(
+        actions: [
+          IconButton(
             icon: Icon(Icons.group),
-            label: 'Teams',
+            onPressed: () {
+              _onNavItemTapped(0);
+            },
           ),
-          BottomNavigationBarItem(
+          Text('Teams',),
+          IconButton(
             icon: Icon(Icons.list),
-            label: 'To-Do List',
+            onPressed: () {
+              _onNavItemTapped(1);
+            },
           ),
+          Text('To-Do List'),
         ],
-        currentIndex: _selectedIndex,
-        onTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
       ),
+      body: _pages[_selectedIndex],
     );
+  }
+
+  void _onNavItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 }
