@@ -20,7 +20,7 @@ class TeamPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'lib/assets/login.png',
+                    'lib/assets/create_team.png',
                     width: 50,
                     height: 50,
                   ),
@@ -46,7 +46,7 @@ class TeamPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'lib/assets/login.png', 
+                    'lib/assets/join_team.png', 
                     width: 50,
                     height: 50,
                   ),
