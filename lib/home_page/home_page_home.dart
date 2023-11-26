@@ -9,7 +9,16 @@ class HomeNav extends StatefulWidget {
 class _HomeNavState extends State<HomeNav> {
   int _selectedIndex = 0;
   List _pages = [
-    Center(child: Text('Page 1')),
+    // Center(child: Container(
+    //   child: Row(children: [
+    //     Text('Create Team'),
+    //     Column(
+    //       children: [
+    //       IconButton(onPressed: () {}, icon: Icon(Icons.add)),],
+    //     )
+    //   ],),
+    // )),
+    Center(child: Text('Page 1'),),
     Center(child: Text('Page 2')),
   ];
 
@@ -38,6 +47,7 @@ class _HomeNavState extends State<HomeNav> {
     // );
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         actions: [
           IconButton(
             icon: Icon(Icons.group),
