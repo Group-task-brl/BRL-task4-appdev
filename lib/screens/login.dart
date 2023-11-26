@@ -1,5 +1,8 @@
- import 'package:flutter/material.dart';
+ import 'dart:convert';
+
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+ import '../models/storeToken.dart';
 import '../Utils/Routes.dart';
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -9,6 +12,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final SecureStorage secureStorage=SecureStorage();
 
   TextEditingController emailController =TextEditingController();
   TextEditingController passController =TextEditingController();
@@ -22,8 +26,13 @@ class _LoginState extends State<Login> {
           'password':passController.text,
         })
     );
-
+      print(response.body);
     if (response.statusCode == 200) {
+
+      dynamic generateResponse = jsonDecode(response.body);
+      Token.fromJson(generateResponse);
+      secureStorage.writeSecureData('accessToken',generateResponse);
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Login Successful"),),);
       print('API Response: ${response.body}');
