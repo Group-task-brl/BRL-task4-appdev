@@ -4,5 +4,6 @@ class MyRoutes {
   static String dashbMemRoutes = "/dashb_mem";
   static String jointeamRoutes = "/join_team";
   static String tdetailRoutes = "/t_detail";
+  static String CreateTeamScreen = "/CreateTeamScreen";
 
 }
