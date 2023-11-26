@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:brl_task4/home_page/teams.dart';
+import 'package:brl_task4/home_page/tasks.dart';
 // ignore_for_file: prefer_const_constructors
 
 class HomeNav extends StatefulWidget {
@@ -20,7 +21,7 @@ class _HomeNavState extends State<HomeNav> {
     //   ],),
     // )),
     Center(child: TeamPage()),
-    Center(child: Text('Page 2')),
+    Center(child: TaskContainer()),
   ];
 
   @override
