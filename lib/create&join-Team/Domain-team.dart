@@ -100,7 +100,7 @@ class InviteMembersScreen extends StatelessWidget {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                
+
                 _sendInvitation();
               },
               child: Text('Send Invitation Code'),

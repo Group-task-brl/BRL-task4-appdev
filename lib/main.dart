@@ -9,6 +9,8 @@ import 'package:brl_task4/screens/login.dart';
 import 'package:brl_task4/screens/teamDetail.dart';
 import 'package:brl_task4/utils/Routes.dart';
 import'package:flutter/material.dart';
+
+import 'create&join-Team/create-team.dart';
 import 'home_page/bottomnavbar.dart';
 import 'home_page/home_page_home.dart';
 import 'home_page/teams.dart';
@@ -27,13 +29,14 @@ class MyApp extends StatelessWidget {
         // home: BottomNavBar(),
         initialRoute: '/',
         routes: {
-          // '/':(context)=>dashb_mem(),
+          // '/':(context)=>join_team(),
         '/': (context) =>SignUp(),
         MyRoutes.SignUpRoutes: (context) => SignUp(),
         MyRoutes.LoginRoutes: (context) => Login(),
         MyRoutes.dashbMemRoutes: (context) => dashb_mem(),
         MyRoutes.jointeamRoutes: (context) => join_team(),
         MyRoutes.tdetailRoutes: (context) => t_detail(),
+        MyRoutes.CreateTeamScreen: (context) => CreateTeamScreen(),
           }
         );
   }
