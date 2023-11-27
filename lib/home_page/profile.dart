@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-// ignore_for_file: prefer_const_constructors
-
 class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -12,7 +10,7 @@ class Profile extends StatelessWidget {
         ),
         CircleAvatar(
           radius: 80.0,
-          backgroundImage: AssetImage('lib/assets/prof.png'), 
+          backgroundImage: AssetImage('lib/assets/prof.png'),
         ),
         SizedBox(
           height: 20.0,
@@ -28,36 +26,36 @@ class Profile extends StatelessWidget {
           height: 20.0,
         ),
         Divider(
-      thickness: 1.0,
-      color: Colors.grey,
-    ),
-        _buildProfile('Edit Profile'),
+          thickness: 1.0,
+          color: Colors.grey,
+        ),
+        _buildProfile('Edit Profile', Icons.arrow_forward_ios_outlined),
         Divider(
-      thickness: 1.0,
-      color: Colors.grey,
-    ),
-        _buildProfile('Security'),
+          thickness: 1.0,
+          color: Colors.grey,
+        ),
+        _buildProfile('Security', Icons.arrow_forward_ios_outlined),
         Divider(
-      thickness: 1.0,
-      color: Colors.grey,
-    ),
-        _buildProfile('Suggestion and Feedback'),
+          thickness: 1.0,
+          color: Colors.grey,
+        ),
+        _buildProfile('Suggestion and Feedback', Icons.arrow_forward_ios_outlined),
         Divider(
-      thickness: 1.0,
-      color: Colors.grey,
-    ),
-    _buildProfile('Logout'),
+          thickness: 1.0,
+          color: Colors.grey,
+        ),
+        _buildProfile('Logout', Icons.logout),
       ],
     );
   }
 
-  Widget _buildProfile(String optionText) {
+  Widget _buildProfile(String optionText, IconData icon) {
     return InkWell(
       onTap: () {},
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               optionText,
@@ -65,11 +63,14 @@ class Profile extends StatelessWidget {
                 fontSize: 18.0,
               ),
             ),
+            Icon(
+              icon,
+              size: 20.0,
+              color: Color.fromARGB(255, 101, 56, 108),
+            ),
           ],
         ),
       ),
     );
   }
-
-  
 }
