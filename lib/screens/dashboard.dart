@@ -5,6 +5,8 @@ import "package:brl_task4/Utils/Routes.dart";
 import "package:flutter/material.dart";
 import 'package:http/http.dart' as http;
 import "login.dart";
+import 'package:brl_task4/models/appbar.dart';
+
 class dashb_mem extends StatefulWidget {
   const dashb_mem({super.key});
 
@@ -48,7 +50,7 @@ class dashb_memState extends State<dashb_mem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(title: Text("Dashboard"),),
+      appBar:MyAppBar(),
       body: Container(
         child: Column(
           children:[

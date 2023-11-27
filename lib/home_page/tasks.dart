@@ -43,7 +43,7 @@ class TaskContainer extends StatelessWidget {
             ),
             FloatingActionButton(onPressed: () {
               Navigator.pushNamed(context, MyRoutes.Todo);
-            }),
+            },child: Icon(Icons.add),),
           ],
         ),
       ),

@@ -35,28 +35,43 @@ class _BottomNavBarState extends State<BottomNavBar> {
               currentPageIndex = index;
             });
           },
-          backgroundColor: Color.fromARGB(255, 247,247,247),
+          backgroundColor: Color.fromARGB(255, 247, 247, 247),
           // indicatorColor:  Color.fromARGB(255, 101,56,108),
           selectedIndex: currentPageIndex,
           destinations: const [
             NavigationDestination(
-              icon: Icon(Icons.pie_chart,color:Color.fromARGB(255, 101,56,108),),
+              icon: Icon(
+                Icons.pie_chart,
+                color: Color.fromARGB(255, 101, 56, 108),
+              ),
               label: 'Progress',
             ),
             NavigationDestination(
-              icon: Icon(Icons.calendar_month,color:Color.fromARGB(255, 101,56,108),),
+              icon: Icon(
+                Icons.calendar_month,
+                color: Color.fromARGB(255, 101, 56, 108),
+              ),
               label: 'Dashboard',
             ),
             NavigationDestination(
-              icon: Icon(Icons.home,color:Color.fromARGB(255, 101,56,108),),
+              icon: Icon(
+                Icons.home,
+                color: Color.fromARGB(255, 101, 56, 108),
+              ),
               label: 'Home',
             ),
             NavigationDestination(
-              icon: Icon(Icons.chat,color:Color.fromARGB(255, 101,56,108),),
+              icon: Icon(
+                Icons.chat,
+                color: Color.fromARGB(255, 101, 56, 108),
+              ),
               label: 'Chat',
             ),
             NavigationDestination(
-              icon: Icon(Icons.person_rounded,color:Color.fromARGB(255, 101,56,108),),
+              icon: Icon(
+                Icons.person_rounded,
+                color: Color.fromARGB(255, 101, 56, 108),
+              ),
               label: 'Profile',
             ),
           ],
@@ -70,7 +85,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         Container(
             // color: Colors.blue,
             alignment: Alignment.center,
-            child: dashb_mem() ),
+            child: dashb_mem()),
         Container(
           // color: Colors.blue,
           alignment: Alignment.center,

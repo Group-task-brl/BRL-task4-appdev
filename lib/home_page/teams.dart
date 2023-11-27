@@ -4,6 +4,9 @@ import '../Utils/Routes.dart';
 class TeamPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double buttonHeight = MediaQuery.of(context).size.height * 0.25;
+    double buttonWidth = MediaQuery.of(context).size.width * 0.90;
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -11,56 +14,87 @@ class TeamPage extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, MyRoutes.CreateTeamScreen);
+                Navigator.pushNamed(context, MyRoutes.CreateTeamScreen);
               },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.all(16.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
+                maximumSize: Size(buttonWidth, buttonHeight),
+                side: BorderSide(
+                  color: Color.fromARGB(255, 101, 56, 108),
+                  width: 2,
+                ),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'lib/assets/create_team.png',
-                    width: 50,
-                    height: 50,
-                  ),
-                  SizedBox(height: 8.0),
                   Text(
                     'Create Team',
-                    style: TextStyle(fontSize: 16.0),
+                    style: TextStyle(fontSize: 20),
                   ),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.add))
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'lib/assets/create_team.png',
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: MediaQuery.of(context).size.height * 0.15,
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, MyRoutes.CreateTeamScreen);
+                        },
+                        icon: Icon(Icons.add),
+                      )
+                    ],
+                  ),
                 ],
               ),
             ),
-            SizedBox(height: 16), 
+            SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, MyRoutes.jointeamRoutes);
+                Navigator.pushNamed(context, MyRoutes.jointeamRoutes);
               },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.all(16.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
+                maximumSize: Size(buttonWidth, buttonHeight),
+                side: BorderSide(
+                  color: Color.fromARGB(255, 101, 56, 108),
+                  width: 2,
+                ),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'lib/assets/join_team.png', 
-                    width: 50,
-                    height: 50,
-                  ),
-                  SizedBox(height: 8.0),
                   Text(
                     'Join Team',
-                    style: TextStyle(fontSize: 16.0),
+                    style: TextStyle(fontSize: 20),
                   ),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.add))
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'lib/assets/join_team.png',
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: MediaQuery.of(context).size.height * 0.15,
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, MyRoutes.jointeamRoutes);
+                        },
+                        icon: Icon(Icons.add),
+                      )
+                    ],
+                  ),
                 ],
               ),
             ),

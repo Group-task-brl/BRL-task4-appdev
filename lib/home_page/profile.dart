@@ -10,7 +10,7 @@ class Profile extends StatelessWidget {
         ),
         CircleAvatar(
           radius: 80.0,
-          backgroundImage: AssetImage(''), 
+          backgroundImage: AssetImage('lib/assets/prof.png'),
         ),
         SizedBox(
           height: 20.0,
@@ -26,48 +26,71 @@ class Profile extends StatelessWidget {
           height: 20.0,
         ),
         Divider(
-      thickness: 1.0,
-      color: Colors.grey,
-    ),
-        _buildProfile('Edit Profile'),
+          thickness: 1.0,
+          color: Colors.grey.withOpacity(0.65),
+        ),
+        _buildProfile('Edit Profile', Icons.edit_square),
         Divider(
-      thickness: 1.0,
-      color: Colors.grey,
-    ),
-        _buildProfile('Security'),
+          thickness: 1.0,
+          color: Colors.grey.withOpacity(0.65),
+        ),
+        _buildProfile('Security', Icons.security),
         Divider(
-      thickness: 1.0,
-      color: Colors.grey,
-    ),
-        _buildProfile('Suggestion and Feedback'),
+          thickness: 1.0,
+          color: Colors.grey.withOpacity(0.65),
+        ),
+        _buildProfile('Suggestion and Feedback', Icons.feedback),
         Divider(
-      thickness: 1.0,
-      color: Colors.grey,
-    ),
-    _buildProfile('Logout'),
+          thickness: 1.0,
+          color: Colors.grey.withOpacity(0.65),
+        ),
+        _buildProfile('Logout', Icons.logout, Colors.red),
       ],
     );
   }
 
-  Widget _buildProfile(String optionText) {
+  Widget _buildProfile(String optionText, IconData icon, [Color? textColor]) {
     return InkWell(
       onTap: () {},
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              optionText,
-              style: TextStyle(
-                fontSize: 18.0,
-              ),
+            Row(
+              children: [
+                if (textColor == Colors.red)
+                  Icon(
+                    icon,
+                    size: 20.0,
+                    color: Colors.red,
+                  ),
+                if (textColor != Colors.red)
+                  Icon(
+                    icon,
+                    size: 20.0,
+                  ),
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  optionText,
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: textColor ?? Colors.black,
+                  ),
+                ),
+              ],
             ),
+            if (textColor != Colors.red)
+              Icon(
+                Icons.arrow_forward_ios_outlined,
+                size: 20.0,
+                color: Color.fromARGB(255, 101, 56, 108),
+              ),
           ],
         ),
       ),
     );
   }
-
-  
 }
