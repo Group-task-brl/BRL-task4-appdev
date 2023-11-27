@@ -18,6 +18,7 @@ class _HomeNavState extends State<HomeNav> {
 
   @override
   Widget build(BuildContext context) {
+    double buttonHeight = MediaQuery.of(context).size.height;
     double buttonWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -28,26 +29,20 @@ class _HomeNavState extends State<HomeNav> {
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
               width: buttonWidth,
-              child:
-                  Column(
-                    children: [
-                      SizedBox(height: 10,),
-                      CupertinoSegmentedControl<int>(
-                        children: {
-                          0: Text('Teams'),
-                          1: Text('To-Do List'),
-                        },
-                        onValueChanged: (index) {
-                          _onNavItemTapped(index);
-                        },
-                        groupValue: _selectedIndex,
-                        // borderColor: Theme.of(context).primaryColor,
-                        selectedColor: Color.fromARGB(255, 101, 56, 108),
-                        unselectedColor: Colors.white,
-                        // padding: EdgeInsets.symmetric(vertical: buttonWidth*0.2),
-                      ),
-                    ],
-                  ),
+              height: buttonHeight*0.075,
+              child: CupertinoSegmentedControl<int>(
+                children: {
+                  0: Text('Teams'),
+                  1: Text('To-Do List'),
+                },
+                onValueChanged: (index) {
+                  _onNavItemTapped(index);
+                },
+                groupValue: _selectedIndex,
+                // borderColor: Theme.of(context).primaryColor,
+                selectedColor: Color.fromARGB(255, 101, 56, 108),
+                unselectedColor: Colors.white,
+              ),
             ),
           ),
           Expanded(
