@@ -1,9 +1,14 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import '../Utils/Routes.dart';
 
 class TeamPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double buttonHeight = MediaQuery.of(context).size.height * 0.25;
+    double buttonwidth = MediaQuery.of(context).size.width * 0.90;
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -17,6 +22,11 @@ class TeamPage extends StatelessWidget {
                 padding: EdgeInsets.all(16.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
+                ),
+                minimumSize: Size(buttonwidth,buttonHeight),
+                side: BorderSide(
+                  color: Color.fromARGB(255, 101, 56, 108),
+                  width: 2,
                 ),
               ),
               child: Column(
@@ -33,10 +43,11 @@ class TeamPage extends StatelessWidget {
                     style: TextStyle(fontSize: 16.0),
                   ),
                   IconButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, MyRoutes.CreateTeamScreen);
-                      },
-                      icon: Icon(Icons.add))
+                    onPressed: () {
+                      Navigator.pushNamed(context, MyRoutes.CreateTeamScreen);
+                    },
+                    icon: Icon(Icons.add),
+                  )
                 ],
               ),
             ),
@@ -49,6 +60,11 @@ class TeamPage extends StatelessWidget {
                 padding: EdgeInsets.all(16.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
+                ),
+                minimumSize: Size(buttonwidth,buttonHeight),
+                side: BorderSide(
+                  color: Color.fromARGB(255, 101, 56, 108),
+                  width: 2,
                 ),
               ),
               child: Column(

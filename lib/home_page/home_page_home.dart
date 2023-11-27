@@ -28,18 +28,23 @@ class _HomeNavState extends State<HomeNav> {
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
               width: buttonWidth,
-              child: CupertinoSegmentedControl<int>(
-                children: {
-                  0: Text('Teams'),
-                  1: Text('To-Do List'),
-                },
-                onValueChanged: (index) {
-                  _onNavItemTapped(index);
-                },
-                groupValue: _selectedIndex,
-                borderColor: Theme.of(context).primaryColor,
-                selectedColor: Theme.of(context).primaryColor,
-                unselectedColor: Colors.white,
+              child: Column(
+                children: [
+                  SizedBox(height: 100,),
+                  CupertinoSegmentedControl<int>(
+                    children: {
+                      0: Text('Teams'),
+                      1: Text('To-Do List'),
+                    },
+                    onValueChanged: (index) {
+                      _onNavItemTapped(index);
+                    },
+                    groupValue: _selectedIndex,
+                    // borderColor: Theme.of(context).primaryColor,
+                    selectedColor: Color.fromARGB(255, 101, 56, 108),
+                    unselectedColor: Colors.white,
+                  ),
+                ],
               ),
             ),
           ),
