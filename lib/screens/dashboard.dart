@@ -16,7 +16,7 @@ class dashb_memState extends State<dashb_mem> {
   Future<void>? _futureData;
   void initState() {
     super.initState();
-    // _futureData =showTeamAPI();
+    _futureData =showTeamAPI();
   }
   List<dynamic>? teamsData;
   List<String>? teamNames;
