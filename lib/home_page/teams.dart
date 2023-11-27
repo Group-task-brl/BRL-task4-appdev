@@ -11,7 +11,7 @@ class TeamPage extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, MyRoutes.CreateTeamScreen);
+                Navigator.pushNamed(context, MyRoutes.CreateTeamScreen);
               },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.all(16.0),
@@ -32,14 +32,18 @@ class TeamPage extends StatelessWidget {
                     'Create Team',
                     style: TextStyle(fontSize: 16.0),
                   ),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.add))
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, MyRoutes.CreateTeamScreen);
+                      },
+                      icon: Icon(Icons.add))
                 ],
               ),
             ),
-            SizedBox(height: 16), 
+            SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, MyRoutes.jointeamRoutes);
+                Navigator.pushNamed(context, MyRoutes.jointeamRoutes);
               },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.all(16.0),
@@ -51,7 +55,7 @@ class TeamPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'lib/assets/join_team.png', 
+                    'lib/assets/join_team.png',
                     width: 50,
                     height: 50,
                   ),
@@ -60,7 +64,12 @@ class TeamPage extends StatelessWidget {
                     'Join Team',
                     style: TextStyle(fontSize: 16.0),
                   ),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.add))
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, MyRoutes.jointeamRoutes);
+                    },
+                    icon: Icon(Icons.add),
+                  )
                 ],
               ),
             ),

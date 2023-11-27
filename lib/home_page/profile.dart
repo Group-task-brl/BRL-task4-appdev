@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// ignore_for_file: prefer_const_constructors
+
 class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -10,7 +12,7 @@ class Profile extends StatelessWidget {
         ),
         CircleAvatar(
           radius: 80.0,
-          backgroundImage: AssetImage(''), 
+          backgroundImage: AssetImage('lib/assets/prof.png'), 
         ),
         SizedBox(
           height: 20.0,

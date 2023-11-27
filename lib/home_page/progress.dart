@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:brl_task4/models/appbar.dart';
 
 class ProgressChart extends StatelessWidget {
   //%
@@ -9,10 +10,7 @@ class ProgressChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Progress'),
-      ),
+      appBar: MyAppBar(),
       body: Center(
         child: PieChart(
           PieChartData(
