@@ -1,7 +1,8 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:brl_task4/screens/teamDetail.dart';
 import 'package:brl_task4/home_page/home_page_home.dart';
-
+import 'package:brl_task4/home_page/progress.dart';
 import '../screens/dashboard.dart';
 
 // ignore_for_file: prefer_const_constructors
@@ -14,7 +15,7 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int currentPageIndex = 0;
+  int currentPageIndex = 2;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +44,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             ),
             NavigationDestination(
               icon: Icon(Icons.calendar_month,color:Color.fromARGB(255, 101,56,108),),
-              label: 'Tasks',
+              label: 'Dashboard',
             ),
             NavigationDestination(
               icon: Icon(Icons.home,color:Color.fromARGB(255, 101,56,108),),
@@ -63,24 +64,24 @@ class _BottomNavBarState extends State<BottomNavBar> {
       body: [
         Container(
           alignment: Alignment.center,
-          child: t_detail(),
+          child: ProgressChart(),
         ),
         Container(
             // color: Colors.blue,
             alignment: Alignment.center,
             child: dashb_mem() ),
         Container(
-          color: Colors.blue,
+          // color: Colors.blue,
           alignment: Alignment.center,
           child: HomeNav(),
         ),
         Container(
           color: Colors.blue,
           alignment: Alignment.center,
-          child: t_detail(),
+          child: Text('Work in progress'),
         ),
         Container(
-          color: Colors.blue,
+          // color: Colors.blue,
           alignment: Alignment.center,
           child: t_detail(),
         ),
