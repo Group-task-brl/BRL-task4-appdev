@@ -28,8 +28,7 @@ class dashb_memState extends State<dashb_mem> {
         headers: <String, String>{
           'Authorization' :storedValue,
         },);
-    List<dynamic> teamsData = jsonDecode(response.body)['teams'];
-    teamNames = teamsData.map<String>((team) => team['teamName'].toString()).toList();
+
     // Map<String, dynamic> jsonResponse = jsonDecode(response);
     //
     // teamNames = jsonResponse['teams']
@@ -37,7 +36,8 @@ class dashb_memState extends State<dashb_mem> {
     //     .toList();
 
     if (response.statusCode == 200) {
-      print('API Response: ${response.body}');
+      List<dynamic> teamsData = jsonDecode(response.body)['teams'];
+      teamNames = teamsData.map<String>((team) => team['teamName'].toString()).toList();
     } else {
       print('Failed to join the team. Status Code: ${response.statusCode}');
       print('Error Message: ${response.body}');

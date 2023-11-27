@@ -3,9 +3,7 @@ import 'package:brl_task4/create&join-Team/Domain-team.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
-
 import '../screens/login.dart';
-
 
 class Domain {
   final int id;

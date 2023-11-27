@@ -11,7 +11,7 @@ class TeamPage extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, MyRoutes.CreateTeamScreen);
+                Navigator.pushNamed(context, MyRoutes.CreateTeamScreen);
               },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.all(16.0),
@@ -39,7 +39,7 @@ class TeamPage extends StatelessWidget {
             SizedBox(height: 16), 
             ElevatedButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, MyRoutes.jointeamRoutes);
+                Navigator.pushNamed(context, MyRoutes.jointeamRoutes);
               },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.all(16.0),
