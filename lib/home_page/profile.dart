@@ -27,22 +27,22 @@ class Profile extends StatelessWidget {
         ),
         Divider(
           thickness: 1.0,
-          color: Colors.grey,
+          color: Colors.grey.withOpacity(0.65),
         ),
         _buildProfile('Edit Profile', Icons.edit_square),
         Divider(
           thickness: 1.0,
-          color: Colors.grey,
+          color: Colors.grey.withOpacity(0.65),
         ),
         _buildProfile('Security', Icons.security),
         Divider(
           thickness: 1.0,
-          color: Colors.grey,
+          color: Colors.grey.withOpacity(0.65),
         ),
         _buildProfile('Suggestion and Feedback', Icons.feedback),
         Divider(
           thickness: 1.0,
-          color: Colors.grey,
+          color: Colors.grey.withOpacity(0.65),
         ),
         _buildProfile('Logout', Icons.logout, Colors.red),
       ],
