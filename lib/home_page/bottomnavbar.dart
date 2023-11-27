@@ -22,8 +22,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Colors.black,
-              blurRadius: 20,
+              color: Color.fromARGB(255, 147, 78, 158),
+              blurRadius: 10,
             ),
           ],
         ),
