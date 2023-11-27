@@ -1,6 +1,6 @@
 
 import "dart:convert";
-
+import 'teamDetail.dart';
 import "package:brl_task4/Utils/Routes.dart";
 import "package:flutter/material.dart";
 import 'package:http/http.dart' as http;
@@ -18,6 +18,7 @@ class dashb_memState extends State<dashb_mem> {
     super.initState();
     _futureData =showTeamAPI();
   }
+  List<dynamic>? teamsData;
   List<String>? teamNames;
   Future<void> showTeamAPI() async {
     dynamic storedValue = await secureStorage.readSecureData(key);
@@ -36,8 +37,8 @@ class dashb_memState extends State<dashb_mem> {
     //     .toList();
 
     if (response.statusCode == 200) {
-      List<dynamic> teamsData = jsonDecode(response.body)['teams'];
-      teamNames = teamsData.map<String>((team) => team['teamName'].toString()).toList();
+      teamsData = jsonDecode(response.body)['teams'];
+      teamNames = teamsData!.map<String>((team) => team['teamName'].toString()).toList();
     } else {
       print('Failed to join the team. Status Code: ${response.statusCode}');
       print('Error Message: ${response.body}');
@@ -77,7 +78,7 @@ class dashb_memState extends State<dashb_mem> {
                             return ListTile(
                               title: ElevatedButton(
                                 onPressed: (){
-                                  Navigator.pushNamed(context,MyRoutes.tdetailRoutes);
+                                  Navigator.push(context,  MaterialPageRoute(builder: (context) => t_detail(team:teamsData![index])));
                                 },
                                 child: Text(teamNames![index]),
                               ),
