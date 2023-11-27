@@ -18,37 +18,47 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (int index) {
-          setState(() {
-            currentPageIndex = index;
-          });
-        },
-        indicatorColor: Color.fromARGB(255, 209, 180, 213),
-        backgroundColor:  Color.fromARGB(255, 141, 26, 156),
-        selectedIndex: currentPageIndex,
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.pie_chart),
-            label: 'Progress',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.calendar_month),
-            label: 'Tasks',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.chat),
-            label: 'Chat',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.person_rounded),
-            label: 'Profile',
-          ),
-        ],
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black,
+              blurRadius: 20,
+            ),
+          ],
+        ),
+        child: NavigationBar(
+          onDestinationSelected: (int index) {
+            setState(() {
+              currentPageIndex = index;
+            });
+          },
+          backgroundColor: Color.fromARGB(255, 247,247,247),
+          // indicatorColor:  Color.fromARGB(255, 101,56,108),
+          selectedIndex: currentPageIndex,
+          destinations: const [
+            NavigationDestination(
+              icon: Icon(Icons.pie_chart,color:Color.fromARGB(255, 101,56,108),),
+              label: 'Progress',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.calendar_month,color:Color.fromARGB(255, 101,56,108),),
+              label: 'Tasks',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.home,color:Color.fromARGB(255, 101,56,108),),
+              label: 'Home',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.chat,color:Color.fromARGB(255, 101,56,108),),
+              label: 'Chat',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.person_rounded,color:Color.fromARGB(255, 101,56,108),),
+              label: 'Profile',
+            ),
+          ],
+        ),
       ),
       body: [
         Container(
