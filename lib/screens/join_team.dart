@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
 import 'package:http/http.dart' as http;
 import "../models/join_model.dart";
+import "../screens/login.dart";
+import '../models/storeToken.dart';
 class join_team extends StatefulWidget {
   const join_team({super.key});
 
@@ -9,12 +11,15 @@ class join_team extends StatefulWidget {
 }
 
 class _join_teamState extends State<join_team> {
+
   Future<void> joinTeamAPI() async {
-    final String apiUrl = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com/team/joinTeam/:email';
+    dynamic storedValue = await secureStorage.readSecureData(key);
+
+    final String apiUrl = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/team/joinTeam';
     final response = await http.post(
       Uri.parse(apiUrl),
       headers: <String, String>{
-        'Content-Type': 'application/json',
+        'Authorization' :storedValue,
       },
       body: joinTeamToJson(
           JoinTeam(
@@ -54,7 +59,7 @@ class _join_teamState extends State<join_team> {
                           decoration: InputDecoration(
                             // prefixIcon:Icon(Icons.looks),
                             prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
-                            hintText: "Team Name",
+                            hintText: "Team Code",
                             contentPadding: EdgeInsets.symmetric(vertical: 2.0),
                             suffixIcon: Icon(Icons.visibility),
                             border:OutlineInputBorder(

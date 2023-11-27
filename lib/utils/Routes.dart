@@ -5,5 +5,6 @@ class MyRoutes {
   static String jointeamRoutes = "/join_team";
   static String tdetailRoutes = "/t_detail";
   static String CreateTeamScreen = "/CreateTeamScreen";
-
+  static String BottomNavBar ="/BottomNavBar";
+  static String Todo = "/TodoList";
 }
