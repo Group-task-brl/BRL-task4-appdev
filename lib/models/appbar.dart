@@ -6,8 +6,16 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Colors.black, Colors.purple],
+            // colors: [Color.fromARGB(255,22,2,25), Color.fromARGB(255, 101,56,108)],
+          ),
+        ),
       padding: EdgeInsets.all(16.0),
-      color: Colors.blue,
+      // color: Colors.blue,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
