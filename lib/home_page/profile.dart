@@ -29,27 +29,27 @@ class Profile extends StatelessWidget {
           thickness: 1.0,
           color: Colors.grey,
         ),
-        _buildProfile('Edit Profile', Icons.arrow_forward_ios_outlined),
+        _buildProfile('Edit Profile', Icons.edit_square),
         Divider(
           thickness: 1.0,
           color: Colors.grey,
         ),
-        _buildProfile('Security', Icons.arrow_forward_ios_outlined),
+        _buildProfile('Security', Icons.security),
         Divider(
           thickness: 1.0,
           color: Colors.grey,
         ),
-        _buildProfile('Suggestion and Feedback', Icons.arrow_forward_ios_outlined),
+        _buildProfile('Suggestion and Feedback', Icons.feedback),
         Divider(
           thickness: 1.0,
           color: Colors.grey,
         ),
-        _buildProfile('Logout', Icons.logout),
+        _buildProfile('Logout', Icons.logout, Colors.red),
       ],
     );
   }
 
-  Widget _buildProfile(String optionText, IconData icon) {
+  Widget _buildProfile(String optionText, IconData icon, [Color? textColor]) {
     return InkWell(
       onTap: () {},
       child: Padding(
@@ -57,17 +57,37 @@ class Profile extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              optionText,
-              style: TextStyle(
-                fontSize: 18.0,
+            Row(
+              children: [
+                if (textColor == Colors.red)
+                  Icon(
+                    icon,
+                    size: 20.0,
+                    color: Colors.red,
+                  ),
+                if (textColor != Colors.red)
+                  Icon(
+                    icon,
+                    size: 20.0,
+                  ),
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  optionText,
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: textColor ?? Colors.black,
+                  ),
+                ),
+              ],
+            ),
+            if (textColor != Colors.red)
+              Icon(
+                Icons.arrow_forward_ios_outlined,
+                size: 20.0,
+                color: Color.fromARGB(255, 101, 56, 108),
               ),
-            ),
-            Icon(
-              icon,
-              size: 20.0,
-              color: Color.fromARGB(255, 101, 56, 108),
-            ),
           ],
         ),
       ),
