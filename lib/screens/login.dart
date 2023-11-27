@@ -12,8 +12,9 @@ class Login extends StatefulWidget {
   State<Login> createState() => _LoginState();
 }
 
+ final SecureStorage secureStorage=SecureStorage();
+String key= 'accessToken';
 class _LoginState extends State<Login> {
-  final SecureStorage secureStorage=SecureStorage();
 
   TextEditingController emailController =TextEditingController();
   TextEditingController passController =TextEditingController();
@@ -32,7 +33,7 @@ class _LoginState extends State<Login> {
 
       dynamic generateResponse = jsonDecode(response.body);
       Token.fromJson(generateResponse);
-      secureStorage.writeSecureData('accessToken',generateResponse);
+      await secureStorage.writeSecureData(key,generateResponse);
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Login Successful"),),);

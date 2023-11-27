@@ -5,6 +5,8 @@ import 'dart:convert';
 import 'package:brl_task4/create&join-Team/create-team.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+
+import '../screens/login.dart';
 class TeamDetailsScreen extends StatelessWidget {
   final List<Domain> selectedDomains;
   final String teamname ;
@@ -44,13 +46,15 @@ class InviteMembersScreen extends StatelessWidget {
   TextEditingController emailController = TextEditingController();
 
   Future<void> _sendInvitation() async {
-    var headers = {
+    dynamic storedValue = await secureStorage.readSecureData(key);
+    var headers = <String, String>{
+      'Authorization' :storedValue,
       'Content-Type': 'application/json',
     };
 
     var request = http.Request(
       'POST',
-      Uri.parse('http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/team/sendTeamcode/6560f7a756e1987406f6b173/${domain.name}'),
+      Uri.parse('http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/team/sendTeamcode/:teamId/${domain.name}'),
     );
 
     request.body = json.encode({

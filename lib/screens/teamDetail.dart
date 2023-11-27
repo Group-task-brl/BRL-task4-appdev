@@ -175,7 +175,7 @@ class _t_detailState extends State<t_detail> {
                       return Text('Error: ${snapshot.error}');
                     } else {
                       return  Container(
-                        height: 600,
+                        height: 500,
                         child: ListView.builder(
                             itemCount:2,
                             itemBuilder: (context,index) {

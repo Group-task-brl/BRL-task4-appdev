@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 
+import '../screens/login.dart';
+
 class CreateTeamScreen extends StatefulWidget {
   @override
   _CreateTeamScreenState createState() => _CreateTeamScreenState();
@@ -69,11 +71,16 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
     );
   }
 
-  Future<void> createTeam() async {
-    var headers = {
-      'Content-Type': 'application/json',
-    };
 
+
+  Future<void> createTeam() async {
+
+    dynamic storedValue = await secureStorage.readSecureData(key);
+    var headers = <String, String>{
+      'Authorization' :storedValue,
+      'Content-Type': 'application/json'
+    };
+      print(storedValue);
     var request = http.Request(
       'POST',
       Uri.parse(
@@ -89,13 +96,14 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
 
     request.body = json.encode({
       "teamName": teamNameController.text,
-      "leaderEmail": "euclidstellar@gmail.com",
+      // "leaderEmail": "euclidstellar@gmail.com",
       "domains": domainList,
     });
 
     request.headers.addAll(headers);
 
     try {
+      print ("hii");
       http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 200) {
@@ -119,6 +127,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
         print(response.reasonPhrase);
       }
     } catch (error) {
+
       _showErrorSnackBar('Error creating team: $error');
       print('Error creating team: $error');
     }
