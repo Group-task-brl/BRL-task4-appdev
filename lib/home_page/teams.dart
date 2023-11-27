@@ -21,7 +21,7 @@ class TeamPage extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                minimumSize: Size(buttonWidth, buttonHeight), 
+                maximumSize: Size(buttonWidth, buttonHeight),
                 side: BorderSide(
                   color: Color.fromARGB(255, 101, 56, 108),
                   width: 2,
@@ -30,22 +30,28 @@ class TeamPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'lib/assets/create_team.png',
-                    width: 50,
-                    height: 50,
-                  ),
-                  SizedBox(height: 8.0),
                   Text(
                     'Create Team',
-                    style: TextStyle(fontSize: 16.0),
+                    style: TextStyle(fontSize: 20),
                   ),
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, MyRoutes.CreateTeamScreen);
-                    },
-                    icon: Icon(Icons.add),
-                  )
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'lib/assets/create_team.png',
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: MediaQuery.of(context).size.height * 0.15,
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, MyRoutes.CreateTeamScreen);
+                        },
+                        icon: Icon(Icons.add),
+                      )
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -59,7 +65,7 @@ class TeamPage extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                minimumSize: Size(buttonWidth, buttonHeight), 
+                maximumSize: Size(buttonWidth, buttonHeight),
                 side: BorderSide(
                   color: Color.fromARGB(255, 101, 56, 108),
                   width: 2,
@@ -68,22 +74,27 @@ class TeamPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'lib/assets/join_team.png',
-                    width: 50,
-                    height: 50,
-                  ),
-                  SizedBox(height: 8.0),
                   Text(
                     'Join Team',
-                    style: TextStyle(fontSize: 16.0),
+                    style: TextStyle(fontSize: 20),
                   ),
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, MyRoutes.jointeamRoutes);
-                    },
-                    icon: Icon(Icons.add),
-                  )
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'lib/assets/join_team.png',
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: MediaQuery.of(context).size.height * 0.15,
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, MyRoutes.jointeamRoutes);
+                        },
+                        icon: Icon(Icons.add),
+                      )
+                    ],
+                  ),
                 ],
               ),
             ),
