@@ -1,3 +1,4 @@
+import 'package:brl_task4/models/appbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:brl_task4/home_page/teams.dart';
@@ -20,10 +21,7 @@ class _HomeNavState extends State<HomeNav> {
     double buttonWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Home'),
-      ),
+      appBar: MyAppBar(),
       body: Column(
         children: [
           Padding(
