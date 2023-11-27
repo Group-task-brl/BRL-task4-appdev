@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import '../Utils/Routes.dart';
 
@@ -7,7 +5,7 @@ class TeamPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double buttonHeight = MediaQuery.of(context).size.height * 0.25;
-    double buttonwidth = MediaQuery.of(context).size.width * 0.90;
+    double buttonWidth = MediaQuery.of(context).size.width * 0.90;
 
     return Scaffold(
       body: Center(
@@ -23,7 +21,7 @@ class TeamPage extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                minimumSize: Size(buttonwidth,buttonHeight),
+                minimumSize: Size(buttonWidth, buttonHeight), 
                 side: BorderSide(
                   color: Color.fromARGB(255, 101, 56, 108),
                   width: 2,
@@ -61,7 +59,7 @@ class TeamPage extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                minimumSize: Size(buttonwidth,buttonHeight),
+                minimumSize: Size(buttonWidth, buttonHeight), 
                 side: BorderSide(
                   color: Color.fromARGB(255, 101, 56, 108),
                   width: 2,
