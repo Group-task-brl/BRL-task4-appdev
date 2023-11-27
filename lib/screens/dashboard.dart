@@ -16,7 +16,7 @@ class dashb_memState extends State<dashb_mem> {
   Future<void>? _futureData;
   void initState() {
     super.initState();
-    _futureData =showTeamAPI();
+    // _futureData =showTeamAPI();
   }
   List<dynamic>? teamsData;
   List<String>? teamNames;
@@ -53,7 +53,11 @@ class dashb_memState extends State<dashb_mem> {
       body: Container(
         child: Column(
           children:[
-            Text("Active Team"),
+            Container(
+              width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height/20,
+                color: Colors.purple.shade100,
+                child: Center(child: Text("TEAMS",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600,fontSize: 18),))),
             SizedBox(height: 20,),
             Expanded(
               child: Container(
@@ -76,11 +80,29 @@ class dashb_memState extends State<dashb_mem> {
                        itemCount:teamNames!.length,
                         itemBuilder: (context,index){
                             return ListTile(
-                              title: ElevatedButton(
-                                onPressed: (){
-                                  Navigator.push(context,  MaterialPageRoute(builder: (context) => t_detail(team:teamsData![index])));
-                                },
-                                child: Text(teamNames![index]),
+                              title: Container(
+                                width: MediaQuery.of(context).size.width/(4/3),
+                                height: MediaQuery.of(context).size.height/10,
+                                color: Colors.grey.shade50,
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10)
+                                      ),
+                                      side: BorderSide(color: Colors.purple, width: 1),
+                                    ),
+                                  onPressed: (){
+                                    Navigator.push(context,  MaterialPageRoute(builder: (context) => t_detail(team:teamsData![index])));
+                                  },
+                                  child: Row(
+                                    children: [
+                                      Container(height: MediaQuery.of(context).size.height/15,width: 2,color: Colors.purple,),
+                                      SizedBox(width: 20,),
+                                      Text(teamNames![index].toUpperCase(),style: TextStyle(color: Colors.black),),
+                                    ],
+                                  ),
+                                ),
                               ),
                             );
                        },);
