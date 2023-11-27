@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:brl_task4/utils/Routes.dart';
+import 'package:brl_task4/home_page/todo.dart';
 
 class TaskContainer extends StatelessWidget {
   @override
@@ -8,7 +10,7 @@ class TaskContainer extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           border: Border.all(
-            color: Colors.black, // Adjust the color as needed
+            color: Colors.black, 
             width: 1,
           ),
           borderRadius: BorderRadius.all(Radius.circular(12.0)),
@@ -39,6 +41,9 @@ class TaskContainer extends StatelessWidget {
                 ],
               ),
             ),
+            FloatingActionButton(onPressed: () {
+              Navigator.pushNamed(context, MyRoutes.Todo);
+            }),
           ],
         ),
       ),
