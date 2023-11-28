@@ -35,7 +35,6 @@ class MyApp extends StatelessWidget {
         MyRoutes.LoginRoutes: (context) => Login(),
         MyRoutes.dashbMemRoutes: (context) => dashb_mem(),
         MyRoutes.jointeamRoutes: (context) => join_team(),
-        MyRoutes.tdetailRoutes: (context) => t_detail(),
         MyRoutes.CreateTeamScreen: (context) => CreateTeamScreen(),
         MyRoutes.BottomNavBar:(context) => BottomNavBar(),
         MyRoutes.Todo:(context) => TodoList(),
