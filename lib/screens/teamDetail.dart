@@ -3,6 +3,7 @@ import 'package:table_calendar/table_calendar.dart';
 
 import '../utils/Routes.dart';
 import 'addTask.dart';
+import 'dashboard.dart';
 class t_detail extends StatefulWidget {
    t_detail({required this.team});
   dynamic team;
@@ -13,6 +14,7 @@ class t_detail extends StatefulWidget {
 class _t_detailState extends State<t_detail> {
   // List<dynamic> domains =team['domains'];
   dynamic teams;
+  String? email=name;
   // String? domainName;
   String? leaderEmail;
   String? teamName;
@@ -192,6 +194,23 @@ class _t_detailState extends State<t_detail> {
                     // SizedBox(height: 10,),
                     Column(
                       children: [
+                        ElevatedButton(onPressed: (){
+                        // ek string h is page mei email usko call krlo bas
+                        },
+                          style:ElevatedButton.styleFrom(
+                            backgroundColor:Color.fromARGB(255, 225, 169, 229),
+                            // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
+
+                          ),
+                          child:Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text("Chat"),
+                              SizedBox(width:5),
+                              Icon(Icons.arrow_circle_right_outlined)
+                            ],
+                          ),),
+                        SizedBox(height: 10,),
                         Row(
 
                           mainAxisAlignment: MainAxisAlignment.center,
