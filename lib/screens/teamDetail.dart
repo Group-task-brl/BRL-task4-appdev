@@ -43,7 +43,7 @@ class _t_detailState extends State<t_detail> {
       data(teams);
     });
     return Scaffold(
-        appBar:AppBar(title: Text("Team: $teamName",style: TextStyle(color:Colors.white,fontSize: 30,fontWeight: FontWeight.w700 ),),
+        appBar:AppBar(title: Text("Team: $teamName"+" - $teamCode",style: TextStyle(color:Colors.white,fontSize: 30,fontWeight: FontWeight.w700 ),),
           backgroundColor: Color(0xFF600D64),),
         body: SafeArea(
           child: Container(
@@ -233,7 +233,7 @@ class _t_detailState extends State<t_detail> {
                               ),),
                             SizedBox(width: 20,),
                             ElevatedButton(onPressed: (){
-
+                              Navigator.pushReplacementNamed(context, MyRoutes.DoneTask);
                             },
                               style:ElevatedButton.styleFrom(
                                 backgroundColor:Color.fromARGB(255, 225, 169, 229),
@@ -256,7 +256,7 @@ class _t_detailState extends State<t_detail> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             ElevatedButton(onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => addTask(teamcode:teamCode)));
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => addTask(teamcode:teamCode)));
                             },
                               style:ElevatedButton.styleFrom(
                                 backgroundColor:Color.fromARGB(255, 225, 169, 229),
