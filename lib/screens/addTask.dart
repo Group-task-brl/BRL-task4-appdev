@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import '../Utils/Routes.dart';
 import 'login.dart';
 
 class addTask extends StatefulWidget {
@@ -35,7 +36,7 @@ class _addTaskState extends State<addTask> {
       // print('API Response: ${response.body}');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Task Added"),),);
-
+        Navigator.pushReplacementNamed(context, MyRoutes.BottomNavBar);
     } else {
       print( ' ${response.statusCode}');
       print('Error Message: ${response.body}');

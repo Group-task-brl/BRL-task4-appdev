@@ -1,7 +1,9 @@
+import 'package:brl_task4/screens/teamD2.dart';
 import "package:flutter/material.dart";
 import 'package:table_calendar/table_calendar.dart';
 
 import '../utils/Routes.dart';
+import 'Resign.dart';
 import 'addTask.dart';
 import 'dashboard.dart';
 class t_detail extends StatefulWidget {
@@ -19,6 +21,7 @@ class _t_detailState extends State<t_detail> {
   String? leaderEmail;
   String? teamName;
   String? teamCode;
+  String? teamId;
   Future<void>? _futureData;
   void initState() {
     super.initState();
@@ -27,6 +30,7 @@ class _t_detailState extends State<t_detail> {
   List<dynamic>? domains;
   Future<void> data (dynamic teams) async{
       setState(() {
+        teamId = teams['_id'];
         teamName=teams['teamName'];
         domains = teams['domains'];
         leaderEmail= teams['leaderEmail'];
@@ -43,7 +47,7 @@ class _t_detailState extends State<t_detail> {
       data(teams);
     });
     return Scaffold(
-        appBar:AppBar(title: Text("Team: $teamName"+" - $teamCode",style: TextStyle(color:Colors.white,fontSize: 30,fontWeight: FontWeight.w700 ),),
+        appBar:AppBar(title: Text("Team: $teamName",style: TextStyle(color:Colors.white,fontSize: 30,fontWeight: FontWeight.w700 ),),
           backgroundColor: Color(0xFF600D64),),
         body: SafeArea(
           child: Container(
@@ -54,6 +58,9 @@ class _t_detailState extends State<t_detail> {
                 SizedBox(height: 20,),
                 Text("Leader: "+leaderEmail!.substring(0,leaderEmail!.indexOf('@')),
                 style: TextStyle(color:Colors.white,fontSize: 25,fontWeight: FontWeight.w700 ),),
+                Text("Team Code: "+teamCode!,
+                  style: TextStyle(color:Colors.white,fontSize: 25,fontWeight: FontWeight.w700 ),),
+
                 SizedBox(height:10),
 
 
@@ -98,7 +105,7 @@ class _t_detailState extends State<t_detail> {
                                                   children: [
                                                     Text(domains![index]['members'][index1],
                                                     style: TextStyle(
-                                                      color: Colors.black,fontSize: 17
+                                                      color: Colors.white,fontSize: 17
                                                     ),),
                                                     // SizedBox(height: 10,),
                                                   ]),);}),
@@ -161,17 +168,17 @@ class _t_detailState extends State<t_detail> {
                                                           child: Center(child: Text(
                                                               domains![index]['tasks']![index2]!["assignedTo"].
                                                               substring(0,domains![index]['tasks']![index2]!["assignedTo"].indexOf('@')),
-                                                          style: TextStyle(color: Colors.black),)),
+                                                          style: TextStyle(color: Colors.white),)),
                                                         ),
                                                         TableCell(
                                                           child: Center(
                                                               child: Text(domains![index]['tasks']![index2]!["description"],
-                                                                  style: TextStyle(color: Colors.black))),
+                                                                  style: TextStyle(color: Colors.white))),
                                                         ),
                                                         TableCell(
                                                           child: Center(
                                                               child: Text(domains![index]['tasks']![index2]!["deadline"],
-                                                                  style: TextStyle(color: Colors.black))),
+                                                                  style: TextStyle(color: Colors.white))),
                                                         ),
                                                       ]
                                                   )
@@ -194,28 +201,14 @@ class _t_detailState extends State<t_detail> {
                     // SizedBox(height: 10,),
                     Column(
                       children: [
-                        ElevatedButton(onPressed: (){
-                        // ek string h is page mei email usko call krlo bas
-                        },
-                          style:ElevatedButton.styleFrom(
-                            backgroundColor:Color.fromARGB(255, 225, 169, 229),
-                            // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
 
-                          ),
-                          child:Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text("Chat"),
-                              SizedBox(width:5),
-                              Icon(Icons.arrow_circle_right_outlined)
-                            ],
-                          ),),
                         SizedBox(height: 10,),
                         Row(
 
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             ElevatedButton(onPressed: (){
+                              Navigator.pushReplacementNamed(context, MyRoutes.DoneTask);
                               // Navigator.push(context, MaterialPageRoute(builder: (context) => addTask(teamcode:teamCode)));
                             },
                               style:ElevatedButton.styleFrom(
@@ -227,13 +220,14 @@ class _t_detailState extends State<t_detail> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text("Mark Task Done"),
-                                  SizedBox(width:5),
-                                  Icon(Icons.arrow_circle_right_outlined)
+                                  // SizedBox(width:5),
+                                  // Icon(Icons.arrow_circle_right_outlined)
                                 ],
                               ),),
                             SizedBox(width: 20,),
                             ElevatedButton(onPressed: (){
-                              Navigator.pushReplacementNamed(context, MyRoutes.DoneTask);
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Resign(teamId:teamId)));
+                              // Navigator.pushReplacementNamed(context, MyRoutes.DoneTask);
                             },
                               style:ElevatedButton.styleFrom(
                                 backgroundColor:Color.fromARGB(255, 225, 169, 229),
@@ -244,8 +238,8 @@ class _t_detailState extends State<t_detail> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text("Resign"),
-                                  SizedBox(width:5),
-                                  Icon(Icons.arrow_circle_right_outlined)
+                                  // SizedBox(width:5),
+                                  // Icon(Icons.arrow_circle_right_outlined)
                                 ],
                               ),),
                           ],
@@ -267,11 +261,28 @@ class _t_detailState extends State<t_detail> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text("Add Task"),
-                                  SizedBox(width:5),
-                                Icon(Icons.arrow_circle_right_outlined)
+                                //   SizedBox(width:5),
+                                // Icon(Icons.arrow_circle_right_outlined)
                                 ],
                               ),),
-                          SizedBox(width: 20,),
+                            SizedBox(width: 10,),
+                            ElevatedButton(onPressed: (){
+                              // ek string h is page mei email usko call krlo bas
+                            },
+                              style:ElevatedButton.styleFrom(
+                                backgroundColor:Color.fromARGB(255, 225, 169, 229),
+                                // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
+
+                              ),
+                              child:Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text("Chat"),
+                                  // SizedBox(width:5),
+                                  // Icon(Icons.arrow_circle_right_outlined)
+                                ],
+                              ),),
+                          SizedBox(width: 10,),
                               ElevatedButton(onPressed: (){
 
                               },
@@ -284,8 +295,8 @@ class _t_detailState extends State<t_detail> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Text("Resources"),
-                                    SizedBox(width:5),
-                                    Icon(Icons.arrow_circle_right_outlined)
+                                    // SizedBox(width:5),
+                                    // Icon(Icons.arrow_circle_right_outlined)
                                   ],
                                 ),),
                           ],

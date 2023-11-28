@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:http/http.dart' as http;
+import "../Utils/Routes.dart";
 import "login.dart";
 
 class doneTask extends StatefulWidget {
@@ -32,6 +33,7 @@ class _doneTaskState extends State<doneTask> {
 
     if (response.statusCode == 200) {
       // print('API Response: ${response.body}');
+      Navigator.pushReplacementNamed(context, MyRoutes.BottomNavBar);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Marked Task Done"),),);
 
@@ -181,7 +183,7 @@ class _doneTaskState extends State<doneTask> {
                           child:Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text("Add Task"),
+                              Text("Task Done"),
                               SizedBox(width:5),
                               IconButton(onPressed:(){},icon:Icon(Icons.arrow_circle_right_outlined)),
                             ],
