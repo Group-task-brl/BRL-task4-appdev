@@ -33,9 +33,9 @@ class MyApp extends StatelessWidget {
 
         initialRoute: '/',
         routes: {
-          // '/':(context)=>join_team(),
+          '/':(context)=>SignUp(),
 
-          '/': (context) => (storedValue==null)?SignUp():BottomNavBar(),
+          // '/': (context) => (storedValue==null)?SignUp():BottomNavBar(),
         MyRoutes.SignUpRoutes: (context) => SignUp(),
         MyRoutes.LoginRoutes: (context) => Login(),
         MyRoutes.dashbMemRoutes: (context) => dashb_mem(),

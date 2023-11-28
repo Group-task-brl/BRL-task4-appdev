@@ -1,6 +1,7 @@
 import 'package:brl_task4/screens/teamD2.dart';
 
 import 'package:brl_task4/ResourceM/Resources.dart';
+import 'package:brl_task4/screens/chat.dart';
 import "package:flutter/material.dart";
 import 'package:table_calendar/table_calendar.dart';
 
@@ -269,6 +270,7 @@ class _t_detailState extends State<t_detail> {
                               ),),
                             SizedBox(width: 10,),
                             ElevatedButton(onPressed: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(leaderEmail!)));
                               // ek string h is page mei email usko call krlo bas
                             },
                               style:ElevatedButton.styleFrom(
