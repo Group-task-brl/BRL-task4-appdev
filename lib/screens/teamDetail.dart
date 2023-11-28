@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:table_calendar/table_calendar.dart';
+
+import '../utils/Routes.dart';
 class t_detail extends StatefulWidget {
    t_detail({required this.team});
   dynamic team;
@@ -50,12 +52,16 @@ class _t_detailState extends State<t_detail> {
       //     ]
       //   ),
       // ),
-        appBar:AppBar(title: Text("$teamName"),),
+        appBar:AppBar(title: Text("Team: $teamName",style: TextStyle(color:Colors.white,fontSize: 30,fontWeight: FontWeight.w700 ),),
+          backgroundColor: Color(0xFF600D64),),
         body: SafeArea(
           child: Container(
+            color: Colors.purple,
             child: Column(
               children:[
-                Text("Leader: "+leaderEmail!.substring(0,leaderEmail!.indexOf('@'))),
+                SizedBox(height: 20,),
+                Text("Leader: "+leaderEmail!.substring(0,leaderEmail!.indexOf('@')),
+                style: TextStyle(color:Colors.white,fontSize: 25,fontWeight: FontWeight.w700 ),),
                 SizedBox(height:10),
 
 
@@ -74,116 +80,136 @@ class _t_detailState extends State<t_detail> {
                     } else {
                       return  Container(
                         height: 500,
-                        child: ListView.builder(
-                            itemCount:domains!.length,
-                            itemBuilder: (context,index) {
-                              return ListTile(
-                                title: Column(
-                                  children: [
-                                    Text("Domain: "+domains![index]['name']),
-                                    SizedBox(height:10),
-                                    Container(
-                                      height: 100,
-                                      child: ListView.builder(
-                                          itemCount:domains![index]['members']!.length,
-                                          itemBuilder: (context,index1) {
-                                            return ListTile(
-                                              title: Column(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width/1.05,
+                          // color: Colors.purpleAccent,
+                          decoration: ShapeDecoration(
+                          color: Colors.white.withOpacity(0.400),
+                            shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),),
+                          child: ListView.builder(
+                              itemCount:domains!.length,
+                              itemBuilder: (context,index) {
+                                return ListTile(
+                                  title: Column(
+                                    children: [
+                                      Text("Domain: "+domains![index]['name'],
+                                          style: TextStyle(color: Colors.purple,fontSize: 18,fontWeight: FontWeight.w600),),
+                                      SizedBox(height:10),
+                                      Text("Members: ",style: TextStyle(color: Colors.purple)),
+                                      Container(
+                                        height: 100,
+                                        child: ListView.builder(
+                                            itemCount:domains![index]['members']!.length,
+                                            itemBuilder: (context,index1) {
+                                              return ListTile(
+                                                title: Column(
+                                                    children: [
+                                                      Text(domains![index]['members'][index1],
+                                                      style: TextStyle(
+                                                        color: Colors.black,fontSize: 17
+                                                      ),),
+                                                      SizedBox(height: 10,),
+                                                    ]),);}),
+                                      ),
+                                      SizedBox(height: 10,),
+                                      Table(
+                                        columnWidths: {
+                                          0: FixedColumnWidth(60.0),
+                                          1: FixedColumnWidth(80.0),
+                                          2: FixedColumnWidth(85.0),
+                                          3: FixedColumnWidth(80.0),
+                                        },
+                                        border: TableBorder(
+                                            top: BorderSide(width: 2.0, color: Colors.purple),
+                                        left: BorderSide(width: 2.0, color: Colors.purple),
+                                        right: BorderSide(width: 2.0, color: Colors.purple),
+                                        bottom: BorderSide(width: 2.0, color: Colors.purple)),
+                                        children: [
+                                          TableRow(
+                                            children: [
+                                              TableCell(
+                                                child: Center(child: Text("Status",style: TextStyle(color: Colors.purple,fontWeight: FontWeight.w700))),
+                                              ),
+                                              TableCell(
+                                                child: Center(child: Text('Member',style: TextStyle(color: Colors.purple,fontWeight: FontWeight.w700))),
+                                              ),
+                                              TableCell(
+                                                child: Center(child: Text('Task',style: TextStyle(color: Colors.purple,fontWeight: FontWeight.w700))),
+                                              ),
+                                              TableCell(
+                                                child: Center(child: Text('Deadline',style: TextStyle(color: Colors.purple,fontWeight: FontWeight.w700))),
+                                              ),
+                                            ],
+                                          ),],),
+
+                                      Container(
+                                        height: 200,
+                                        child: ListView.builder(
+                                            itemCount:domains![index]['tasks']!.length,
+                                            itemBuilder: (context,index2){
+                                          return Padding(
+                                            padding: const EdgeInsets.all(0.0),
+                                            child: ListTile(
+                                                title:Table(
+                                                  columnWidths: {
+                                                    0: FixedColumnWidth(50.0),
+                                                    1: FixedColumnWidth(75.0),
+                                                    2: FixedColumnWidth(90.0),
+                                                    3: FixedColumnWidth(90.0),
+                                                  },
+                                                  // border: TableBorder.all(),
                                                   children: [
-                                                    Text("Members: "+domains![index]['members'][index1]),
-                                                    SizedBox(height: 10,),
-                                                  ]),);}),
-                                    ),
-                                    SizedBox(height: 10,),
-                                    Table(
-                                      columnWidths: {
-                                        0: FixedColumnWidth(60.0),
-                                        1: FixedColumnWidth(80.0),
-                                        2: FixedColumnWidth(85.0),
-                                        3: FixedColumnWidth(80.0),
-                                      },
-                                      border: TableBorder(
-                                          top: BorderSide(width: 2.0, color: Colors.black),
-                                      left: BorderSide(width: 2.0, color: Colors.black),
-                                      right: BorderSide(width: 2.0, color: Colors.black),
-                                      bottom: BorderSide(width: 2.0, color: Colors.black)),
-                                      children: [
-                                        TableRow(
-                                          children: [
-                                            TableCell(
-                                              child: Center(child: Text("Status")),
+                                                    TableRow(
+                                                        children: [
+                                                          TableCell(
+                                                            child: Center(child: Icon(
+                                                              Icons.check_circle_outline,
+                                                              color: domains![index]['tasks']![index2]!["completed"]==false?Colors.red:Colors.green,)),
+                                                          ),
+                                                          TableCell(
+                                                            child: Center(child: Text(
+                                                                domains![index]['tasks']![index2]!["assignedTo"].
+                                                                substring(0,domains![index]['tasks']![index2]!["assignedTo"].indexOf('@')),
+                                                            style: TextStyle(color: Colors.black),)),
+                                                          ),
+                                                          TableCell(
+                                                            child: Center(
+                                                                child: Text(domains![index]['tasks']![index2]!["description"],
+                                                                    style: TextStyle(color: Colors.black))),
+                                                          ),
+                                                          TableCell(
+                                                            child: Center(
+                                                                child: Text(domains![index]['tasks']![index2]!["deadline"],
+                                                                    style: TextStyle(color: Colors.black))),
+                                                          ),
+                                                        ]
+                                                    )
+                                                  ],
+                                                )
                                             ),
-                                            TableCell(
-                                              child: Center(child: Text('Member')),
-                                            ),
-                                            TableCell(
-                                              child: Center(child: Text('Task')),
-                                            ),
-                                            TableCell(
-                                              child: Center(child: Text('Deadline')),
-                                            ),
-                                          ],
-                                        ),],),
+                                          );
+                                        }),
+                                      )
+                                    ],
+                                  ),
+                                );
+                              },
 
-                                    Container(
-                                      height: 200,
-                                      child: ListView.builder(
-                                          itemCount:domains![index]['tasks']!.length,
-                                          itemBuilder: (context,index2){
-                                        return Padding(
-                                          padding: const EdgeInsets.all(0.0),
-                                          child: ListTile(
-                                              title:Table(
-                                                columnWidths: {
-                                                  0: FixedColumnWidth(50.0),
-                                                  1: FixedColumnWidth(75.0),
-                                                  2: FixedColumnWidth(90.0),
-                                                  3: FixedColumnWidth(90.0),
-                                                },
-                                                // border: TableBorder.all(),
-                                                children: [
-                                                  TableRow(
-                                                      children: [
-                                                        TableCell(
-                                                          child: Center(child: Icon(
-                                                            Icons.check_circle_outline,
-                                                            color: domains![index]['tasks']![index2]!["completed"]==false?Colors.red:Colors.green,)),
-                                                        ),
-                                                        TableCell(
-                                                          child: Center(child: Text(
-                                                              domains![index]['tasks']![index2]!["assignedTo"].
-                                                              substring(0,domains![index]['tasks']![index2]!["assignedTo"].indexOf('@')))),
-                                                        ),
-                                                        TableCell(
-                                                          child: Center(
-                                                              child: Text(domains![index]['tasks']![index2]!["description"])),
-                                                        ),
-                                                        TableCell(
-                                                          child: Center(
-                                                              child: Text(domains![index]['tasks']![index2]!["deadline"])),
-                                                        ),
-                                                      ]
-                                                  )
-                                                ],
-                                              )
-                                          ),
-                                        );
-                                      }),
-                                    )
-                                  ],
-                                ),
-                              );
-                            },
-
+                          ),
                         ),
                       );
                     }
                   },
                 ),
+                    SizedBox(height: 10,),
                     Row(
+
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ElevatedButton(onPressed: (){
-
+                          Navigator.pushNamed(context, MyRoutes.AddTask);
                         },
                           style:ElevatedButton.styleFrom(
                             backgroundColor:Color.fromARGB(255, 225, 169, 229),
@@ -200,6 +226,7 @@ class _t_detailState extends State<t_detail> {
                           ),),
                       SizedBox(width: 20,),
       ElevatedButton(onPressed: (){
+
       },
         style:ElevatedButton.styleFrom(
           backgroundColor:Color.fromARGB(255, 225, 169, 229),

@@ -2,6 +2,7 @@
 // only push here in dev branch 
 // do not merge in main branch
 
+import 'package:brl_task4/screens/addTask.dart';
 import 'package:brl_task4/screens/dashboard.dart';
 import 'package:brl_task4/screens/join_team.dart';
 import 'package:brl_task4/screens/signup.dart';
@@ -38,6 +39,8 @@ class MyApp extends StatelessWidget {
         MyRoutes.CreateTeamScreen: (context) => CreateTeamScreen(),
         MyRoutes.BottomNavBar:(context) => BottomNavBar(),
         MyRoutes.Todo:(context) => TodoList(),
+          MyRoutes.AddTask:(context) => addTask(),
+
           }
         );
   }
