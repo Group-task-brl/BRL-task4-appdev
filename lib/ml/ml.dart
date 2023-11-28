@@ -65,20 +65,20 @@ class MLWOW extends StatelessWidget {
       crossAxisSpacing: 16,
       mainAxisSpacing: 16,
       children: [
-        // _buildGridItem(
-        //   context,
-        //   'Word Cloud',
-        //   BarChartPage(),
-        //   Icons.cloud_circle,
-        //   Colors.blue,
-        // ),
-        // _buildGridItem(
-        //   context,
-        //   'Bar Chart',
-        //  BarChartPage(),
-        //   Icons.bar_chart,
-        //   Colors.green,
-        // ),
+        _buildGridItem(
+          context,
+          'Word Cloud',
+          BarChartPage(),
+          Icons.cloud_circle,
+          Colors.blue,
+        ),
+        _buildGridItem(
+          context,
+          'Bar Chart',
+         BarChartPage(),
+          Icons.bar_chart,
+          Colors.green,
+        ),
         _buildGridItem(
           context,
           'Line Chart',
