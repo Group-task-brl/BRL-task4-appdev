@@ -41,10 +41,11 @@ class dashb_memState extends State<dashb_mem> {
 
     if (response.statusCode == 200) {
       teamsData = jsonDecode(response.body)['teams'];
+      name = jsonDecode(response.body)['email'];
       teamNames = teamsData!.map<String>((team) => team['teamName'].toString()).toList();
       name=jsonDecode(response.body)['email'];
     } else {
-      print('Failed to join the team. Status Code: ${response.statusCode}');
+      print(' ${response.statusCode}');
       print('Error Message: ${response.body}');
     }
     // print(teamNames);
