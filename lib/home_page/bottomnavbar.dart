@@ -45,7 +45,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 Icons.pie_chart,
                 color: Color.fromARGB(255, 101, 56, 108),
               ),
-              label: 'Progress',
+              label: 'Analysis',
             ),
             NavigationDestination(
               icon: Icon(
