@@ -13,7 +13,7 @@ class dashb_mem extends StatefulWidget {
   @override
   State<dashb_mem> createState() => dashb_memState();
 }
-
+String? name;
 class dashb_memState extends State<dashb_mem> {
   Future<void>? _futureData;
   void initState() {
@@ -40,9 +40,10 @@ class dashb_memState extends State<dashb_mem> {
 
     if (response.statusCode == 200) {
       teamsData = jsonDecode(response.body)['teams'];
+      name = jsonDecode(response.body)['email'];
       teamNames = teamsData!.map<String>((team) => team['teamName'].toString()).toList();
     } else {
-      print('Failed to join the team. Status Code: ${response.statusCode}');
+      print(' ${response.statusCode}');
       print('Error Message: ${response.body}');
     }
     // print(teamNames);

@@ -92,7 +92,7 @@ class _addTaskState extends State<addTask> {
                             child: TextFormField(
                               controller: DomainController,
                               decoration: InputDecoration(
-                                prefixIcon:Icon(Icons.group),
+                                prefixIcon:Icon(Icons.domain),
                                 // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
                                 hintText: "Domain",
                                 contentPadding: EdgeInsets.symmetric(vertical: 2.0),
@@ -114,7 +114,7 @@ class _addTaskState extends State<addTask> {
                             child: TextFormField(
                               controller: EmailController,
                               decoration: InputDecoration(
-                                prefixIcon:Icon(Icons.domain),
+                                prefixIcon:Icon(Icons.person),
                                 // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
                                 hintText: "Member Email",
                                 contentPadding: EdgeInsets.symmetric(vertical: 2.0),
@@ -135,7 +135,7 @@ class _addTaskState extends State<addTask> {
                             child: TextFormField(
                               controller: TaskController,
                               decoration: InputDecoration(
-                                prefixIcon:Icon(Icons.domain),
+                                prefixIcon:Icon(Icons.add_box_rounded),
                                 // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
                                 hintText: "Task",
                                 contentPadding: EdgeInsets.symmetric(vertical: 2.0),
@@ -157,7 +157,7 @@ class _addTaskState extends State<addTask> {
                             child: TextFormField(
                               controller: DeadlineController,
                               decoration: InputDecoration(
-                                prefixIcon:Icon(Icons.domain),
+                                prefixIcon:Icon(Icons.calendar_month),
                                 // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
                                 hintText: "30-11-2023",
                                 contentPadding: EdgeInsets.symmetric(vertical: 2.0),
