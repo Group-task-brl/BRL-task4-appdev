@@ -1,4 +1,5 @@
 
+import 'package:brl_task4/ml/bar.dart';
 import 'package:brl_task4/ml/cloud.dart';
 import 'package:brl_task4/ml/line.dart';
 import 'package:brl_task4/ml/pie.dart';
@@ -67,15 +68,15 @@ class MLWOW extends StatelessWidget {
       children: [
         _buildGridItem(
           context,
-          'Word Cloud',
+          'Bar Chart',
           BarChartPage(),
           Icons.cloud_circle,
           Colors.blue,
         ),
         _buildGridItem(
           context,
-          'Bar Chart',
-         BarChartPage(),
+          'Radar Page',
+         Radarpage(),
           Icons.bar_chart,
           Colors.green,
         ),
