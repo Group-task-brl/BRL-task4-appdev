@@ -15,7 +15,7 @@ class _join_teamState extends State<join_team> {
 
   Future<void> joinTeamAPI() async {
     dynamic storedValue = await secureStorage.readSecureData(key);
-    print (storedValue);
+    // print (storedValue);
     final String apiUrl = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/team/joinTeam';
     final response = await http.post(
       Uri.parse(apiUrl),
