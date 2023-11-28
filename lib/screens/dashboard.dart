@@ -1,5 +1,7 @@
 
 import "dart:convert";
+import "package:brl_task4/screens/chat.dart";
+
 import 'teamDetail.dart';
 import "package:brl_task4/Utils/Routes.dart";
 import "package:flutter/material.dart";
@@ -22,6 +24,7 @@ class dashb_memState extends State<dashb_mem> {
   }
   List<dynamic>? teamsData;
   List<String>? teamNames;
+  //String  name ;
   Future<void> showTeamAPI() async {
     dynamic storedValue = await secureStorage.readSecureData(key);
 
@@ -52,6 +55,13 @@ class dashb_memState extends State<dashb_mem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          // Navigator.pushNamed(context, ChatScreen(name!) as String);
+           Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(name!)));
+        },
+        child: Icon(Icons.add),
+      ),
       appBar:MyAppBar(),
       body: Container(
         child: Column(
