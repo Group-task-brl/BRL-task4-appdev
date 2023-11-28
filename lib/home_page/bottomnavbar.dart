@@ -41,6 +41,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
           destinations: const [
             NavigationDestination(
               icon: Icon(
+                Icons.home,
+                color: Color.fromARGB(255, 101, 56, 108),
+              ),
+              label: 'Home',
+            ),
+            NavigationDestination(
+              icon: Icon(
                 Icons.pie_chart,
                 color: Color.fromARGB(255, 101, 56, 108),
               ),
@@ -55,17 +62,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
             ),
             NavigationDestination(
               icon: Icon(
-                Icons.home,
+                Icons.search,
                 color: Color.fromARGB(255, 101, 56, 108),
               ),
-              label: 'Home',
-            ),
-            NavigationDestination(
-              icon: Icon(
-                Icons.chat,
-                color: Color.fromARGB(255, 101, 56, 108),
-              ),
-              label: 'Chat',
+              label: 'Analysis',
             ),
             NavigationDestination(
               icon: Icon(

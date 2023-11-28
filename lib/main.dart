@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.jointeamRoutes: (context) => join_team(),
         MyRoutes.CreateTeamScreen: (context) => CreateTeamScreen(),
         MyRoutes.BottomNavBar:(context) => BottomNavBar(),
-        MyRoutes.Todo:(context) => TodoList(),
+        // MyRoutes.Todo:(context) => TodoList(),
           }
         );
   }
