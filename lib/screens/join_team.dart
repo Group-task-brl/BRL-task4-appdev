@@ -44,7 +44,6 @@ class _join_teamState extends State<join_team> {
     }
   }
   TextEditingController TeamNameController =TextEditingController();
-  TextEditingController DomainController =TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,28 +103,6 @@ class _join_teamState extends State<join_team> {
                               ),
                             ),
                         SizedBox(height: 25,),
-                        // ClipRRect(
-                        //   borderRadius: BorderRadiusDirectional.all(Radius.circular(30)),
-                        //   child: Container(
-                        //     height: 48,
-                        //     width: 265,
-                        //     color: Colors.white,
-                        //     child: TextFormField(
-                        //       controller: DomainController,
-                        //       decoration: InputDecoration(
-                        //         prefixIcon:Icon(Icons.domain),
-                        //         // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
-                        //         hintText: "Domain",
-                        //         contentPadding: EdgeInsets.symmetric(vertical: 2.0),
-                        //         // suffixIcon: Icon(Icons.visibility),
-                        //         border:OutlineInputBorder(
-                        //           borderRadius: BorderRadius.circular(5.0),
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
-                        // SizedBox(height: 35,),
                         ElevatedButton(onPressed: (){
                           joinTeamAPI();
                         },

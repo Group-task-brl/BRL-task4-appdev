@@ -2,6 +2,7 @@
 // only push here in dev branch 
 // do not merge in main branch
 
+import 'package:brl_task4/screens/MarkTaskDone.dart';
 import 'package:brl_task4/screens/addTask.dart';
 import 'package:brl_task4/screens/dashboard.dart';
 import 'package:brl_task4/screens/join_team.dart';
@@ -24,20 +25,24 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)  {
+    dynamic storedValue = secureStorage.readSecureData(key);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         // home: BottomNavBar(),
+
         initialRoute: '/',
         routes: {
-          // '/':(context)=>join_team(),
-        '/': (context) =>SignUp(),
+          '/':(context)=>SignUp(),
+
+          // '/': (context) => (storedValue==null)?SignUp():BottomNavBar(),
         MyRoutes.SignUpRoutes: (context) => SignUp(),
         MyRoutes.LoginRoutes: (context) => Login(),
         MyRoutes.dashbMemRoutes: (context) => dashb_mem(),
         MyRoutes.jointeamRoutes: (context) => join_team(),
         MyRoutes.CreateTeamScreen: (context) => CreateTeamScreen(),
         MyRoutes.BottomNavBar:(context) => BottomNavBar(),
+          MyRoutes.DoneTask:(context) => doneTask(),
         MyRoutes.Todo:(context) => TodoList(),
           // MyRoutes.AddTask:(context) => addTask(),
 

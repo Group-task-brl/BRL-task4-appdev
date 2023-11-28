@@ -10,6 +10,21 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
 
+  Future <void> google() async{
+    var request = http.Request('GET', Uri.parse('http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/googleOAuth'));
+
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+      Navigator.pushReplacementNamed(context, MyRoutes.BottomNavBar);
+    }
+    else {
+      print(response.reasonPhrase);
+    }
+  }
+
   Future <void> SignApi() async {
     final String apiUrl = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/user/signup';
     final response = await http.post(
@@ -180,7 +195,9 @@ class _SignUpState extends State<SignUp> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Container(height: 2, width: 138,color: Colors.purple,),
-                            IconButton(onPressed: (){},
+                            IconButton(onPressed: (){
+                              google();
+                            },
                                 padding: EdgeInsets.all(1.0),
                                 icon:(Image.asset("lib/assets/google.png",height: 30,)) ),
                             Container(height: 2,width:138,color: Colors.purple,),
