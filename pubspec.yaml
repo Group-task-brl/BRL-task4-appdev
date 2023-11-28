@@ -41,6 +41,7 @@ dependencies:
   table_calendar: ^3.0.9
   flutter_secure_storage: ^9.0.0
   fl_chart: ^0.65.0
+  shared_preferences: ^2.2.2
 
 
 dev_dependencies:
