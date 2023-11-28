@@ -273,7 +273,7 @@ class _t_detailState extends State<t_detail> {
                               ),),
                           SizedBox(width: 20,),
                               ElevatedButton(onPressed: (){
-
+                                 Navigator.push(context, MaterialPageRoute(builder: (context) => addTask(teamcode:teamCode)));
                               },
                                 style:ElevatedButton.styleFrom(
                                   backgroundColor:Color.fromARGB(255, 225, 169, 229),

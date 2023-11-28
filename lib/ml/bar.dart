@@ -1,6 +1,4 @@
 
-
-
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
@@ -47,44 +45,51 @@ class BarChartPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-
-            Expanded(
-            child: BarChart(
-              BarChartData(
-                barGroups: dataMap.entries
-                    .map((entry) => BarChartGroupData(
-                          x: dataMap.keys.toList().indexOf(entry.key),
-                          barRods: [
-                            BarChartRodData(
-                              toY: entry.value,
-                              color: getRandomColor(),
-                            
-                            ),
-                          ],
-                        ))
-                    .toList(),
-                borderData: FlBorderData(show: true),
-                // titlesData: FlTitlesData(
-                //   bottomTitles: SideTitles(
-                //     showTitles: true,
-                //     getTitles: (value) => dataMap.keys.toList()[value.toInt()],
-                //   ),
-                 //
-                 // leftTitles: SideTitles(showTitles: false),
-        
-                
-              ),
-            )
-          ),
-          
-          SizedBox(height: 20),
-         
-          SizedBox(height: 20),
-         
-        ]
-      )
-              );
+          Expanded(
             
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: BarChart(
+                BarChartData(
+                  barGroups: dataMap.entries
+                      .map((entry) => BarChartGroupData(
+                            x: dataMap.keys.toList().indexOf(entry.key),
+                            barRods: [
+                              BarChartRodData(
+                                toY: entry.value,
+                                color: getRandomColor(),
+                              ),
+                            ],
+                          ))
+                      .toList(),
+                  borderData: FlBorderData(show: true),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListView.builder(
+                itemCount: dataMap.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    color: getRandomColor(),
+                    shadowColor: Colors.black,
+                    elevation: 3,
+                    margin: EdgeInsets.symmetric(vertical: 8),
+                    child: ListTile(
+                      title: Text(dataMap.keys.toList()[index]),
+                      trailing: Text(dataMap.values.toList()[index].toString()),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Color getRandomColor() {
