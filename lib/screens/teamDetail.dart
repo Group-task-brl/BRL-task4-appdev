@@ -196,24 +196,24 @@ class _t_detailState extends State<t_detail> {
                     // SizedBox(height: 10,),
                     Column(
                       children: [
-                        ElevatedButton(onPressed: (){
-                        // ek string h is page mei email usko call krlo bas
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(leaderEmail!)));
-                        // Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(email!)));
-                        },
-                          style:ElevatedButton.styleFrom(
-                            backgroundColor:Color.fromARGB(255, 225, 169, 229),
-                            // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
+                        // ElevatedButton(onPressed: (){
+                        // // ek string h is page mei email usko call krlo bas
+                        //   Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(leaderEmail!)));
+                        // // Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(email!)));
+                        // },
+                        //   style:ElevatedButton.styleFrom(
+                        //     backgroundColor:Color.fromARGB(255, 225, 169, 229),
+                        //     // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
 
-                          ),
-                          child:Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text("Chat"),
-                              SizedBox(width:5),
-                              Icon(Icons.arrow_circle_right_outlined)
-                            ],
-                          ),),
+                        //   ),
+                        //   child:Row(
+                        //     mainAxisSize: MainAxisSize.min,
+                        //     children: [
+                        //       Text("Chat"),
+                        //       SizedBox(width:5),
+                        //       Icon(Icons.arrow_circle_right_outlined)
+                        //     ],
+                        //   ),),
                         SizedBox(height: 10,),
                         Row(
 
