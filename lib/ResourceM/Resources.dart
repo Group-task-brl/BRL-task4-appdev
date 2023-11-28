@@ -8,6 +8,11 @@ import 'package:brl_task4/ResourceM/getR.dart';
 import 'package:flutter/material.dart';
 
 class ResourceM extends StatelessWidget {
+  final String teamId;
+  ResourceM( this.teamId);
+  
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,9 +85,10 @@ class ResourceM extends StatelessWidget {
         _buildGridItem(
           context,
           'Post Resources',
-          GEtR(),
+          PostTextScreen(teamId),
           Icons.post_add,
           Colors.orange,
+
         ),
          _buildGridItem(
           context,
@@ -105,6 +111,59 @@ class ResourceM extends StatelessWidget {
   }
 }
 
+// Widget _buildGridItem(
+//   BuildContext context,
+//   String text,
+//   Widget destination,
+//   IconData icon,
+//   Color color,
+// ) {
+//   return GestureDetector(
+//     onTap: () {
+//       Navigator.push(
+//         context,
+//         MaterialPageRoute(
+//           builder: (context) => destination,
+//           settings: RouteSettings(
+//             arguments: t, // Pass the teamId here
+//           ),
+//         ),
+//       );
+//     },
+//     child: Container(
+//       decoration: BoxDecoration(
+//         color: color,
+//         borderRadius: BorderRadius.circular(16),
+//         boxShadow: [
+//           BoxShadow(
+//             color: Colors.black.withOpacity(0.2),
+//             blurRadius: 6,
+//             offset: Offset(0, 3),
+//           ),
+//         ],
+//       ),
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Icon(
+//             icon,
+//             size: 40,
+//             color: Colors.white,
+//           ),
+//           SizedBox(height: 8),
+//           Text(
+//             text,
+//             style: TextStyle(
+//               fontSize: 16,
+//               color: Colors.white,
+//               fontWeight: FontWeight.bold,
+//             ),
+//           ),
+//         ],
+//       ),
+//     ),
+//   );
+// }
 
 
 Widget _buildGridItem(

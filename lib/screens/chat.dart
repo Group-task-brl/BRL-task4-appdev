@@ -280,7 +280,7 @@ class _ChatScreenState extends State<ChatScreen> {
     super.initState();
     myUsername = widget.name;
     initSocket();
-    loadMessages(); // Load stored messages when the screen is initialized
+    loadMessages(); 
   }
 
     void initSocket() {
@@ -321,7 +321,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void _sendMessage() {
     if (_controller.text.isNotEmpty) {
       socket.emit('message', {'message': _controller.text, 'username': myUsername});
-      saveMessage({'message': _controller.text, 'username': myUsername}); // Save the sent message
+      saveMessage({'message': _controller.text, 'username': myUsername}); 
       setState(() {
         _messages.add({'message': _controller.text, 'username': myUsername});
       });
