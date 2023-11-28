@@ -1,3 +1,4 @@
+import 'package:brl_task4/models/appbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:brl_task4/home_page/teams.dart';
@@ -17,19 +18,18 @@ class _HomeNavState extends State<HomeNav> {
 
   @override
   Widget build(BuildContext context) {
+    double buttonHeight = MediaQuery.of(context).size.height;
     double buttonWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Home'),
-      ),
+      appBar: MyAppBar(),
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
               width: buttonWidth,
+              height: buttonHeight*0.075,
               child: CupertinoSegmentedControl<int>(
                 children: {
                   0: Text('Teams'),
@@ -39,8 +39,8 @@ class _HomeNavState extends State<HomeNav> {
                   _onNavItemTapped(index);
                 },
                 groupValue: _selectedIndex,
-                borderColor: Theme.of(context).primaryColor,
-                selectedColor: Theme.of(context).primaryColor,
+                // borderColor: Theme.of(context).primaryColor,
+                selectedColor: Color.fromARGB(255, 101, 56, 108),
                 unselectedColor: Colors.white,
               ),
             ),
