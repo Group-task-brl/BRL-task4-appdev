@@ -69,35 +69,32 @@ final Map<String, double> dataMap = {
                 ),
                
           ),
-          SizedBox(height: 20),
-          // Expanded(
-          //   child: BarChart(
-          //     BarChartData(
-          //       barGroups: dataMap.entries
-          //           .map((entry) => BarChartGroupData(
-          //                 x: dataMap.keys.toList().indexOf(entry.key),
-          //                 barRods: [
-          //                   BarChartRodData(
-          //                     toY: entry.value,
-          //                     color: getRandomColor(),
-                            
-          //                   ),
-          //                 ],
-          //               ))
-          //           .toList(),
-          //       borderData: FlBorderData(show: true),
-          //       // titlesData: FlTitlesData(
-          //       //   bottomTitles: SideTitles(
-          //       //     showTitles: true,
-          //       //     getTitles: (value) => dataMap.keys.toList()[value.toInt()],
-          //       //   ),
-          //        //
-          //        // leftTitles: SideTitles(showTitles: false),
-        
-                
-          //     ),
-          //   )
-          // ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListView.builder(
+                itemCount: dataMap.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    color: Colors.amber,
+                    shadowColor: Colors.black,
+                    
+                    elevation: 3,
+                    margin: EdgeInsets.symmetric(vertical: 8),
+                    child: ListTile(
+                      title: Text(dataMap.keys.toList()[index] , style: TextStyle(
+                        color: Color.fromARGB(255, 93, 96, 111),
+                      
+                      ),),
+                      trailing: Text(dataMap.values.toList()[index].toString() , style: TextStyle(
+                        color: Color.fromARGB(255, 93, 96, 111),
+                      ),),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
         ]
       )
               );

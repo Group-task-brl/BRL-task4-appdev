@@ -66,6 +66,33 @@ class Radarpage extends StatelessWidget {
               ),
             ),
           ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListView.builder(
+                itemCount: dataMap.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    color: Color.fromARGB(255, 47, 9, 42),
+                    shadowColor: Colors.black,
+                    
+                    elevation: 3,
+                    margin: EdgeInsets.symmetric(vertical: 8),
+                    child: ListTile(
+                      title: Text(dataMap.keys.toList()[index] , style: TextStyle(
+                        color: Colors.white,
+                      
+                      ),),
+                      trailing: Text(dataMap.values.toList()[index].toString() , style: TextStyle(
+                        color: Colors.white,
+                      
+                      ),),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
         ],
       ),
     );
