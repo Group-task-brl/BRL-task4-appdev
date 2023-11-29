@@ -93,6 +93,7 @@ class _ShowTextScreenState extends State<ShowTextScreen> {
                 itemCount: messages.length,
                 itemBuilder: (context, index) {
                   final email = messages[index]['email'];
+                
                   final texts = messages[index]['texts'] as List<Map<String, dynamic>>;
 
                   return Column(
