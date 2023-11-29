@@ -60,6 +60,7 @@ class dashb_memState extends State<dashb_mem> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        
         onPressed: (){
           // Navigator.pushNamed(context, ChatScreen(name!) as String);
            Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(name!)));
