@@ -45,7 +45,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 Icons.pie_chart,
                 color: Color.fromARGB(255, 101, 56, 108),
               ),
-              label: 'Analysis',
+              label: 'Progress',
             ),
             NavigationDestination(
               icon: Icon(
@@ -63,10 +63,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
             ),
             NavigationDestination(
               icon: Icon(
-                Icons.chat,
+                Icons.search,
                 color: Color.fromARGB(255, 101, 56, 108),
               ),
-              label: 'Chat',
+              label: 'Analysis',
             ),
             NavigationDestination(
               icon: Icon(
@@ -81,12 +81,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
       body: [
         Container(
           alignment: Alignment.center,
-          child: MLWOW(),
+          child: ProgressChart(),
         ),
         Container(
             // color: Colors.blue,
             alignment: Alignment.center,
-            child: dashb_mem()),
+            child:dashb_mem()
+            ),
         Container(
           // color: Colors.blue,
           alignment: Alignment.center,
@@ -95,7 +96,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         Container(
           color: Colors.blue,
           alignment: Alignment.center,
-          child: Text('Work in progress'),
+          child: MLWOW(),
         ),
         Container(
           // color: Colors.blue,

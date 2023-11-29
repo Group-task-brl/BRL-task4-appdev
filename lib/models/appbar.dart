@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-
+import 'package:brl_task4/screens/dashboard.dart';
 // ignore_for_file: prefer_const_constructors
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
+  
+  // String ? userName = name!.substring(0,name!.indexOf('@'));
+
   @override
   Widget build(BuildContext context) {
     return Container(

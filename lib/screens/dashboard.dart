@@ -144,6 +144,8 @@ import 'package:brl_task4/models/appbar.dart';
 class dashb_mem extends StatefulWidget {
   const dashb_mem({super.key});
 
+
+
   @override
   State<dashb_mem> createState() => dashb_memState();
 }
@@ -165,6 +167,7 @@ class dashb_memState extends State<dashb_mem> {
         Uri.parse(apiUrl),
         headers: <String, String>{
           'Authorization' :storedValue,
+          
         },);
 
     // Map<String, dynamic> jsonResponse = jsonDecode(response);
@@ -177,6 +180,7 @@ class dashb_memState extends State<dashb_mem> {
       teamsData = jsonDecode(response.body)['teams'];
       name = jsonDecode(response.body)['email'];
       teamNames = teamsData!.map<String>((team) => team['teamName'].toString()).toList();
+      name=jsonDecode(response.body)['email'];
     } else {
       print(' ${response.statusCode}');
       print('Error Message: ${response.body}');
