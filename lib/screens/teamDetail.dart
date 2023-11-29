@@ -54,7 +54,7 @@ class _t_detailState extends State<t_detail> {
           backgroundColor: Color(0xFF600D64),),
         body: SafeArea(
           child: Container(
-            color: Colors.purple,
+            color: Colors.purple.shade400,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children:[
@@ -89,7 +89,7 @@ class _t_detailState extends State<t_detail> {
                                   width: MediaQuery.of(context).size.width/1.05,
                                   // color: Colors.purpleAccent,
                                   decoration: ShapeDecoration(
-                                    color: Colors.white.withOpacity(0.400),
+                                    color: Colors.white.withOpacity(0.500),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     ),),
@@ -202,111 +202,121 @@ class _t_detailState extends State<t_detail> {
                   },
                 ),
                     // SizedBox(height: 10,),
-                    Column(
-                      children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width/1.05,
+                      // color: Colors.purpleAccent,
+                      decoration: ShapeDecoration(
+                        color: Colors.white.withOpacity(0.500),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),),
+                      child: Column(
+                        children: [
 
-                        SizedBox(height: 10,),
-                        Row(
+                          SizedBox(height: 10,),
+                          Row(
 
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ElevatedButton(onPressed: (){
-                              Navigator.pushReplacementNamed(context, MyRoutes.DoneTask);
-                              // Navigator.push(context, MaterialPageRoute(builder: (context) => addTask(teamcode:teamCode)));
-                            },
-                              style:ElevatedButton.styleFrom(
-                                backgroundColor:Color.fromARGB(255, 225, 169, 229),
-                                // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
-
-                              ),
-                              child:Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text("Mark Task Done"),
-                                  // SizedBox(width:5),
-                                  // Icon(Icons.arrow_circle_right_outlined)
-                                ],
-                              ),),
-                            SizedBox(width: 20,),
-                            ElevatedButton(onPressed: (){
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Resign(teamId:teamId)));
-                              // Navigator.pushReplacementNamed(context, MyRoutes.DoneTask);
-                            },
-                              style:ElevatedButton.styleFrom(
-                                backgroundColor:Color.fromARGB(255, 225, 169, 229),
-                                // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
-
-                              ),
-                              child:Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text("Resign"),
-                                  // SizedBox(width:5),
-                                  // Icon(Icons.arrow_circle_right_outlined)
-                                ],
-                              ),),
-                          ],
-                        ),
-                        SizedBox(height: 10,),
-                        Row(
-
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ElevatedButton(onPressed: (){
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => addTask(teamcode:teamCode)));
-                            },
-                              style:ElevatedButton.styleFrom(
-                                backgroundColor:Color.fromARGB(255, 225, 169, 229),
-                                // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
-
-                              ),
-                              child:Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text("Add Task"),
-                                //   SizedBox(width:5),
-                                // Icon(Icons.arrow_circle_right_outlined)
-                                ],
-                              ),),
-                            SizedBox(width: 10,),
-                            ElevatedButton(onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(leaderEmail!)));
-                              // ek string h is page mei email usko call krlo bas
-                            },
-                              style:ElevatedButton.styleFrom(
-                                backgroundColor:Color.fromARGB(255, 225, 169, 229),
-                                // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
-
-                              ),
-                              child:Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text("Chat"),
-                                  // SizedBox(width:5),
-                                  // Icon(Icons.arrow_circle_right_outlined)
-                                ],
-                              ),),
-                          SizedBox(width: 10,),
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
                               ElevatedButton(onPressed: (){
-                               // Navigator.push(context, MaterialPageRoute(builder: builder( (context) => ResourceM ) ));
-                                 Navigator.push(context, MaterialPageRoute(builder: (context) => ResourceM()));
+                                Navigator.pushReplacementNamed(context, MyRoutes.DoneTask);
+                                // Navigator.push(context, MaterialPageRoute(builder: (context) => addTask(teamcode:teamCode)));
                               },
                                 style:ElevatedButton.styleFrom(
-                                  backgroundColor:Color.fromARGB(255, 225, 169, 229),
+                                  backgroundColor:Colors.purple.shade400,
                                   // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
 
                                 ),
                                 child:Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Text("Resources"),
+                                    Text("Mark Task Done",style: TextStyle(color: Colors.white),),
                                     // SizedBox(width:5),
                                     // Icon(Icons.arrow_circle_right_outlined)
                                   ],
                                 ),),
-                          ],
-                        ),
-                      ],
+                              SizedBox(width: 20,),
+                              ElevatedButton(onPressed: (){
+                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Resign(teamId:teamId)));
+                                // Navigator.pushReplacementNamed(context, MyRoutes.DoneTask);
+                              },
+                                style:ElevatedButton.styleFrom(
+                                  backgroundColor:Colors.purple.shade400,
+                                  // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
+
+                                ),
+                                child:Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text("Resign",style: TextStyle(color: Colors.white)),
+                                    // SizedBox(width:5),
+                                    // Icon(Icons.arrow_circle_right_outlined)
+                                  ],
+                                ),),
+                            ],
+                          ),
+                          SizedBox(height: 10,),
+                          Row(
+
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ElevatedButton(onPressed: (){
+                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => addTask(teamcode:teamCode)));
+                              },
+                                style:ElevatedButton.styleFrom(
+                                  backgroundColor:Colors.purple.shade400,
+                                  // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
+
+                                ),
+                                child:Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text("Add Task",style: TextStyle(color: Colors.white)),
+                                  //   SizedBox(width:5),
+                                  // Icon(Icons.arrow_circle_right_outlined)
+                                  ],
+                                ),),
+                              SizedBox(width: 10,),
+                              ElevatedButton(onPressed: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(leaderEmail!)));
+                                // ek string h is page mei email usko call krlo bas
+                              },
+                                style:ElevatedButton.styleFrom(
+                                  backgroundColor:Colors.purple.shade400,
+                                  // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
+
+                                ),
+                                child:Row(
+                                  mainAxisSize: MainAxisSize.min,
+
+                                  children: [
+                                    Text("Chat",style: TextStyle(color: Colors.white)),
+                                    // SizedBox(width:5),
+                                    // Icon(Icons.arrow_circle_right_outlined)
+                                  ],
+                                ),),
+                            SizedBox(width: 10,),
+                                ElevatedButton(onPressed: (){
+                                 // Navigator.push(context, MaterialPageRoute(builder: builder( (context) => ResourceM ) ));
+                                   Navigator.push(context, MaterialPageRoute(builder: (context) => ResourceM()));
+                                },
+                                  style:ElevatedButton.styleFrom(
+                                    backgroundColor:Colors.purple.shade400,
+                                    // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
+
+                                  ),
+                                  child:Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text("Resources",style: TextStyle(color: Colors.white)),
+                                      // SizedBox(width:5),
+                                      // Icon(Icons.arrow_circle_right_outlined)
+                                    ],
+                                  ),),
+                            ],
+                          ),
+                        ],
+                      ),
                     )
               ],
           ),

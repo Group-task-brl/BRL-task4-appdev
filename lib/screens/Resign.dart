@@ -6,15 +6,17 @@ import 'login.dart';
 class Resign extends StatefulWidget {
   Resign({required this.teamId});
   String? teamId;
-
+// print(teamID);
   @override
   State<Resign> createState() => _ResignState();
 }
 
 class _ResignState extends State<Resign> {
+
   TextEditingController EmailController =TextEditingController();
   Future<void> resignApi(String? teamId) async {
     dynamic storedValue = await secureStorage.readSecureData(key);
+    print(teamId);
     // print (storedValue);
     final String apiUrl = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/team/deleteMember/$teamId';
     final response = await http.post(
@@ -25,7 +27,7 @@ class _ResignState extends State<Resign> {
       },
 
       body: ({
-        "email": EmailController.text,
+        "Email": EmailController.text,
         }),
     );
 
