@@ -278,8 +278,11 @@ class _t_detailState extends State<t_detail> {
                                 ),),
                               SizedBox(width: 10,),
                               ElevatedButton(onPressed: (){
+
+                              
                                 Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(leaderEmail!)));
                                 // ek string h is page mei email usko call krlo bas
+
                               },
                                 style:ElevatedButton.styleFrom(
                                   backgroundColor:Colors.purple.shade400,
