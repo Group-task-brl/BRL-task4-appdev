@@ -11,7 +11,7 @@ class ShowTextScreen extends StatefulWidget {
 }
 
 class _ShowTextScreenState extends State<ShowTextScreen> {
-  List<Map<String, dynamic>> messages = [];
+  List<dynamic> messages = [];
 
   // Future<void> fetchMessages() async {
   //   try {
@@ -52,8 +52,8 @@ class _ShowTextScreenState extends State<ShowTextScreen> {
       setState(() {
         // Check if 'data' exists and is a list
         if (responseData['data'] is List) {
-          messages = (responseData['data'] as List<dynamic>)
-              .cast<Map<String, dynamic>>();
+          messages = (responseData['data'] );
+              // .cast<Map<String, dynamic>>();
         } else {
           print('Invalid data structure');
         }
@@ -93,7 +93,7 @@ class _ShowTextScreenState extends State<ShowTextScreen> {
                 itemCount: messages.length,
                 itemBuilder: (context, index) {
                   final email = messages[index]['email'];
-                  final texts = messages[index]['texts'] as List<Map<String, dynamic>>;
+                  // final texts = messages[index]['texts'] as List<Map<String, dynamic>>;
 
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,9 +106,9 @@ class _ShowTextScreenState extends State<ShowTextScreen> {
                       ListView.builder(
                         shrinkWrap: true,
                         physics: ClampingScrollPhysics(),
-                        itemCount: texts.length,
-                        itemBuilder: (context, index) {
-                          final text = texts[index]['text'];
+                        itemCount: messages[index]['texts'].length,
+                        itemBuilder: (context, index1) {
+                          final text = messages[index]['texts'][index1]['text'];
                           return ListTile(
                             title: Text(text),
                           );

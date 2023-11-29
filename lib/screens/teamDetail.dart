@@ -301,7 +301,7 @@ class _t_detailState extends State<t_detail> {
                             SizedBox(width: 10,),
                                 ElevatedButton(onPressed: (){
                                  // Navigator.push(context, MaterialPageRoute(builder: builder( (context) => ResourceM ) ));
-                                   Navigator.push(context, MaterialPageRoute(builder: (context) => ResourceM()));
+                                   Navigator.push(context, MaterialPageRoute(builder: (context) => ResourceM(teamId!)));
                                 },
                                   style:ElevatedButton.styleFrom(
                                     backgroundColor:Colors.purple.shade400,
