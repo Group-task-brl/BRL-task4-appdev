@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.CreateTeamScreen: (context) => CreateTeamScreen(),
         MyRoutes.BottomNavBar:(context) => BottomNavBar(),
         MyRoutes.DoneTask:(context) => doneTask(),
-        MyRoutes.Todo:(context) => TodoList(),
+        // MyRoutes.Todo:(context) => TodoList(),
           }
         );
   }
