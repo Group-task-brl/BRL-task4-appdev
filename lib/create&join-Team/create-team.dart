@@ -51,20 +51,24 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
               const SizedBox(
                 height: 20,
               ),
-              const Row(
+               Row(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
-                  Icon(
-                    Icons.arrow_back_outlined,
-                    color: Color(0xffffffff),
-                    size: 30,
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(
+                      Icons.arrow_back_outlined,
+                      color: Colors.white,
+                    ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
-                  Text(
+                  const Text(
                     '    Create Team',
                     style: TextStyle(
                       fontFamily: 'Montserrat',
@@ -109,7 +113,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                         checkColor: Colors.white,
                         barrierColor: Colors.black,
                         selectedColor: Colors.black,
-                        backgroundColor: Color.fromARGB(255, 234, 167, 235),
+                        backgroundColor: const Color.fromARGB(255, 234, 167, 235),
                         items: domains
                             .map((domain) =>
                                 MultiSelectItem<Domain>(domain, domain.name))
@@ -134,7 +138,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
               
                         createTeam();
                       },
-                      bgColor: Color.fromARGB(255, 225, 169, 229),
+                      bgColor: const Color.fromARGB(255, 225, 169, 229),
                       textColor: Colors.black,
                     )
                   ],
@@ -255,7 +259,7 @@ class Buttonki extends StatelessWidget {
         style: ButtonStyle(
           elevation: MaterialStateProperty.all(12),
           shadowColor:
-              MaterialStateProperty.all(Color.fromARGB(255, 227, 152, 217)),
+              MaterialStateProperty.all(const Color.fromARGB(255, 227, 152, 217)),
           overlayColor: MaterialStateProperty.resolveWith(
             (states) => Colors.transparent,
           ),
