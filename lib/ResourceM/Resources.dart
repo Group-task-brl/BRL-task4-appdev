@@ -78,7 +78,7 @@ class ResourceM extends StatelessWidget {
         _buildGridItem(
           context,
           'Fetch Resources',
-          FEtchR(),
+         ShowTextScreen(teamId),
           Icons.get_app,
           Colors.green,
         ),
