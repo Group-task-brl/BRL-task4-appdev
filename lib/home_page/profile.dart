@@ -1,3 +1,5 @@
+import 'package:brl_task4/Utils/Routes.dart';
+import 'package:brl_task4/screens/login.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatelessWidget {
@@ -44,7 +46,17 @@ class Profile extends StatelessWidget {
           thickness: 1.0,
           color: Colors.grey.withOpacity(0.65),
         ),
-        _buildProfile('Logout', Icons.logout, Colors.red),
+        // _buildProfile('Logout', Icons.logout, Colors.red),
+     TextButton(onPressed: (){
+       secureStorage.deleteSecureData(key);
+       Navigator.pushReplacementNamed(context, MyRoutes.LoginRoutes);
+     }, child: Row(
+       children: [
+         Icon(Icons.logout,color: Colors.red,),
+         SizedBox(width: 10,),
+         Text("Logout",style:TextStyle(color: Colors.red,fontSize: 20)),
+       ],
+     ))
       ],
     );
   }

@@ -10,4 +10,5 @@ class MyRoutes {
   // static String Todo = "/TodoList";
 
   static String AddTask = "/addTask";
+  static String DoneTask = "/doneTask";
 }

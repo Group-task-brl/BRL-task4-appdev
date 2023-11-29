@@ -1,22 +1,21 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import 'package:http/http.dart' as http;
-import '../Utils/Routes.dart';
-import 'login.dart';
+import "../Utils/Routes.dart";
+import "login.dart";
 
-class addTask extends StatefulWidget {
-  addTask({required this.teamcode});
-  dynamic teamcode;
+class doneTask extends StatefulWidget {
+  const doneTask({super.key});
 
   @override
-  State<addTask> createState() => _addTaskState();
+  State<doneTask> createState() => _doneTaskState();
 }
 
-class _addTaskState extends State<addTask> {
+class _doneTaskState extends State<doneTask> {
 
-  Future<void> addTaskAPI(String teamcode) async {
+  Future<void> TaskDoneAPI() async {
     dynamic storedValue = await secureStorage.readSecureData(key);
     // print (storedValue);
-    final String apiUrl = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/team/task/$teamcode';
+    final String apiUrl = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/team/taskDone';
     final response = await http.post(
       Uri.parse(apiUrl),
       headers: <String, String>{
@@ -25,20 +24,21 @@ class _addTaskState extends State<addTask> {
       },
 
       body: ({
+        "teamCode": TeamCodeController.text,
         "domainName": DomainController.text,
         "email": EmailController.text,
         "task": TaskController.text,
-        "deadline": DeadlineController.text,
       }),
     );
 
     if (response.statusCode == 200) {
       // print('API Response: ${response.body}');
+      Navigator.pushReplacementNamed(context, MyRoutes.BottomNavBar);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Task Added"),),);
-        Navigator.pushReplacementNamed(context, MyRoutes.BottomNavBar);
+        SnackBar(content: Text("Marked Task Done"),),);
+
     } else {
-      print( ' ${response.statusCode}');
+      print(' ${response.statusCode}');
       print('Error Message: ${response.body}');
     }
   }
@@ -46,7 +46,7 @@ class _addTaskState extends State<addTask> {
   TextEditingController EmailController =TextEditingController();
   TextEditingController DomainController =TextEditingController();
   TextEditingController TaskController =TextEditingController();
-  TextEditingController DeadlineController =TextEditingController();
+  TextEditingController TeamCodeController =TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +68,7 @@ class _addTaskState extends State<addTask> {
                 children: [
                   SizedBox(height: 80,),
 
-                  Text("Add Task",style:TextStyle(color: Colors.white,fontSize:40,fontWeight: FontWeight.w700),),
+                  Text("Task Done",style:TextStyle(color: Colors.white,fontSize:40,fontWeight: FontWeight.w700),),
                   SizedBox(height: 30,),
 
 
@@ -91,11 +91,11 @@ class _addTaskState extends State<addTask> {
                             width: 270,
                             color: Colors.white,
                             child: TextFormField(
-                              controller: DomainController,
+                              controller: TeamCodeController,
                               decoration: InputDecoration(
-                                prefixIcon:Icon(Icons.domain),
+                                prefixIcon:Icon(Icons.groups_outlined),
                                 // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
-                                hintText: "Domain",
+                                hintText: "Team Code",
                                 contentPadding: EdgeInsets.symmetric(vertical: 2.0),
                                 // suffixIcon: Icon(Icons.visibility),
                                 border:OutlineInputBorder(
@@ -113,11 +113,11 @@ class _addTaskState extends State<addTask> {
                             width: 265,
                             color: Colors.white,
                             child: TextFormField(
-                              controller: EmailController,
+                              controller: DomainController,
                               decoration: InputDecoration(
-                                prefixIcon:Icon(Icons.person),
+                                prefixIcon:Icon(Icons.domain),
                                 // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
-                                hintText: "Member Email",
+                                hintText: "Domain",
                                 contentPadding: EdgeInsets.symmetric(vertical: 2.0),
                                 // suffixIcon: Icon(Icons.visibility),
                                 border:OutlineInputBorder(
@@ -127,6 +127,28 @@ class _addTaskState extends State<addTask> {
                             ),
                           ),
                         ),SizedBox(height: 25,),
+                        ClipRRect(
+                          borderRadius: BorderRadiusDirectional.all(Radius.circular(30)),
+                          child: Container(
+                            height: 48,
+                            width: 265,
+                            color: Colors.white,
+                            child: TextFormField(
+                              controller: EmailController,
+                              decoration: InputDecoration(
+                                prefixIcon:Icon(Icons.email),
+                                // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
+                                hintText: "Email",
+                                contentPadding: EdgeInsets.symmetric(vertical: 2.0),
+                                // suffixIcon: Icon(Icons.visibility),
+                                border:OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 25,),
                         ClipRRect(
                           borderRadius: BorderRadiusDirectional.all(Radius.circular(30)),
                           child: Container(
@@ -148,31 +170,9 @@ class _addTaskState extends State<addTask> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 25,),
-                        ClipRRect(
-                          borderRadius: BorderRadiusDirectional.all(Radius.circular(30)),
-                          child: Container(
-                            height: 48,
-                            width: 265,
-                            color: Colors.white,
-                            child: TextFormField(
-                              controller: DeadlineController,
-                              decoration: InputDecoration(
-                                prefixIcon:Icon(Icons.calendar_month),
-                                // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
-                                hintText: "30-11-2023",
-                                contentPadding: EdgeInsets.symmetric(vertical: 2.0),
-                                // suffixIcon: Icon(Icons.visibility),
-                                border:OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
                         SizedBox(height: 35,),
                         ElevatedButton(onPressed: (){
-                          addTaskAPI(widget.teamcode);
+                          TaskDoneAPI();
                           // joinTeamAPI();
                         },
                           style:ElevatedButton.styleFrom(
@@ -183,12 +183,12 @@ class _addTaskState extends State<addTask> {
                           child:Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text("Add Task"),
+                              Text("Task Done"),
                               SizedBox(width:5),
                               IconButton(onPressed:(){},icon:Icon(Icons.arrow_circle_right_outlined)),
                             ],
                           ),
-                  ),
+                        ),
 
                       ],
                     ),

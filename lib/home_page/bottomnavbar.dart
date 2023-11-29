@@ -1,3 +1,4 @@
+import 'package:brl_task4/ml/ml.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:brl_task4/screens/teamDetail.dart';
@@ -51,7 +52,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 Icons.pie_chart,
                 color: Color.fromARGB(255, 101, 56, 108),
               ),
-              label: 'Progress',
+              label: 'Analysis',
             ),
             NavigationDestination(
               icon: Icon(
@@ -80,7 +81,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       body: [
         Container(
           alignment: Alignment.center,
-          child: ProgressChart(),
+          child: MLWOW(),
         ),
         Container(
             // color: Colors.blue,

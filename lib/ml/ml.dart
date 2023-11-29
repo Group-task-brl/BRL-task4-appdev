@@ -70,14 +70,14 @@ class MLWOW extends StatelessWidget {
           context,
           'Bar Chart',
           BarChartPage(),
-          Icons.cloud_circle,
+          Icons.bar_chart,
           Colors.blue,
         ),
         _buildGridItem(
           context,
           'Radar Page',
          Radarpage(),
-          Icons.bar_chart,
+          Icons.radar_rounded,
           Colors.green,
         ),
         _buildGridItem(
