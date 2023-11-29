@@ -40,7 +40,7 @@ class PieChartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Most Used Words Chart'),
+        title: Text('Pie Chart'),
       ),
       body: Column(
         children: [
