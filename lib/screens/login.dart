@@ -5,6 +5,8 @@ import 'package:http/http.dart' as http;
  import '../home_page/bottomnavbar.dart';
 import '../models/storeToken.dart';
 import '../utils/Routes.dart';
+import 'package:brl_task4/screens/recaptcha.dart';
+
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -162,8 +164,9 @@ class _LoginState extends State<Login> {
                           Navigator.pushReplacementNamed(context, MyRoutes.SignUpRoutes);
                         }, child: Text("Sign up",style:TextStyle(fontWeight: FontWeight.w500,color: Colors.black)))
                       ],
-                    )
-                  ]
+                    ),
+                    Recaptcha(),
+                  ],
                 ),),],
               ),
               ),
