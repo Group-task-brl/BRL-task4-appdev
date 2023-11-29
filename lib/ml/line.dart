@@ -43,7 +43,7 @@ final Map<String, double> dataMap = {
     
     return Scaffold(
       appBar: AppBar(
-        title: Text('Most Used Words Chart'),
+        title: Text('Line Chart'),
       ),
       body: Column(
         children: [

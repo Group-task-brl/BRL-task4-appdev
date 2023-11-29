@@ -41,7 +41,7 @@ class Radarpage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Most Used Words Radar Chart'),
+        title: Text('Radar Chart'),
       ),
       body: Column(
         children: [

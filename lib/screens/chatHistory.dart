@@ -41,14 +41,18 @@ class _ChatScreenfetchState extends State<ChatScreenfetch> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('All Chats'),
+        backgroundColor: Color.fromARGB(255, 49, 12, 56),
+        foregroundColor: Colors.white,
+        elevation: 12,
+        shadowColor: Colors.black,
+        title: Text('Discussion History'),
       ),
       body: _chats.isEmpty
           ? Center(
               child: CircularProgressIndicator(),
             )
           : ListView.builder(
-            reverse: true,
+           //reverse: true,
             itemCount: _chats.length,
             itemBuilder: (context, index) {
               final chat = _chats[index];
@@ -58,7 +62,11 @@ class _ChatScreenfetchState extends State<ChatScreenfetch> {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                 child: Card(
-                  elevation: 2.0,
+                  color: Color.fromARGB(255, 46, 17, 55),
+                  shadowColor: Colors.black,
+                 // surfaceTintColor: Colors.white,
+                 
+                  elevation: 8.0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12.0),
                   ),
@@ -67,13 +75,15 @@ class _ChatScreenfetchState extends State<ChatScreenfetch> {
                       '$username:',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 16.0,
+                        fontSize: 12.0,
+                        color: Color.fromARGB(255, 254, 254, 254),
                       ),
                     ),
                     subtitle: Text(
                       message,
                       style: TextStyle(
-                        fontSize: 14.0,
+                        fontSize: 18.0,
+                        color:Color.fromARGB(255, 220, 228, 73),
                       ),
                     ),
                   ),
