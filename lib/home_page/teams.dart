@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import '../Utils/Routes.dart';
 
-class TeamPage extends StatelessWidget {
+class TeamPage extends StatefulWidget {
+  @override
+  State<TeamPage> createState() => _TeamPageState();
+}
+
+class _TeamPageState extends State<TeamPage> {
   @override
   Widget build(BuildContext context) {
     double buttonHeight = MediaQuery.of(context).size.height * 0.25;

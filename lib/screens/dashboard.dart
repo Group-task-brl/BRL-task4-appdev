@@ -177,6 +177,7 @@ class dashb_memState extends State<dashb_mem> {
       teamsData = jsonDecode(response.body)['teams'];
       name = jsonDecode(response.body)['email'];
       teamNames = teamsData!.map<String>((team) => team['teamName'].toString()).toList();
+      name=jsonDecode(response.body)['email'];
     } else {
       print(' ${response.statusCode}');
       print('Error Message: ${response.body}');
