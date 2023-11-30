@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'new_password.dart';
 
 class OTPVerify extends StatelessWidget {
   final String email;
@@ -48,12 +49,18 @@ class OTPVerify extends StatelessWidget {
           ),
         );
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('OTP verified successfully!'),
-            backgroundColor: Colors.green,
-          ),
-        );
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   SnackBar(
+        //     content: Text('OTP verified successfully!'),
+        //     backgroundColor: Colors.green,
+        //   ),
+        // );
+        Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ChangePassword(),
+        ),
+      );
       }
     }
   }

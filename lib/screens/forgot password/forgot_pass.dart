@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'otpverify.dart';
+import 'otp_verify.dart';
 
 class ResetPass extends StatefulWidget {
   const ResetPass({Key? key}) : super(key: key);
