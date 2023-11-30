@@ -160,4 +160,3 @@ class _ShowTextScreenState extends State<ShowTextScreen> {
   }
 }
 
-
