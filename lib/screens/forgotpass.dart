@@ -17,30 +17,41 @@ class _ResetPassState extends State<ResetPass> {
   Future<String?> takeEmailAPI(String email) async {
     final String apiUrl =
         'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/user/resetPassword';
-    var headers = {
-      'accept': 'application/json',
-      'Content-Type': 'application/json'
-    };
     var body = jsonEncode({
       "email": email,
     });
-    var response =
-        await http.post(Uri.parse(apiUrl), headers: headers, body: body);
-    if (response.statusCode == 200) {
-      print('Request for OTP successful');
-      print(jsonDecode(response.body));
-      return null;
-    } else {
-      print('Error: ${response.statusCode}');
-      print(jsonDecode(response.body));
-      return jsonDecode(response.body)['error'];
+
+    try {
+      var response = await http.post(Uri.parse(apiUrl), body: body);
+
+      if (response.statusCode == 200) {
+        print('Request for OTP successful');
+        print(jsonDecode(response.body));
+        return null;
+      } else {
+        print('Error: ${response.statusCode}');
+        print(jsonDecode(response.body));
+        return jsonDecode(response.body)['error'];
+      }
+    } catch (e) {
+      print('Error: $e');
+      return 'An error occurred';
     }
   }
 
-  void _resetPassword() {
+  void _resetPassword() async {
     if (_formKey.currentState?.validate() ?? false) {
       String email = emailController.text.trim();
-      takeEmailAPI(email);
+      String? error = await takeEmailAPI(email);
+
+      if (error != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error: $error'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
     }
   }
 
