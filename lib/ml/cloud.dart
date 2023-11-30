@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
@@ -62,7 +61,6 @@ class Radarpage extends StatelessWidget {
                         .toList(),
                   ),
                 ],
-               
               ),
             ),
           ),
@@ -75,18 +73,21 @@ class Radarpage extends StatelessWidget {
                   return Card(
                     color: Color.fromARGB(255, 47, 9, 42),
                     shadowColor: Colors.black,
-                    
                     elevation: 3,
                     margin: EdgeInsets.symmetric(vertical: 8),
                     child: ListTile(
-                      title: Text(dataMap.keys.toList()[index] , style: TextStyle(
-                        color: Colors.white,
-                      
-                      ),),
-                      trailing: Text(dataMap.values.toList()[index].toString() , style: TextStyle(
-                        color: Colors.white,
-                      
-                      ),),
+                      title: Text(
+                        dataMap.keys.toList()[index],
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      trailing: Text(
+                        dataMap.values.toList()[index].toString(),
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   );
                 },
@@ -107,4 +108,3 @@ class Radarpage extends StatelessWidget {
     );
   }
 }
-
