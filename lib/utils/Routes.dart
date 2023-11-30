@@ -11,4 +11,5 @@ class MyRoutes {
 
   static String AddTask = "/addTask";
   static String DoneTask = "/doneTask";
+  static String Reset = "/ResetPass";
 }

@@ -25,7 +25,7 @@ class _TaskContainerState extends State<TaskContainer> {
   Future<void> incompTaskAPI() async {
     dynamic storedValue = await secureStorage.readSecureData(key);
 
-    final String apiUrl =
+    const String apiUrl =
         'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/team/incompleteTasks';
 
     final response = await http.get(
