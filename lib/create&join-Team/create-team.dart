@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import '../screens/login.dart';
 
+// Domain class is used for 2 places 
+// - For Domains in multi select dialog field
+// - For selected domains in List datatype
+
 class Domain {
   final int id;
   final String name;
@@ -20,22 +24,33 @@ class CreateTeamScreen extends StatefulWidget {
 }
 
 class _CreateTeamScreenState extends State<CreateTeamScreen> {
-  TextEditingController teamNameController = TextEditingController();
+
+  // aage domain-team.dart me pass karna hai then only it will show team anme in team detail screen
+
+  TextEditingController teamNameController = TextEditingController(); 
 
   List<Domain> domains = [
+
     Domain(id: 1, name: 'Backend'),
     Domain(id: 2, name: 'Frontend'),
     Domain(id: 3, name: 'Machine Learning'),
     Domain(id: 4, name: 'App Development'),
+
   ];
 
+  // selected domains variable is in use for multi select dialog field list me taaki selected domains ko store kar sake
+  
   List<Domain> selectedDomains = [];
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();  // for snackbar
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
+
+      // connecting this Glabal key to scaffold widget for shhowing snackbar
+      key: _scaffoldKey, 
+
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -44,18 +59,24 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
             colors: [Color(0xFF150218), Color(0xFF65386C)],
           ),
         ),
+        
         child: Padding(
           padding: const EdgeInsets.all(16.0),
+
           child: Column(
             children: [
               const SizedBox(
                 height: 20,
               ),
+
+              // UI ka header copy karne ke liye row widget use kiya hai
                Row(
                 children: [
+
                   const SizedBox(
                     width: 10,
                   ),
+
                   IconButton(
                     onPressed: () {
                       Navigator.pop(context);
@@ -65,9 +86,11 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                       color: Colors.white,
                     ),
                   ),
+
                   const SizedBox(
                     width: 20,
                   ),
+
                   const Text(
                     '    Create Team',
                     style: TextStyle(
@@ -78,11 +101,16 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                     ),
                     textAlign: TextAlign.left,
                   ),
+
                 ],
               ),
+
               const SizedBox(
                 height: 20,
               ),
+
+              // white bhi to dikhana hai na isliye container widget use kiya hai 🥹
+
               Container(
                 width: 303,
                 height: 400,
@@ -95,6 +123,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                 child: Column(
                   children: [
                     const SizedBox(height: 20),
+
                     MyTextField(
                         hintText: 'Enter Team Name',
                         inputType: TextInputType.name,
@@ -102,7 +131,9 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                         secure1: false,
                         capital: TextCapitalization.none,
                         nameController1: teamNameController),
+
                     const SizedBox(height: 16),
+                    
                     Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: MultiSelectDialogField(
@@ -114,23 +145,28 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                         barrierColor: Colors.black,
                         selectedColor: Colors.black,
                         backgroundColor: const Color.fromARGB(255, 234, 167, 235),
+
+                        // uning list variable domain  declared on line number 32 to show domains in multi select dialog field
+
                         items: domains
-                            .map((domain) =>
-                                MultiSelectItem<Domain>(domain, domain.name))
-                            .toList(),
+                            .map((domain) =>                                       //  using .map to show all domains in multi select dialog field
+                                MultiSelectItem<Domain>(domain, domain.name))      // domain name show karne ke liye
+                            .toList(),                                             // again converting to list
                         title: const Text('Select Domains',
                             style: TextStyle(color: Colors.black)),
                         buttonText: const Text('Select Domains',
                             style: TextStyle(color: Colors.white)),
                         onConfirm: (values) {
-                          selectedDomains = values;
+                          selectedDomains = values;     // selected domains ko store karne ke liye 
                         },
                       ),
                     ),
+
                     const SizedBox(height: 16),
+
                     Buttonki(
                       buttonName: 'Create Team',
-                      onTap: () {
+                      onTap: () {  // validation is mandtaory
                         if (teamNameController.text.isEmpty) {
                           _showErrorSnackBar('Team name cannot be empty');
                           return;
@@ -155,8 +191,11 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
 
   Future<void> createTeam() async {
 
+    // using storedValue variable to store token value from secure storage
+
     dynamic storedValue = await secureStorage.readSecureData(key);
     var headers = <String, String>{
+
       'Authorization' :storedValue,
       'Content-Type': 'application/json'
     };
@@ -167,16 +206,20 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
           'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/team/createTeam'),
     );
 
-    List<Map<String, dynamic>> domainList = selectedDomains.map((domain) {
+
+
+    List<Map<String, dynamic>> domainList = selectedDomains.map((domain) {  // storing selected domain in domainList variable
       return {
-        "name": domain.name,
-        "members": [],
+        "name": domain.name, // name is key in API 
+        "members": [],       // members is empty list because we are creating team not joining
       };
     }).toList();
 
-    request.body = json.encode({
+
+    // API ki body wale data me tream name and domain list pass karne ke liye
+
+    request.body = json.encode({  
       "teamName": teamNameController.text,
-      // "leaderEmail": "euclidstellar@gmail.com",
       "domains": domainList,
     });
 
@@ -184,19 +227,19 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
 
     try {
       print ("hii");
-      http.StreamedResponse response = await request.send();
+      http.StreamedResponse response = await request.send();   // sending request to API
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> responseData =
-            jsonDecode(await response.stream.bytesToString());
-        final String teamId = responseData['team']['_id'];
-        print(teamId);
+            jsonDecode(await response.stream.bytesToString());  // decoding response data
+        final String teamId = responseData['team']['_id'];      // storing team id in teamId variable
+        print(teamId); //   printing team id for checking the API response 
 
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) =>
-                TeamDetailsScreen(teamNameController.text, selectedDomains, teamId),
+                TeamDetailsScreen(teamNameController.text, selectedDomains, teamId),   // passing team name, selected domains and team id to team details screen
           ),
         );
 
@@ -213,7 +256,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
     }
   }
 
-
+  // Showing SnackBar to make user aware of what is happening
 
   void _showErrorSnackBar(String errorMessage) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -231,6 +274,9 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
   }
 }
 
+
+
+// pub.dev me  mere khud ke package me se copy kiya hai ye code
 
 class Buttonki extends StatelessWidget {
   const Buttonki({
@@ -273,6 +319,9 @@ class Buttonki extends StatelessWidget {
     );
   }
 }
+
+
+// pub.dev me  mere khud ke package me se copy kiya hai ye code
 
 class MyTextField extends StatelessWidget {
   const MyTextField({
@@ -329,6 +378,27 @@ class MyTextField extends StatelessWidget {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ // pre production code 
 
 /// prev func 
 /// 

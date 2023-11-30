@@ -9,16 +9,12 @@ import 'package:flutter/material.dart';
 
 class ResourceM extends StatelessWidget {
   final String teamId;
-  ResourceM( this.teamId);
-  
-
+  ResourceM(this.teamId);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-
-      body : Column(
+      body: Column(
         children: [
           Container(
             width: 420,
@@ -44,7 +40,7 @@ class ResourceM extends StatelessWidget {
               ],
             ),
             child: Padding(
-              padding: const EdgeInsets.only(left: 16.0, top: 16.0 , bottom: 8),
+              padding: const EdgeInsets.only(left: 16.0, top: 16.0, bottom: 8),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -59,112 +55,51 @@ class ResourceM extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          
           Expanded(
-  child: Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: GridView.count(
-      crossAxisCount: 2,
-      crossAxisSpacing: 16,
-      mainAxisSpacing: 16,
-      children: [
-        _buildGridItem(
-          context,
-          'Documentation',
-          DocumentationPage(),
-          Icons.book,
-          Colors.blue,
-        ),
-        _buildGridItem(
-          context,
-          'Fetch Resources',
-         ShowTextScreen(teamId),
-          Icons.get_app,
-          Colors.green,
-        ),
-        _buildGridItem(
-          context,
-          'Post Resources',
-          PostTextScreen(teamId),
-          Icons.post_add,
-          Colors.orange,
-
-        ),
-         _buildGridItem(
-          context,
-          'Leader assistance ',
-          LEaderR(),
-          Icons.assistant,
-          Color.fromARGB(247, 234, 102, 102),
-        ),
-      ],
-    ),
-  ),
-)
-
-
-
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+                children: [
+                  _buildGridItem(
+                    context,
+                    'Documentation',
+                    DocumentationPage(),
+                    Icons.book,
+                    Colors.blue,
+                  ),
+                  _buildGridItem(
+                    context,
+                    'Fetch Resources',
+                    ShowTextScreen(teamId),
+                    Icons.get_app,
+                    Colors.green,
+                  ),
+                  _buildGridItem(
+                    context,
+                    'Post Resources',
+                    PostTextScreen(teamId),
+                    Icons.post_add,
+                    Colors.orange,
+                  ),
+                  _buildGridItem(
+                    context,
+                    'Leader assistance ',
+                    LEaderR(),
+                    Icons.assistant,
+                    Color.fromARGB(247, 234, 102, 102),
+                  ),
+                ],
+              ),
+            ),
+          )
         ],
       ),
-    
     );
   }
 }
-
-// Widget _buildGridItem(
-//   BuildContext context,
-//   String text,
-//   Widget destination,
-//   IconData icon,
-//   Color color,
-// ) {
-//   return GestureDetector(
-//     onTap: () {
-//       Navigator.push(
-//         context,
-//         MaterialPageRoute(
-//           builder: (context) => destination,
-//           settings: RouteSettings(
-//             arguments: t, // Pass the teamId here
-//           ),
-//         ),
-//       );
-//     },
-//     child: Container(
-//       decoration: BoxDecoration(
-//         color: color,
-//         borderRadius: BorderRadius.circular(16),
-//         boxShadow: [
-//           BoxShadow(
-//             color: Colors.black.withOpacity(0.2),
-//             blurRadius: 6,
-//             offset: Offset(0, 3),
-//           ),
-//         ],
-//       ),
-//       child: Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: [
-//           Icon(
-//             icon,
-//             size: 40,
-//             color: Colors.white,
-//           ),
-//           SizedBox(height: 8),
-//           Text(
-//             text,
-//             style: TextStyle(
-//               fontSize: 16,
-//               color: Colors.white,
-//               fontWeight: FontWeight.bold,
-//             ),
-//           ),
-//         ],
-//       ),
-//     ),
-//   );
-// }
-
 
 Widget _buildGridItem(
   BuildContext context,
@@ -175,17 +110,15 @@ Widget _buildGridItem(
 ) {
   return GestureDetector(
     onTap: () {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => destination));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => destination));
     },
     child: Container(
-      
       decoration: BoxDecoration(
-       
         color: color,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            
             color: Colors.black.withOpacity(0.2),
             blurRadius: 6,
             offset: Offset(0, 3),
@@ -214,6 +147,19 @@ Widget _buildGridItem(
     ),
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

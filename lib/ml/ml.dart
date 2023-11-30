@@ -1,4 +1,3 @@
-
 import 'package:brl_task4/ml/bar.dart';
 import 'package:brl_task4/ml/cloud.dart';
 import 'package:brl_task4/ml/line.dart';
@@ -6,6 +5,7 @@ import 'package:brl_task4/ml/pie.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 import 'package:flutter/material.dart';
+
 // import 'package:ml/bar.dart';
 // import 'package:ml/linechart.dart';
 // import 'package:ml/ml.dart';
@@ -14,9 +14,7 @@ class MLWOW extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-
-      body : Column(
+      body: Column(
         children: [
           Container(
             width: 420,
@@ -42,7 +40,7 @@ class MLWOW extends StatelessWidget {
               ],
             ),
             child: const Padding(
-              padding: EdgeInsets.only(left: 16.0, top: 16.0 , bottom: 8),
+              padding: EdgeInsets.only(left: 16.0, top: 16.0, bottom: 8),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -57,58 +55,51 @@ class MLWOW extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          
           Expanded(
-  child: Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: GridView.count(
-      crossAxisCount: 2,
-      crossAxisSpacing: 16,
-      mainAxisSpacing: 16,
-      children: [
-        _buildGridItem(
-          context,
-          'Bar Chart',
-          BarChartPage(),
-          Icons.bar_chart,
-          Colors.blue,
-        ),
-        _buildGridItem(
-          context,
-          'Radar Page',
-         Radarpage(),
-          Icons.radar_rounded,
-          Colors.green,
-        ),
-        _buildGridItem(
-          context,
-          'Line Chart',
-          Linechart(),
-          Icons.stacked_line_chart,
-          Colors.orange,
-        ),
-         _buildGridItem(
-          context,
-          'Pie Chart',
-           PieChartPage(),
-          Icons.pie_chart,
-          const Color.fromARGB(247, 234, 102, 102),
-        ),
-      ],
-    ),
-  ),
-)
-
-
-
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+                children: [
+                  _buildGridItem(
+                    context,
+                    'Bar Chart',
+                    BarChartPage(),
+                    Icons.bar_chart,
+                    Colors.blue,
+                  ),
+                  _buildGridItem(
+                    context,
+                    'Radar Page',
+                    Radarpage(),
+                    Icons.radar_rounded,
+                    Colors.green,
+                  ),
+                  _buildGridItem(
+                    context,
+                    'Line Chart',
+                    Linechart(),
+                    Icons.stacked_line_chart,
+                    Colors.orange,
+                  ),
+                  _buildGridItem(
+                    context,
+                    'Pie Chart',
+                    PieChartPage(),
+                    Icons.pie_chart,
+                    const Color.fromARGB(247, 234, 102, 102),
+                  ),
+                ],
+              ),
+            ),
+          )
         ],
       ),
-    
     );
   }
 }
-
-
 
 Widget _buildGridItem(
   BuildContext context,
@@ -119,17 +110,15 @@ Widget _buildGridItem(
 ) {
   return GestureDetector(
     onTap: () {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => destination));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => destination));
     },
     child: Container(
-      
       decoration: BoxDecoration(
-       
         color: color,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            
             color: Colors.black.withOpacity(0.2),
             blurRadius: 6,
             offset: const Offset(0, 3),
@@ -161,126 +150,138 @@ Widget _buildGridItem(
 
 
 
-// code before decoration
-// Expanded(
-          //   child: Padding(
-          //     padding: const EdgeInsets.all(16.0),
-          //     child: GridView.count(
-          //       crossAxisCount: 2,
-          //       crossAxisSpacing: 16,
-          //       mainAxisSpacing: 16,
-          //       children: [
-          //         ElevatedButton(
-          //           onPressed: () {
-          //             Navigator.push(
-          //               context,
-          //               MaterialPageRoute(builder: (context) => DocumentationPage()),
-          //             );
-          //           },
-          //           child: Text('Documentation'),
-          //         ),
-          //         ElevatedButton(
-          //           onPressed: () {
-          //             Navigator.push(
-          //               context,
-          //               MaterialPageRoute(builder: (context) => AvailabilityCalendarPage()),
-          //             );
-          //           },
-          //           child: Text('Fetch Resources'),
-          //         ),
-          //         ElevatedButton(
-          //           onPressed: () {
-          //             Navigator.push(
-          //               context,
-          //               MaterialPageRoute(builder: (context) => BenchEmployeePage()),
-          //             );
-          //           },
-          //           child: Text('Post Resources'),
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // )
+
+
+/*
 
 
 
-            // appBar: AppBar(
-      //   title: Text('Resource Manager'),
-      // ),
-      // body: Center(
-      //   child: Column(
-      //     mainAxisAlignment: MainAxisAlignment.center,
-      //     children: <Widget>[
-      //       ElevatedButton(
-      //         onPressed: () {
-      //           Navigator.push(
-      //             context,
-      //             MaterialPageRoute(builder: (context) => DocumentationPage()),
-      //           );
-      //         },
-      //         child: Text('Documentation'),
-      //       ),
-      //       ElevatedButton(
-      //         onPressed: () {
-      //           Navigator.push(
-      //             context,
-      //             MaterialPageRoute(builder: (context) => AvailabilityCalendarPage()),
-      //           );
-      //         },
-      //         child: Text('Availability Calendar'),
-      //       ),
-      //       ElevatedButton(
-      //         onPressed: () {
-      //           Navigator.push(
-      //             context,
-      //             MaterialPageRoute(builder: (context) => BenchEmployeePage()),
-      //           );
-      //         },
-      //         child: Text('Bench Employee'),
-      //       ),
-      //     ],
-      //   ),
-      // ),
+code before decoration
+
+Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => DocumentationPage()),
+                      );
+                    },
+                    child: Text('Documentation'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AvailabilityCalendarPage()),
+                      );
+                    },
+                    child: Text('Fetch Resources'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => BenchEmployeePage()),
+                      );
+                    },
+                    child: Text('Post Resources'),
+                  ),
+                ],
+              ),
+            ),
+          )
 
 
-// code before decoration
 
-// Widget _buildGridItem(
-//   BuildContext context,
-//   String text,
-//   Widget destination,
-//   IconData icon,
-//   Color color,
-// ) {
-//   return GestureDetector(
-//     onTap: () {
-//       Navigator.push(context, MaterialPageRoute(builder: (context) => destination));
-//     },
-//     child: Card(
-//       elevation: 3,
-//       shape: RoundedRectangleBorder(
-//         borderRadius: BorderRadius.circular(16),
-//       ),
-//       color: color,
-//       child: Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: [
-//           Icon(
-//             icon,
-//             size: 40,
-//             color: Colors.white,
-//           ),
-//           SizedBox(height: 8),
-//           Text(
-//             text,
-//             style: TextStyle(
-//               fontSize: 16,
-//               color: Colors.white,
-//               fontWeight: FontWeight.bold,
-//             ),
-//           ),
-//         ],
-//       ),
-//     ),
-//   );
-// }
+            appBar: AppBar(
+        title: Text('Resource Manager'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DocumentationPage()),
+                );
+              },
+              child: Text('Documentation'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AvailabilityCalendarPage()),
+                );
+              },
+              child: Text('Availability Calendar'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BenchEmployeePage()),
+                );
+              },
+              child: Text('Bench Employee'),
+            ),
+          ],
+        ),
+      ),
+
+
+code before decoration
+
+Widget _buildGridItem(
+  BuildContext context,
+  String text,
+  Widget destination,
+  IconData icon,
+  Color color,
+) {
+  return GestureDetector(
+    onTap: () {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => destination));
+    },
+    child: Card(
+      elevation: 3,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      color: color,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            icon,
+            size: 40,
+            color: Colors.white,
+          ),
+          SizedBox(height: 8),
+          Text(
+            text,
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+
+
+
+*/

@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -61,57 +60,56 @@ class _ShowTextScreenState extends State<ShowTextScreen> {
       body: Column(
         children: [
           Container(
-          width: 361,
-          height: 146,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              alignment: Alignment(1, 0),
-              image: AssetImage('lib/assets/amico.png'),
-              fit: BoxFit.scaleDown,
+            width: 361,
+            height: 146,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                alignment: Alignment(1, 0),
+                image: AssetImage('lib/assets/amico.png'),
+                fit: BoxFit.scaleDown,
+              ),
+              gradient: LinearGradient(
+                begin: Alignment(0.98, -0.21),
+                end: Alignment(-0.98, 0.21),
+                colors: [Color(0xFF150218), Color(0xFF65386C)],
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0x4C000000),
+                  blurRadius: 4,
+                  offset: Offset(0, 4),
+                  spreadRadius: 0,
+                )
+              ],
             ),
-            gradient: LinearGradient(
-              begin: Alignment(0.98, -0.21),
-              end: Alignment(-0.98, 0.21),
-              colors: [Color(0xFF150218), Color(0xFF65386C)],
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Color(0x4C000000),
-                blurRadius: 4,
-                offset: Offset(0, 4),
-                spreadRadius: 0,
-              )
-            ],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                '\nResource Manager',
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  '\nResource Manager',
+                  style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        
           SizedBox(height: 16.0),
           isLoading
-              ? CircularProgressIndicator() 
+              ? CircularProgressIndicator()
               : messages.isEmpty
                   ? Text('No messages available.')
                   : Expanded(
                       child: ListView.builder(
-                        reverse: true, 
+                        reverse: true,
                         physics: ClampingScrollPhysics(),
                         itemCount: messages.length,
                         itemBuilder: (context, index) {
                           final email = messages[index]['email'];
-      
+
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
@@ -130,18 +128,22 @@ class _ShowTextScreenState extends State<ShowTextScreen> {
                                   physics: ClampingScrollPhysics(),
                                   itemCount: messages[index]['texts'].length,
                                   itemBuilder: (context, index1) {
-                                    final text = messages[index]['texts'][index1]['text'];
+                                    final text = messages[index]['texts']
+                                        [index1]['text'];
                                     return Card(
                                       elevation: 2.0,
                                       shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(12.0),
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
                                       ),
                                       color: Color.fromARGB(255, 47, 18, 59),
                                       child: ListTile(
-                                        title: Text(text , style: TextStyle(
-                                          fontSize: 14.0,
-                                          color: Colors.white,
-                                        ),
+                                        title: Text(
+                                          text,
+                                          style: TextStyle(
+                                            fontSize: 14.0,
+                                            color: Colors.white,
+                                          ),
                                         ),
                                       ),
                                     );
@@ -159,4 +161,3 @@ class _ShowTextScreenState extends State<ShowTextScreen> {
     );
   }
 }
-
