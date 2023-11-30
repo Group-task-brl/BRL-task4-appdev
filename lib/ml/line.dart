@@ -2,10 +2,9 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class Linechart extends StatelessWidget {
-   Linechart({super.key});
+  Linechart({super.key});
 
-
-final Map<String, double> dataMap = {
+  final Map<String, double> dataMap = {
     "client": 81,
     "team": 71,
     "meeting": 56,
@@ -40,34 +39,28 @@ final Map<String, double> dataMap = {
   };
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Line Chart'),
-      ),
-      body: Column(
-        children: [
-         
+        appBar: AppBar(
+          title: Text('Line Chart'),
+        ),
+        body: Column(children: [
           SizedBox(height: 50),
           Expanded(
-            child: LineChart(
-              LineChartData(
-                lineBarsData: [
-                  LineChartBarData(
-                    spots: dataMap.entries
-                        .map((entry) => FlSpot(dataMap.keys.toList().indexOf(entry.key).toDouble(), entry.value))
-                        .toList(),
-                    isCurved: true,
-                     color: Colors.amber,// Line color
-                    dotData: FlDotData(show: true),
-                    belowBarData: BarAreaData(show: true),
-                  ),
-                ],
-                
-                  )
-                  
+            child: LineChart(LineChartData(
+              lineBarsData: [
+                LineChartBarData(
+                  spots: dataMap.entries
+                      .map((entry) => FlSpot(
+                          dataMap.keys.toList().indexOf(entry.key).toDouble(),
+                          entry.value))
+                      .toList(),
+                  isCurved: true,
+                  color: Colors.amber, // Line color
+                  dotData: FlDotData(show: true),
+                  belowBarData: BarAreaData(show: true),
                 ),
-               
+              ],
+            )),
           ),
           Expanded(
             child: Padding(
@@ -78,27 +71,30 @@ final Map<String, double> dataMap = {
                   return Card(
                     color: Colors.amber,
                     shadowColor: Colors.black,
-                    
                     elevation: 3,
                     margin: EdgeInsets.symmetric(vertical: 8),
                     child: ListTile(
-                      title: Text(dataMap.keys.toList()[index] , style: TextStyle(
-                        color: Color.fromARGB(255, 93, 96, 111),
-                      
-                      ),),
-                      trailing: Text(dataMap.values.toList()[index].toString() , style: TextStyle(
-                        color: Color.fromARGB(255, 93, 96, 111),
-                      ),),
+                      title: Text(
+                        dataMap.keys.toList()[index],
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 93, 96, 111),
+                        ),
+                      ),
+                      trailing: Text(
+                        dataMap.values.toList()[index].toString(),
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 93, 96, 111),
+                        ),
+                      ),
                     ),
                   );
                 },
               ),
             ),
           ),
-        ]
-      )
-              );
+        ]));
   }
+
   Color getRandomColor() {
     return Color.fromRGBO(
       50 + (dataMap.length * 5),
