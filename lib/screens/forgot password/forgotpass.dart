@@ -21,9 +21,11 @@ class _ResetPassState extends State<ResetPass> {
     var body = jsonEncode({
       "email": email,
     });
-
+    var headers = {
+    'Content-Type': 'application/json'
+  };
     try {
-      var response = await http.post(Uri.parse(apiUrl), body: body);
+      var response = await http.post(Uri.parse(apiUrl), headers: headers, body: body);
 
       if (response.statusCode == 200) {
         print('OTP sent successfully');
