@@ -26,7 +26,7 @@ class _ResetPassState extends State<ResetPass> {
       var response = await http.post(Uri.parse(apiUrl), body: body);
 
       if (response.statusCode == 200) {
-        print('Request for OTP successful');
+        print('OTP sent successfully');
         print(jsonDecode(response.body));
         return null;
       } else {
@@ -41,20 +41,30 @@ class _ResetPassState extends State<ResetPass> {
   }
 
   void _resetPassword() async {
-    if (_formKey.currentState?.validate() ?? false) {
-      String email = emailController.text;
-      String? error = await takeEmailAPI(email);
+  if (_formKey.currentState?.validate() ?? false) {
+    String email = emailController.text.trim();
+    String? error = await takeEmailAPI(email);
 
-      if (error != null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Error: $error'),
-            backgroundColor: Colors.red,
+    if (error != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error: $error'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => OTPVerify(
+            email: email,
           ),
-        );
-      }
+        ),
+      );
     }
   }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -94,23 +104,23 @@ class _ResetPassState extends State<ResetPass> {
                 ),
               ),
               SizedBox(height: 10,),
-              // ElevatedButton(
-              //   onPressed: _resetPassword,
-              //   child: Text('Reset Password'),
-              // ),
               ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => OTPVerify(
-                      email: emailController.text,
-                    ),
-                  ),
-                );
-              },
-              child: Text('Continue to OTP'),
-            ),
+                onPressed: _resetPassword,
+                child: Text('Get OTP'),
+              ),
+            //   ElevatedButton(
+            //   onPressed: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //         builder: (context) => OTPVerify(
+            //           email: emailController.text,
+            //         ),
+            //       ),
+            //     );
+            //   },
+            //   child: Text('Get OTP'),
+            // ),
             ],
           ),
         ),
