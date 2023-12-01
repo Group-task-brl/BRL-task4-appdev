@@ -3,16 +3,23 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'new_password.dart';
 
-class OTPVerify extends StatelessWidget {
+class OTPVerify extends StatefulWidget {
   final String email;
-  final TextEditingController otpController = TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   OTPVerify({required this.email});
 
+  @override
+  State<OTPVerify> createState() => _OTPVerifyState();
+}
+
+class _OTPVerifyState extends State<OTPVerify> {
+  final TextEditingController otpController = TextEditingController();
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   Future<String?> takeOTPAPI(String otp) async {
     final String apiUrl =
-        'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/user/verifyOTP/$email';
+        'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/user/verifyOTP/${widget.email}';
     var body = jsonEncode({
       "OTP": otp,
     });
@@ -58,7 +65,7 @@ class OTPVerify extends StatelessWidget {
         Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ChangePassword(),
+          builder: (context) => ChangePassword(email: widget.email,),
         ),
       );
       }
@@ -78,7 +85,7 @@ class OTPVerify extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Enter OTP sent to $email'),
+              Text('Enter OTP sent to ${widget.email}'),
               TextFormField(
                 controller: otpController,
                 decoration: InputDecoration(labelText: 'OTP'),
