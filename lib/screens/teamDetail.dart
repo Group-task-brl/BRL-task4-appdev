@@ -5,6 +5,7 @@ import "package:flutter/material.dart";
 import 'package:table_calendar/table_calendar.dart';
 import '../utils/Routes.dart';
 import 'LResign.dart';
+import 'MResign.dart';
 import 'addTask.dart';
 import 'dashboard.dart';
 class t_detail extends StatefulWidget {
@@ -266,7 +267,9 @@ class _t_detailState extends State<t_detail> {
                                         Resign(teamId: teamId)));
                                 // Navigator.pushReplacementNamed(context, MyRoutes.DoneTask);
                               }else{
-                                Navigator.pushReplacementNamed(context, MyRoutes.MResign);
+                                Navigator.pushReplacement(context,
+                                    MaterialPageRoute(builder: (context) =>
+                                        Mresign(teamId: teamId,emailId:leaderEmail)));
                               }
                               },
                               style:ElevatedButton.styleFrom(

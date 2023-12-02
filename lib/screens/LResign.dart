@@ -12,12 +12,12 @@ class Resign extends StatefulWidget {
 }
 
 class _ResignState extends State<Resign> {
-
+  TextEditingController MEmailController =TextEditingController();
   TextEditingController EmailController =TextEditingController();
   Future<void> removeApi(String? teamId) async {
     dynamic storedValue = await secureStorage.readSecureData(key);
-    // print(teamId);
-    // print (storedValue);
+    print(teamId);
+    print (storedValue);
     final String apiUrl = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/team/deleteMember/$teamId';
     final response = await http.post(
       Uri.parse(apiUrl),
@@ -27,7 +27,7 @@ class _ResignState extends State<Resign> {
       },
 
       body: ({
-        "Email": EmailController.text,
+        "memberEmail": MEmailController.text,
       }),
     );
 
@@ -115,7 +115,7 @@ class _ResignState extends State<Resign> {
                             width: 270,
                             color: Colors.white,
                             child: TextFormField(
-                              controller: EmailController,
+                              controller: MEmailController,
                               decoration: InputDecoration(
                                 prefixIcon:Icon(Icons.email),
                                 // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
