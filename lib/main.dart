@@ -18,8 +18,15 @@ import 'home_page/bottomnavbar.dart';
 import 'home_page/home_page_home.dart';
 import 'home_page/teams.dart';
 import 'home_page/tasks.dart';
-void main() {
-  runApp(const MyApp());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  dynamic storedValue = await secureStorage.readSecureData(key);
+    if(storedValue==null){
+      runApp(const MyApp());
+    }
+    else{
+      runApp(const MyApp2());
+    }
 }
 
 class MyApp extends StatelessWidget {
@@ -47,5 +54,33 @@ class MyApp extends StatelessWidget {
         // MyRoutes.Todo:(context) => TodoList(),
           }
         );
+  }
+}
+
+class MyApp2 extends StatelessWidget {
+  const MyApp2({super.key});
+
+  @override
+  Widget build(BuildContext context)  {
+    dynamic storedValue = secureStorage.readSecureData(key);
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        // home: BottomNavBar(),
+
+        initialRoute: '/',
+        routes: {
+          '/':(context)=>BottomNavBar(),
+
+          // '/': (context) => (storedValue==null)?SignUp():BottomNavBar(),
+          MyRoutes.SignUpRoutes: (context) => SignUp(),
+          MyRoutes.LoginRoutes: (context) => Login(),
+          MyRoutes.dashbMemRoutes: (context) => dashb_mem(),
+          MyRoutes.jointeamRoutes: (context) => join_team(),
+          MyRoutes.CreateTeamScreen: (context) => CreateTeamScreen(),
+          MyRoutes.BottomNavBar:(context) => BottomNavBar(),
+          MyRoutes.DoneTask:(context) => doneTask(),
+          // MyRoutes.Todo:(context) => TodoList(),
+        }
+    );
   }
 }
