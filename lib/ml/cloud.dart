@@ -36,26 +36,28 @@ class Radarpage extends StatelessWidget {
     "additional": 10,
   };
 
+  Radarpage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Radar Chart'),
+        title: const Text('Radar Chart'),
       ),
       body: Column(
         children: [
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Expanded(
             child: RadarChart(
               RadarChartData(
-                radarBorderData: BorderSide(color: Colors.grey),
+                radarBorderData: const BorderSide(color: Colors.grey),
                 radarBackgroundColor: Colors.white,
-                ticksTextStyle: TextStyle(color: Colors.black),
+                ticksTextStyle: const TextStyle(color: Colors.black),
                 dataSets: [
                   RadarDataSet(
                     borderColor: const Color.fromARGB(255, 173, 243, 33),
                     borderWidth: 2,
-                    fillColor: Color.fromARGB(255, 66, 6, 51).withOpacity(0.2),
+                    fillColor: const Color.fromARGB(255, 66, 6, 51).withOpacity(0.2),
                     dataEntries: dataMap.entries
                         .map((entry) => RadarEntry(value: entry.value))
                         .toList(),
@@ -71,20 +73,20 @@ class Radarpage extends StatelessWidget {
                 itemCount: dataMap.length,
                 itemBuilder: (context, index) {
                   return Card(
-                    color: Color.fromARGB(255, 47, 9, 42),
+                    color: const Color.fromARGB(255, 47, 9, 42),
                     shadowColor: Colors.black,
                     elevation: 3,
-                    margin: EdgeInsets.symmetric(vertical: 8),
+                    margin: const EdgeInsets.symmetric(vertical: 8),
                     child: ListTile(
                       title: Text(
                         dataMap.keys.toList()[index],
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                         ),
                       ),
                       trailing: Text(
                         dataMap.values.toList()[index].toString(),
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                         ),
                       ),

@@ -10,7 +10,7 @@ class TeamDetailsScreen extends StatelessWidget {
   final List<Domain> selectedDomains; 
   final String teamname;
   final String teamId;
-  TeamDetailsScreen(this.teamname, this.selectedDomains, this.teamId); 
+  const TeamDetailsScreen(this.teamname, this.selectedDomains, this.teamId, {super.key}); 
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class TeamDetailsScreen extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  '$teamname',
+                  teamname,
                   style: const TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
@@ -135,7 +135,7 @@ class InviteMembersScreen extends StatelessWidget {
   final Domain domain;    
   final String teamId;    
 
-  InviteMembersScreen(this.domain, {required this.teamId});
+  InviteMembersScreen(this.domain, {super.key, required this.teamId});
 
   TextEditingController emailController = TextEditingController();
 

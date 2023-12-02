@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 class ChangePassword extends StatefulWidget {
   final String email;
-  ChangePassword({required this.email});
+  const ChangePassword({super.key, required this.email});
 
   @override
   _ChangePasswordState createState() => _ChangePasswordState();
@@ -74,7 +74,7 @@ class _ChangePasswordState extends State<ChangePassword> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Login(),
+            builder: (context) => const Login(),
           ),
         );
       }
@@ -85,7 +85,7 @@ class _ChangePasswordState extends State<ChangePassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Change Password'),
+        title: const Text('Change Password'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -97,7 +97,7 @@ class _ChangePasswordState extends State<ChangePassword> {
               TextFormField(
                 controller: newPasswordController,
                 obscureText: true,
-                decoration: InputDecoration(labelText: 'New Password'),
+                decoration: const InputDecoration(labelText: 'New Password'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter password';
@@ -105,11 +105,11 @@ class _ChangePasswordState extends State<ChangePassword> {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextFormField(
                 controller: confirmPasswordController,
                 obscureText: true,
-                decoration: InputDecoration(labelText: 'Confirm Password'),
+                decoration: const InputDecoration(labelText: 'Confirm Password'),
                 validator: (value) {
                   if (value != newPasswordController.text) {
                     return 'Passwords do not match. Please re-enter the correct password.';
@@ -117,10 +117,10 @@ class _ChangePasswordState extends State<ChangePassword> {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () => _passwordchange(context),
-                child: Text('Reset Password'),
+                child: const Text('Reset Password'),
               ),
             ],
           ),

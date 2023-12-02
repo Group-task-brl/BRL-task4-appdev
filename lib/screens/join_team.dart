@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 import "../utils/Routes.dart";
 import "../models/join_model.dart";
 import "../screens/login.dart";
-import '../models/storeToken.dart';
 class join_team extends StatefulWidget {
   const join_team({super.key});
 
@@ -16,7 +15,7 @@ class _join_teamState extends State<join_team> {
   Future<void> joinTeamAPI() async {
     dynamic storedValue = await secureStorage.readSecureData(key);
     // print (storedValue);
-    final String apiUrl = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/team/joinTeam';
+    const String apiUrl = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/team/joinTeam';
     final response = await http.post(
       Uri.parse(apiUrl),
       headers: <String, String>{
@@ -35,7 +34,7 @@ class _join_teamState extends State<join_team> {
     if (response.statusCode == 200) {
       // print('API Response: ${response.body}');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Join Team Successfully"),),);
+        const SnackBar(content: Text("Join Team Successfully"),),);
 
       Navigator.pushReplacementNamed(context, MyRoutes.dashbMemRoutes);
     } else {
@@ -63,10 +62,10 @@ class _join_teamState extends State<join_team> {
                 child: Form(
                   child: Column(
                     children: [
-                      SizedBox(height: 100,),
+                      const SizedBox(height: 100,),
                 
-                      Text("Join Team",style:TextStyle(color: Colors.white,fontSize:40,fontWeight: FontWeight.w700),),
-                      SizedBox(height: 30,),
+                      const Text("Join Team",style:TextStyle(color: Colors.white,fontSize:40,fontWeight: FontWeight.w700),),
+                      const SizedBox(height: 30,),
                 
                 
                       Container(
@@ -82,7 +81,7 @@ class _join_teamState extends State<join_team> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             ClipRRect(
-                              borderRadius: BorderRadiusDirectional.all(Radius.circular(30)),
+                              borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
                               child: Container(
                                 height: 48,
                                 width: 270,
@@ -90,10 +89,10 @@ class _join_teamState extends State<join_team> {
                                 child: TextFormField(
                                   controller: TeamNameController,
                                   decoration: InputDecoration(
-                                    prefixIcon:Icon(Icons.group),
+                                    prefixIcon:const Icon(Icons.group),
                                     // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
                                     hintText: "Team Code",
-                                    contentPadding: EdgeInsets.symmetric(vertical: 2.0),
+                                    contentPadding: const EdgeInsets.symmetric(vertical: 2.0),
                                     // suffixIcon: Icon(Icons.visibility),
                                     border:OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(5.0),
@@ -102,21 +101,21 @@ class _join_teamState extends State<join_team> {
                                 ),
                               ),
                             ),
-                        SizedBox(height: 25,),
+                        const SizedBox(height: 25,),
                         ElevatedButton(onPressed: (){
                           joinTeamAPI();
                         },
                           style:ElevatedButton.styleFrom(
-                              backgroundColor:Color.fromARGB(255, 225, 169, 229),
+                              backgroundColor:const Color.fromARGB(255, 225, 169, 229),
                             // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
 
                           ),
                             child:Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Text("Join Team"),
-                                SizedBox(width:5),
-                                IconButton(onPressed: joinTeamAPI, icon: Icon(Icons.arrow_circle_right_outlined))
+                                const Text("Join Team"),
+                                const SizedBox(width:5),
+                                IconButton(onPressed: joinTeamAPI, icon: const Icon(Icons.arrow_circle_right_outlined))
                               ],
                             ),),
                 

@@ -1,10 +1,11 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'package:brl_task4/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class TaskContainer extends StatefulWidget {
+  const TaskContainer({super.key});
+
   @override
   State<TaskContainer> createState() => _TaskContainerState();
 }
@@ -16,6 +17,7 @@ class _TaskContainerState extends State<TaskContainer> {
   List<dynamic>? incompTasks;
   String? task;
 
+  @override
   void initState() {
     super.initState();
     _futureData = incompTaskAPI();
@@ -49,7 +51,7 @@ class _TaskContainerState extends State<TaskContainer> {
   Future<void> compTaskAPI() async {
     dynamic storedValue = await secureStorage.readSecureData(key);
 
-    final String apiUrl =
+    const String apiUrl =
         'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/team/completedTasks';
 
     final response = await http.get(
@@ -82,18 +84,18 @@ class _TaskContainerState extends State<TaskContainer> {
               width: MediaQuery.of(context).size.width * 0.15,
               height: MediaQuery.of(context).size.height * 0.15,
             ),
-            Text(
+            const Text(
               'Tasks',
               style: TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10),
-            Text('Incomplete Tasks:- ',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            const SizedBox(height: 10),
+            const Text('Incomplete Tasks:- ',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
             showIncompletetask(),
-            SizedBox(height: 20,),
-            Text('Completed Tasks:- ',style: TextStyle(
+            const SizedBox(height: 20,),
+            const Text('Completed Tasks:- ',style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),),
@@ -109,7 +111,7 @@ class _TaskContainerState extends State<TaskContainer> {
       future: _futureData,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(
               color: Colors.purple,
             ),
@@ -118,9 +120,9 @@ class _TaskContainerState extends State<TaskContainer> {
           return Text('Error: ${snapshot.error}');
         } else {
           if (incompTasks == null || incompTasks!.isEmpty) {
-            return Text("No incomplete tasks");
+            return const Text("No incomplete tasks");
           }
-          return Container(
+          return SizedBox(
             height: 300,
             child: ListView.builder(
               itemCount: incompTasks!.length,
@@ -134,15 +136,15 @@ class _TaskContainerState extends State<TaskContainer> {
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.1,
-                      color: Color.fromARGB(255, 147, 78, 158),
+                      color: const Color.fromARGB(255, 147, 78, 158),
                       child: Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 20,
                           ),
                           Text(
                             incompTasks![index]['description'] ?? "No tasks",
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                           ),
                         ],
                       ),
@@ -162,7 +164,7 @@ class _TaskContainerState extends State<TaskContainer> {
       future: _futureData2,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(
               color: Colors.purple,
             ),
@@ -171,9 +173,9 @@ class _TaskContainerState extends State<TaskContainer> {
           return Text('Error: ${snapshot.error}');
         } else {
           if (compTasks == null || compTasks!.isEmpty) {
-            return Text("No tasks");
+            return const Text("No tasks");
           }
-          return Container(
+          return SizedBox(
             height: 300,
             child: ListView.builder(
               itemCount: compTasks!.length,
@@ -187,15 +189,15 @@ class _TaskContainerState extends State<TaskContainer> {
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.1,
-                      color: Color.fromARGB(255, 147, 78, 158),
+                      color: const Color.fromARGB(255, 147, 78, 158),
                       child: Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 20,
                           ),
                           Text(
                             compTasks![index]['description'] ?? "No tasks",
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                           ),
                         ],
                       ),
@@ -215,14 +217,14 @@ class _TaskContainerState extends State<TaskContainer> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Task Details"),
+          title: const Text("Task Details"),
           content: Text("Task: $message\nDeadline: $deadline"),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text("OK"),
+              child: const Text("OK"),
             ),
           ],
         );

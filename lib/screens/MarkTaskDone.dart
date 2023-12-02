@@ -15,7 +15,7 @@ class _doneTaskState extends State<doneTask> {
   Future<void> TaskDoneAPI() async {
     dynamic storedValue = await secureStorage.readSecureData(key);
     // print (storedValue);
-    final String apiUrl = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/team/taskDone';
+    const String apiUrl = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/team/taskDone';
     final response = await http.post(
       Uri.parse(apiUrl),
       headers: <String, String>{
@@ -35,7 +35,7 @@ class _doneTaskState extends State<doneTask> {
       // print('API Response: ${response.body}');
       Navigator.pushReplacementNamed(context, MyRoutes.BottomNavBar);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Marked Task Done"),),);
+        const SnackBar(content: Text("Marked Task Done"),),);
 
     } else {
       print(' ${response.statusCode}');
@@ -66,10 +66,10 @@ class _doneTaskState extends State<doneTask> {
             child: Form(
               child: Column(
                 children: [
-                  SizedBox(height: 80,),
+                  const SizedBox(height: 80,),
 
-                  Text("Task Done",style:TextStyle(color: Colors.white,fontSize:40,fontWeight: FontWeight.w700),),
-                  SizedBox(height: 30,),
+                  const Text("Task Done",style:TextStyle(color: Colors.white,fontSize:40,fontWeight: FontWeight.w700),),
+                  const SizedBox(height: 30,),
 
 
                   Container(
@@ -85,7 +85,7 @@ class _doneTaskState extends State<doneTask> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ClipRRect(
-                          borderRadius: BorderRadiusDirectional.all(Radius.circular(30)),
+                          borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
                           child: Container(
                             height: 48,
                             width: 270,
@@ -93,10 +93,10 @@ class _doneTaskState extends State<doneTask> {
                             child: TextFormField(
                               controller: TeamCodeController,
                               decoration: InputDecoration(
-                                prefixIcon:Icon(Icons.groups_outlined),
+                                prefixIcon:const Icon(Icons.groups_outlined),
                                 // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
                                 hintText: "Team Code",
-                                contentPadding: EdgeInsets.symmetric(vertical: 2.0),
+                                contentPadding: const EdgeInsets.symmetric(vertical: 2.0),
                                 // suffixIcon: Icon(Icons.visibility),
                                 border:OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5.0),
@@ -105,9 +105,9 @@ class _doneTaskState extends State<doneTask> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 25,),
+                        const SizedBox(height: 25,),
                         ClipRRect(
-                          borderRadius: BorderRadiusDirectional.all(Radius.circular(30)),
+                          borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
                           child: Container(
                             height: 48,
                             width: 265,
@@ -115,10 +115,10 @@ class _doneTaskState extends State<doneTask> {
                             child: TextFormField(
                               controller: DomainController,
                               decoration: InputDecoration(
-                                prefixIcon:Icon(Icons.domain),
+                                prefixIcon:const Icon(Icons.domain),
                                 // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
                                 hintText: "Domain",
-                                contentPadding: EdgeInsets.symmetric(vertical: 2.0),
+                                contentPadding: const EdgeInsets.symmetric(vertical: 2.0),
                                 // suffixIcon: Icon(Icons.visibility),
                                 border:OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5.0),
@@ -126,9 +126,9 @@ class _doneTaskState extends State<doneTask> {
                               ),
                             ),
                           ),
-                        ),SizedBox(height: 25,),
+                        ),const SizedBox(height: 25,),
                         ClipRRect(
-                          borderRadius: BorderRadiusDirectional.all(Radius.circular(30)),
+                          borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
                           child: Container(
                             height: 48,
                             width: 265,
@@ -136,10 +136,10 @@ class _doneTaskState extends State<doneTask> {
                             child: TextFormField(
                               controller: EmailController,
                               decoration: InputDecoration(
-                                prefixIcon:Icon(Icons.email),
+                                prefixIcon:const Icon(Icons.email),
                                 // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
                                 hintText: "Email",
-                                contentPadding: EdgeInsets.symmetric(vertical: 2.0),
+                                contentPadding: const EdgeInsets.symmetric(vertical: 2.0),
                                 // suffixIcon: Icon(Icons.visibility),
                                 border:OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5.0),
@@ -148,9 +148,9 @@ class _doneTaskState extends State<doneTask> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 25,),
+                        const SizedBox(height: 25,),
                         ClipRRect(
-                          borderRadius: BorderRadiusDirectional.all(Radius.circular(30)),
+                          borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
                           child: Container(
                             height: 48,
                             width: 265,
@@ -158,10 +158,10 @@ class _doneTaskState extends State<doneTask> {
                             child: TextFormField(
                               controller: TaskController,
                               decoration: InputDecoration(
-                                prefixIcon:Icon(Icons.add_box_rounded),
+                                prefixIcon:const Icon(Icons.add_box_rounded),
                                 // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
                                 hintText: "Task",
-                                contentPadding: EdgeInsets.symmetric(vertical: 2.0),
+                                contentPadding: const EdgeInsets.symmetric(vertical: 2.0),
                                 // suffixIcon: Icon(Icons.visibility),
                                 border:OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5.0),
@@ -170,22 +170,22 @@ class _doneTaskState extends State<doneTask> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 35,),
+                        const SizedBox(height: 35,),
                         ElevatedButton(onPressed: (){
                           TaskDoneAPI();
                           // joinTeamAPI();
                         },
                           style:ElevatedButton.styleFrom(
-                            backgroundColor:Color.fromARGB(255, 225, 169, 229),
+                            backgroundColor:const Color.fromARGB(255, 225, 169, 229),
                             // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
 
                           ),
                           child:Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text("Task Done"),
-                              SizedBox(width:5),
-                              IconButton(onPressed:(){},icon:Icon(Icons.arrow_circle_right_outlined)),
+                              const Text("Task Done"),
+                              const SizedBox(width:5),
+                              IconButton(onPressed:(){},icon:const Icon(Icons.arrow_circle_right_outlined)),
                             ],
                           ),
                         ),

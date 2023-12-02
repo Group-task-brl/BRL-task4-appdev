@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class MusicApp extends StatefulWidget {
+  const MusicApp({super.key});
+
   @override
   // ignore: library_private_types_in_public_api
   _MusicAppState createState() => _MusicAppState();
@@ -71,7 +73,7 @@ class _MusicAppState extends State<MusicApp> {
       appBar: AppBar(
         centerTitle: true,
         shadowColor: Colors.black,
-        backgroundColor: Color.fromARGB(255, 51, 15, 44),
+        backgroundColor: const Color.fromARGB(255, 51, 15, 44),
         foregroundColor: Colors.white,
         elevation: 12,
         title: const Text('Zen Zone </>'),
@@ -116,7 +118,7 @@ class _MusicAppState extends State<MusicApp> {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
-                  return Center(child: Text('Wanna try some songs ? '));
+                  return const Center(child: Text('Wanna try some songs ? '));
                 } else {
                   return ListView.builder(
                     itemCount: snapshot.data!.length,

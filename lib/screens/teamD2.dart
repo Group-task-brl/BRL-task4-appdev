@@ -9,6 +9,7 @@ class team extends StatefulWidget {
 
 class _teamState extends State<team> {
   Future<void>? _futureData;
+  @override
   void initState() {
     super.initState();
     // _futureData =api();
@@ -17,7 +18,7 @@ class _teamState extends State<team> {
   Future<List<TableRow>> fetchData() async {
     List<TableRow> data = [
       // for(int i=0;i<2;i++){
-      TableRow(
+      const TableRow(
         children: [
           TableCell(
             child: Center(
@@ -51,27 +52,27 @@ class _teamState extends State<team> {
           width: 190,
             child: Column(
               children:[
-                SizedBox(height: 50,),
-                Text("Team A",style: TextStyle(color: Colors.white),),
-                SizedBox(height: 50,),
-                TextButton(child: Text("Add Task"),onPressed: (){},),
-                SizedBox(height: 10,),
-                TextButton(child: Text("Resources"),onPressed: (){},),
+                const SizedBox(height: 50,),
+                const Text("Team A",style: TextStyle(color: Colors.white),),
+                const SizedBox(height: 50,),
+                TextButton(child: const Text("Add Task"),onPressed: (){},),
+                const SizedBox(height: 10,),
+                TextButton(child: const Text("Resources"),onPressed: (){},),
               ]
             ),
           ),
-          appBar:AppBar(title: Text("Team A"),),
+          appBar:AppBar(title: const Text("Team A"),),
           body: SafeArea(
             child:Container(
               child: Column(
                 children: [
-                  Text("Leader - Sir"),
-                  SizedBox(height:20),
+                  const Text("Leader - Sir"),
+                  const SizedBox(height:20),
                   FutureBuilder<void>(
                     future: _futureData,
                       builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(
+                        return const Center(
                           child: CircularProgressIndicator(
                           color:Colors.white,
                         ),
@@ -79,7 +80,7 @@ class _teamState extends State<team> {
                     } else if (snapshot.hasError) {
                         return Text('Error: ${snapshot.error}');
                     } else {
-                      return  Container(
+                      return  SizedBox(
                         height: 600,
                         child: ListView.builder(
                           itemCount:2,
@@ -87,17 +88,17 @@ class _teamState extends State<team> {
                           return ListTile(
                             title: Column(
                             children: [
-                            Text("Domain - Specific"),
-                            SizedBox(height: 10,),
+                            const Text("Domain - Specific"),
+                            const SizedBox(height: 10,),
                             Table(
-                              columnWidths: {
+                              columnWidths: const {
                                 0: FixedColumnWidth(60.0),
                                 1: FixedColumnWidth(80.0),
                                 2: FixedColumnWidth(85.0),
                                 3: FixedColumnWidth(80.0),
                               },
                               border: TableBorder.all(),
-                              children: [
+                              children: const [
                                 TableRow(
                                   children: [
                                     TableCell(
