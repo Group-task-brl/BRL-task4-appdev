@@ -2,6 +2,7 @@ import 'package:brl_task4/ml/bar.dart';
 import 'package:brl_task4/ml/cloud.dart';
 import 'package:brl_task4/ml/line.dart';
 import 'package:brl_task4/ml/pie.dart';
+import 'package:brl_task4/music/music.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 import 'package:flutter/material.dart';
@@ -14,6 +15,13 @@ class MLWOW extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => MusicApp()));
+        },
+        child: const Icon(Icons.music_note),
+      ),
       body: Column(
         children: [
           Container(

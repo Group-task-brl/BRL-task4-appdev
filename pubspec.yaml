@@ -43,6 +43,9 @@ dependencies:
   fl_chart: ^0.65.0
   shared_preferences: ^2.2.2
   socket_io_client: ^1.0.2
+  cached_network: ^2.0.1
+  cached_network_image: ^3.3.0
+  audioplayers: ^5.2.1
 
 
 dev_dependencies:
