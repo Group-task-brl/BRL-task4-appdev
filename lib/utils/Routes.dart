@@ -8,7 +8,7 @@ class MyRoutes {
   static String BottomNavBar ="/BottomNavBar";
 
   // static String Todo = "/TodoList";
-
+  static String MResign = "/Mresign";
   static String AddTask = "/addTask";
   static String DoneTask = "/doneTask";
 }

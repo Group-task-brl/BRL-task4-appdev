@@ -2,6 +2,7 @@
 // only push here in dev branch 
 // do not merge in main branch
 
+import 'package:brl_task4/screens/MResign.dart';
 import 'package:brl_task4/screens/MarkTaskDone.dart';
 import 'package:brl_task4/screens/addTask.dart';
 import 'package:brl_task4/screens/dashboard.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.CreateTeamScreen: (context) => CreateTeamScreen(),
         MyRoutes.BottomNavBar:(context) => BottomNavBar(),
         MyRoutes.DoneTask:(context) => doneTask(),
+          MyRoutes.MResign:(context)=> Mresign(),
         // MyRoutes.Todo:(context) => TodoList(),
           }
         );
