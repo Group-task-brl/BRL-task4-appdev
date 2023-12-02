@@ -30,12 +30,12 @@ class _OTPVerifyState extends State<OTPVerify> {
 
       if (response.statusCode == 200) {
         print('OTP verified');
-        Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ChangePassword(email: widget.email,),
-        ),
-      );
+      //   Navigator.push(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: (context) => ChangePassword(email: widget.email,),
+      //   ),
+      // );
         print(jsonDecode(response.body));
         return null;
       } else {
