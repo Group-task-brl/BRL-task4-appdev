@@ -56,14 +56,14 @@ class dashb_memState extends State<dashb_mem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
+      // floatingActionButton: FloatingActionButton(
         
-        onPressed: (){
-          // Navigator.pushNamed(context, ChatScreen(name!) as String);
-           Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(name!)));
-        },
-        child: Icon(Icons.chat),
-      ),
+      //   onPressed: (){
+      //     // Navigator.pushNamed(context, ChatScreen(name!) as String);
+      //      Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(name!)));
+      //   },
+      //   child: Icon(Icons.chat),
+      // ),
       appBar:MyAppBar(),
       body: Container(
         child: Column(

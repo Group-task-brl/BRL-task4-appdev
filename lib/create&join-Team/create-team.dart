@@ -35,7 +35,6 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
 
   ];
 
-
   
   List<Domain> selectedDomains = [];
 
@@ -89,7 +88,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                   ),
 
                   const Text(
-                    '    Create Team',
+                    '  Create Team',
                     style: TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 30,
@@ -127,7 +126,8 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                         labelText2: 'Team Name',
                         secure1: false,
                         capital: TextCapitalization.none,
-                        nameController1: teamNameController),
+                        nameController1: teamNameController
+                        ),
 
                     const SizedBox(height: 16),
                     
