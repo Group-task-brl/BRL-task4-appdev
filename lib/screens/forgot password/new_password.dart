@@ -15,23 +15,35 @@ class _ChangePasswordState extends State<ChangePassword> {
   final TextEditingController newPasswordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
-      
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  Future<String?> takePassAPI(String password, String new_password) async {
+  Future<String?> takePassAPI(String password, String confirmpass) async {
+    dynamic storedValue = await secureStorage.readSecureData(key);
+
+    if (storedValue == null) {
+      print('Error: Authorization key not found');
+      return 'Authorization key not found';
+    }
+
     final String apiUrl =
         'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/user/newPassword/${widget.email}';
+
     var body = jsonEncode({
-      "newPassword": newPasswordController,
-      "confirmPassword": confirmPasswordController,
+      "newPassword": password,
+      "confirmPassword": confirmpass,
     });
-    var headers = {'Content-Type': 'application/json'};
+    var headers = <String,String>{
+      'Content-Type': 'application/json',
+      'Authorization': storedValue,
+    };
+
     try {
       var response =
           await http.post(Uri.parse(apiUrl), headers: headers, body: body);
 
       if (response.statusCode == 200) {
-        print('Password Changes successfully');
+        print('Password changed successfully');
         print(jsonDecode(response.body));
         return null;
       } else {
@@ -48,7 +60,8 @@ class _ChangePasswordState extends State<ChangePassword> {
   void _passwordchange(BuildContext context) async {
     if (_formKey.currentState?.validate() ?? false) {
       String password = newPasswordController.text;
-      String? error = await takePassAPI(password,confirmPasswordController.text);
+      String? error =
+          await takePassAPI(password, confirmPasswordController.text);
 
       if (error != null) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -59,11 +72,11 @@ class _ChangePasswordState extends State<ChangePassword> {
         );
       } else {
         Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Login(),
-        ),
-      );
+          context,
+          MaterialPageRoute(
+            builder: (context) => Login(),
+          ),
+        );
       }
     }
   }
@@ -77,6 +90,7 @@ class _ChangePasswordState extends State<ChangePassword> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
+          key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -98,7 +112,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                 decoration: InputDecoration(labelText: 'Confirm Password'),
                 validator: (value) {
                   if (value != newPasswordController.text) {
-                    return 'Passwords do not match. Please re-enter the correct paassword.';
+                    return 'Passwords do not match. Please re-enter the correct password.';
                   }
                   return null;
                 },

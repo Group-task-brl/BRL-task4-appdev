@@ -30,6 +30,12 @@ class _OTPVerifyState extends State<OTPVerify> {
 
       if (response.statusCode == 200) {
         print('OTP verified');
+        Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ChangePassword(email: widget.email,),
+        ),
+      );
         print(jsonDecode(response.body));
         return null;
       } else {
@@ -39,7 +45,7 @@ class _OTPVerifyState extends State<OTPVerify> {
       }
     } catch (e) {
       print('Error: $e');
-      return 'An error occurred';
+      // return 'An error occurred';
     }
   }
 
@@ -62,12 +68,12 @@ class _OTPVerifyState extends State<OTPVerify> {
         //     backgroundColor: Colors.green,
         //   ),
         // );
-        Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ChangePassword(email: widget.email,),
-        ),
-      );
+      //   Navigator.push(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: (context) => ChangePassword(email: widget.email,),
+      //   ),
+      // );
       }
     }
   }
