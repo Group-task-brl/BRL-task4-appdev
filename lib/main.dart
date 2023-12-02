@@ -16,6 +16,7 @@ import 'package:brl_task4/home_page/todo.dart';
 import 'create&join-Team/create-team.dart';
 import 'home_page/bottomnavbar.dart';
 import 'home_page/home_page_home.dart';
+import 'package:brl_task4/screens/forgot%20password/forgot_pass.dart';
 import 'home_page/teams.dart';
 import 'home_page/tasks.dart';
 void main() async{
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.BottomNavBar:(context) => BottomNavBar(),
         MyRoutes.DoneTask:(context) => doneTask(),
         // MyRoutes.Todo:(context) => TodoList(),
+        MyRoutes.Reset:(context) => ResetPass(),
           }
         );
   }
