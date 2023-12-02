@@ -16,7 +16,7 @@ class _ResetPassState extends State<ResetPass> {
   final _formKey = GlobalKey<FormState>();
 
   Future<String?> takeEmailAPI(String email) async {
-    final String apiUrl =
+    const String apiUrl =
         'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/user/resetPassword';
     var body = jsonEncode({
       "email": email,
@@ -72,7 +72,7 @@ class _ResetPassState extends State<ResetPass> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color.fromARGB(255, 0, 168, 210),
+        color: const Color.fromARGB(255, 0, 168, 210),
         child: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -94,9 +94,9 @@ class _ResetPassState extends State<ResetPass> {
                         return null;
                       },
                       decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.email_outlined),
+                        prefixIcon: const Icon(Icons.email_outlined),
                         hintText: "Email",
-                        contentPadding: EdgeInsets.symmetric(vertical: 2.0),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 2.0),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30.0),
                         ),
@@ -105,10 +105,10 @@ class _ResetPassState extends State<ResetPass> {
                   ),
                 ),
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               ElevatedButton(
                 onPressed: _resetPassword,
-                child: Text('Get OTP'),
+                child: const Text('Get OTP'),
               ),
             //   ElevatedButton(
             //   onPressed: () {

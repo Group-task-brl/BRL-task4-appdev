@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class ChatScreenfetch extends StatefulWidget {
+  const ChatScreenfetch({super.key});
+
   @override
   _ChatScreenfetchState createState() => _ChatScreenfetchState();
 }
@@ -18,7 +20,7 @@ class _ChatScreenfetchState extends State<ChatScreenfetch> {
   }
 
   Future<void> fetchChats() async {
-    final apiUrl = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/chat/getAllChats';
+    const apiUrl = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/chat/getAllChats';
 
     try {
       final response = await http.get(Uri.parse(apiUrl));
@@ -41,14 +43,14 @@ class _ChatScreenfetchState extends State<ChatScreenfetch> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 49, 12, 56),
+        backgroundColor: const Color.fromARGB(255, 49, 12, 56),
         foregroundColor: Colors.white,
         elevation: 12,
         shadowColor: Colors.black,
-        title: Text('Discussion History'),
+        title: const Text('Discussion History'),
       ),
       body: _chats.isEmpty
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : ListView.builder(
@@ -62,7 +64,7 @@ class _ChatScreenfetchState extends State<ChatScreenfetch> {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                 child: Card(
-                  color: Color.fromARGB(255, 46, 17, 55),
+                  color: const Color.fromARGB(255, 46, 17, 55),
                   shadowColor: Colors.black,
                  // surfaceTintColor: Colors.white,
                  
@@ -73,7 +75,7 @@ class _ChatScreenfetchState extends State<ChatScreenfetch> {
                   child: ListTile(
                     title: Text(
                       '$username:',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 12.0,
                         color: Color.fromARGB(255, 254, 254, 254),
@@ -81,7 +83,7 @@ class _ChatScreenfetchState extends State<ChatScreenfetch> {
                     ),
                     subtitle: Text(
                       message,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18.0,
                         color:Color.fromARGB(255, 220, 228, 73),
                       ),

@@ -5,12 +5,14 @@ import 'package:brl_task4/models/appbar.dart';
 class ProgressChart extends StatelessWidget {
   //%
   final double completedTasks = 70.0; 
-  final double incompleteTasks = 30.0; 
+  final double incompleteTasks = 30.0;
+
+  const ProgressChart({super.key}); 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(),
+      appBar: const MyAppBar(),
       body: Center(
         child: PieChart(
           PieChartData(
@@ -21,7 +23,7 @@ class ProgressChart extends StatelessWidget {
                 value: completedTasks,
                 title: '$completedTasks%',
                 radius: 80.0,
-                titleStyle: TextStyle(
+                titleStyle: const TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -33,7 +35,7 @@ class ProgressChart extends StatelessWidget {
                 value: incompleteTasks,
                 title: '$incompleteTasks%',
                 radius: 80.0,
-                titleStyle: TextStyle(
+                titleStyle: const TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,

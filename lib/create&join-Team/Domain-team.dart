@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class TeamDetailsScreen extends StatelessWidget {
-  final List<Domain> selectedDomains; // selected domains from create team screen
+  final List<Domain> selectedDomains; 
   final String teamname;
   final String teamId;
-  TeamDetailsScreen(this.teamname, this.selectedDomains, this.teamId);  // fetching all this from create team screen 
+  const TeamDetailsScreen(this.teamname, this.selectedDomains, this.teamId, {super.key}); 
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class TeamDetailsScreen extends StatelessWidget {
 
       body: Column(
 
-        // UI Code for header
+       
 
         children: [
           Container(
@@ -49,7 +49,7 @@ class TeamDetailsScreen extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  '$teamname',
+                  teamname,
                   style: const TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
@@ -61,7 +61,7 @@ class TeamDetailsScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
 
-          // showing the list of domains selected
+         
 
           Expanded(
             child: ListView.builder(
@@ -69,11 +69,10 @@ class TeamDetailsScreen extends StatelessWidget {
               // using listview builder to show the list of domains selected taaki agar zyada domains select kiye toh scroll kar sake 
               // halaki aisa hai nhi ki zyada domains select kar paoge kyunki 4 hi domains hai but agar zyada domains hote toh scroll kar paate
 
-              itemCount: selectedDomains.length,  // length of selected domains
-              itemBuilder: (context, index) {     // index of selected domains
+              itemCount: selectedDomains.length,  
+              itemBuilder: (context, index) {     
 
-                // icons for each domain
-                
+              
                 List<IconData> icons = [
                   Icons.code_rounded,
                   Icons.monitor,
@@ -95,7 +94,7 @@ class TeamDetailsScreen extends StatelessWidget {
                     hoverColor: Colors.white,
                     iconColor: Colors.white,
                     leading: Icon(
-                      icons[index],      // icons for each domain
+                      icons[index],
                       color: Colors.white,
                     ),
                     shape: RoundedRectangleBorder(
@@ -115,8 +114,8 @@ class TeamDetailsScreen extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) => InviteMembersScreen(  
-                            selectedDomains[index],                   // passing selected domains to invite members screen
-                            teamId: teamId,                           // passing teamId to invite members screen
+                            selectedDomains[index],                   
+                            teamId: teamId,                           
                           ),
                         ),
                       );
@@ -133,10 +132,10 @@ class TeamDetailsScreen extends StatelessWidget {
 }
 
 class InviteMembersScreen extends StatelessWidget {
-  final Domain domain;    // domain selected
-  final String teamId;    // teamId
+  final Domain domain;    
+  final String teamId;    
 
-  InviteMembersScreen(this.domain, {required this.teamId});
+  InviteMembersScreen(this.domain, {super.key, required this.teamId});
 
   TextEditingController emailController = TextEditingController();
 

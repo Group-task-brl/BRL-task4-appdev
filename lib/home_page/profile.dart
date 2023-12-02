@@ -3,28 +3,30 @@ import 'package:brl_task4/screens/login.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatelessWidget {
+  const Profile({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 40.0,
         ),
-        CircleAvatar(
+        const CircleAvatar(
           radius: 80.0,
           backgroundImage: AssetImage('lib/assets/prof.png'),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20.0,
         ),
-        Text(
+        const Text(
           'Shreya Dhangar',
           style: TextStyle(
             fontSize: 24.0,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20.0,
         ),
         Divider(
@@ -50,7 +52,7 @@ class Profile extends StatelessWidget {
      TextButton(onPressed: (){
        secureStorage.deleteSecureData(key);
        Navigator.pushReplacementNamed(context, MyRoutes.LoginRoutes);
-     }, child: Row(
+     }, child: const Row(
        children: [
          Icon(Icons.logout,color: Colors.red,),
          SizedBox(width: 10,),
@@ -82,7 +84,7 @@ class Profile extends StatelessWidget {
                     icon,
                     size: 20.0,
                   ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Text(
@@ -95,7 +97,7 @@ class Profile extends StatelessWidget {
               ],
             ),
             if (textColor != Colors.red)
-              Icon(
+              const Icon(
                 Icons.arrow_forward_ios_outlined,
                 size: 20.0,
                 color: Color.fromARGB(255, 101, 56, 108),

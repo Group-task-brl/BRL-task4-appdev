@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'new_password.dart';
 
 class OTPVerify extends StatefulWidget {
   final String email;
 
-  OTPVerify({required this.email});
+  const OTPVerify({super.key, required this.email});
 
   @override
   State<OTPVerify> createState() => _OTPVerifyState();
@@ -47,6 +46,7 @@ class _OTPVerifyState extends State<OTPVerify> {
       print('Error: $e');
       // return 'An error occurred';
     }
+    return null;
   }
 
   void _verifyOTP(BuildContext context) async {
@@ -82,7 +82,7 @@ class _OTPVerifyState extends State<OTPVerify> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Verify OTP'),
+        title: const Text('Verify OTP'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -94,7 +94,7 @@ class _OTPVerifyState extends State<OTPVerify> {
               Text('Enter OTP sent to ${widget.email}'),
               TextFormField(
                 controller: otpController,
-                decoration: InputDecoration(labelText: 'OTP'),
+                decoration: const InputDecoration(labelText: 'OTP'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter OTP';
@@ -102,10 +102,10 @@ class _OTPVerifyState extends State<OTPVerify> {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () => _verifyOTP(context),
-                child: Text('Verify OTP'),
+                child: const Text('Verify OTP'),
               ),
             ],
           ),

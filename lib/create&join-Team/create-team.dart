@@ -16,6 +16,8 @@ class Domain {
 
 
 class CreateTeamScreen extends StatefulWidget {
+  const CreateTeamScreen({super.key});
+
   @override
   _CreateTeamScreenState createState() => _CreateTeamScreenState();
 }
@@ -34,7 +36,6 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
     Domain(id: 4, name: 'App Development'),
 
   ];
-
 
   
   List<Domain> selectedDomains = [];
@@ -89,7 +90,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                   ),
 
                   const Text(
-                    '    Create Team',
+                    '  Create Team',
                     style: TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 30,
@@ -127,7 +128,8 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                         labelText2: 'Team Name',
                         secure1: false,
                         capital: TextCapitalization.none,
-                        nameController1: teamNameController),
+                        nameController1: teamNameController
+                        ),
 
                     const SizedBox(height: 16),
                     
