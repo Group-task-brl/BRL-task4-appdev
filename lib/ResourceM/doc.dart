@@ -160,6 +160,8 @@ class UpdateItem {
         .join('\n');
   }
 
+
+
   static List<UpdateItem> fromStoredString(String storedString) {
     List<String> updateStrings = storedString.split('\n');
     return updateStrings
@@ -168,6 +170,7 @@ class UpdateItem {
       List<String> parts = updateString.split('~');
       return UpdateItem(text: parts[0], dateTime: DateTime.parse(parts[1]));
     }).toList();
+   
   }
 
   String get formattedDateTime {
