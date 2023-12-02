@@ -62,7 +62,7 @@ class dashb_memState extends State<dashb_mem> {
           // Navigator.pushNamed(context, ChatScreen(name!) as String);
            Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(name!)));
         },
-        child: Icon(Icons.add),
+        child: Icon(Icons.chat),
       ),
       appBar:MyAppBar(),
       body: Container(
