@@ -54,11 +54,11 @@ class _LoginState extends State<Login> {
         body:
         Container(
           height: MediaQuery.of(context).size.height,
-          decoration:const BoxDecoration(
-            image: DecorationImage(
-            image:AssetImage('lib/assets/BgAuth.png'),
-            fit: BoxFit.cover,),
-          ),
+          // decoration:const BoxDecoration(
+          //   image: DecorationImage(
+          //   image:AssetImage('lib/assets/BgAuth.png'),
+          //   fit: BoxFit.cover,),
+          // ),
           child:SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(12.0),
@@ -77,7 +77,7 @@ class _LoginState extends State<Login> {
                         Text("Login",style:TextStyle(fontSize: 40,fontWeight: FontWeight.w500)),
                         Text("Agree to terms and conditions",style:TextStyle(fontSize: 14)),
                         ],),
-                 SizedBox(height: 15,),
+                 SizedBox(height: 25,),
                   Form(
                   key: _formKey,
                   child:Column(
