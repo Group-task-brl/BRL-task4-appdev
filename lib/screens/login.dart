@@ -13,7 +13,7 @@ class Login extends StatefulWidget {
 }
 
  final SecureStorage secureStorage=SecureStorage();
-String key= 'accessToken';
+ String key= 'accessToken';
 class _LoginState extends State<Login> {
 
   TextEditingController emailController =TextEditingController();
@@ -131,7 +131,9 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                       SizedBox(height: 20,),
-                      TextButton(child:Text("Forgot Password?",style: TextStyle(color: Colors.black),),onPressed: (){},),
+                      TextButton(child:Text("Forgot Password?",style: TextStyle(color: Colors.black),),onPressed: (){
+                        Navigator.pushNamed(context, MyRoutes.Reset);
+                      },),
                       SizedBox(height: 30,),
                       // Row(
                       //   children:[
