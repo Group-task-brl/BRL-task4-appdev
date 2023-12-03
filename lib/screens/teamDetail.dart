@@ -180,7 +180,8 @@ class _t_detailState extends State<t_detail> {
                                                     children: [
                                                       TableCell(
                                                         child: Center(child: Icon(
-                                                          Icons.check_circle_outline,
+                                                          domains![index]['tasks']![index2]!["completed"]==false?Icons.close_outlined:Icons.check_circle_outline,
+                                                          // Icons.check_circle_outline,
                                                           color: domains![index]['tasks']![index2]!["completed"]==false?Colors.red:Colors.green,)),
                                                       ),
                                                       TableCell(
