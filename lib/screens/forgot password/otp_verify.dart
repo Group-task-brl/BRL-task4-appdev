@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'new_password.dart';
 
 class OTPVerify extends StatefulWidget {
   final String email;
@@ -29,12 +30,12 @@ class _OTPVerifyState extends State<OTPVerify> {
 
       if (response.statusCode == 200) {
         print('OTP verified');
-      //   Navigator.push(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (context) => ChangePassword(email: widget.email,),
-      //   ),
-      // );
+        Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ChangePassword(email: widget.email,),
+        ),
+      );
         print(jsonDecode(response.body));
         return null;
       } else {
