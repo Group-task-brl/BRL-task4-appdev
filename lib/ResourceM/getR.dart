@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:brl_task4/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 
 class PostTextScreen extends StatefulWidget {
   final String teamId;
@@ -14,6 +16,71 @@ class PostTextScreen extends StatefulWidget {
 class _PostTextScreenState extends State<PostTextScreen> {
   final TextEditingController _textController = TextEditingController();
   String _responseMessage = '';
+   final picker = ImagePicker();
+  File? _image;
+
+    Future getImageGallery() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected');
+      }
+    });
+  }
+
+  Future<void> postImage() async {
+
+    String storedValue = await secureStorage.readSecureData(key);
+    try {
+      var apiUrl = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/image/addImage';
+
+      var headers = {
+        'Authorization':
+            storedValue,
+      };
+
+      var request = http.MultipartRequest('POST', Uri.parse(apiUrl));
+
+      // Add headers
+      request.headers.addAll(headers);
+
+      // Add form data
+      request.fields.addAll({
+        'imgName': 'result',
+        'teamId': '${widget.teamId}',
+      });
+
+      // Add image file
+      if (_image != null) {
+        request.files.add(await http.MultipartFile.fromPath('photo', _image!.path));
+      } else {
+        print('Image is null');
+        return;
+      }
+
+      // Send request
+      var response = await request.send();
+
+      if (response.statusCode == 200) {
+        print('Image uploaded successfully');
+        print(await response.stream.bytesToString());
+      } else {
+        print('Failed to upload image. Status code: ${response.statusCode}');
+        print(response.reasonPhrase);
+      }
+    } catch (e) {
+      print('Error uploading image: $e');
+    }finally{
+      setState(() {
+        _image = null;
+      });
+    }
+  }
+
+
 
   Future<void> postText() async {
     try {
@@ -133,6 +200,34 @@ class _PostTextScreenState extends State<PostTextScreen> {
                       color: Color.fromARGB(255, 43, 16, 53),
                     ),
                   ),
+
+                  const SizedBox(height: 16),
+
+                  Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _image != null
+                  ? Image.file(
+                      _image!,
+                      height: 150,
+                      width: 150,
+                      fit: BoxFit.cover,
+                    )
+                  : Container(),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: getImageGallery,
+                child: Text('Pick Image from Gallery'),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: postImage,
+                child: Text('Upload Image'),
+              ),
+            ],
+          ),
+        ),
                 ],
               ),
             ),
