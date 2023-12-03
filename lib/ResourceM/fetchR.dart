@@ -24,7 +24,7 @@ class _ShowTextScreenState extends State<ShowTextScreen> {
     var headers = {
       'Authorization':
          storedValue,
-      'Content-Type': 'application/json'
+     // 'Content-Type': 'application/json'
     };
 
     var request = http.Request(
@@ -75,7 +75,7 @@ class _ShowTextScreenState extends State<ShowTextScreen> {
 
         setState(() {
           isLoading = false;
-
+          
           if (responseData['data'] is List) {
             messages = responseData['data'];
           } else {
@@ -94,12 +94,27 @@ class _ShowTextScreenState extends State<ShowTextScreen> {
   void initState() {
     super.initState();
     fetchMessages();
-    fetchImages();
+    //fetchImages();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(onPressed: 
+
+      () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ImageListScreen(),
+          ),
+          
+        );
+
+      },
+      child: Icon(Icons.add),
+      
+      ),
       // appBar: AppBar(
       //   title: Text('Resources'),
       // ),
@@ -146,42 +161,42 @@ class _ShowTextScreenState extends State<ShowTextScreen> {
           const SizedBox(height: 16.0),
 
 
-           isLoading
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
-          : GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8.0,
-                mainAxisSpacing: 8.0,
-              ),
-              itemCount: images.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ImageDetailScreen(
-                          imageUrl: images[index]['imgURL']!,
-                        ),
-                      ),
-                    );
-                  },
-                  child: Card(
-                    elevation: 2.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                    child: Image.network(
-                      images[index]['imgURL']!,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                );
-              },
-            ),
+          //  isLoading
+          // ? Center(
+          //     child: CircularProgressIndicator(),
+          //   )
+          // : GridView.builder(
+          //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          //       crossAxisCount: 2,
+          //       crossAxisSpacing: 8.0,
+          //       mainAxisSpacing: 8.0,
+          //     ),
+          //     itemCount: images.length,
+          //     itemBuilder: (context, index) {
+          //       return GestureDetector(
+          //         onTap: () {
+          //           Navigator.push(
+          //             context,
+          //             MaterialPageRoute(
+          //               builder: (context) => ImageDetailScreen(
+          //                 imageUrl: images[index]['imgURL']!,
+          //               ),
+          //             ),
+          //           );
+          //         },
+          //         child: Card(
+          //           elevation: 2.0,
+          //           shape: RoundedRectangleBorder(
+          //             borderRadius: BorderRadius.circular(12.0),
+          //           ),
+          //           child: Image.network(
+          //             images[index]['imgURL']!,
+          //             fit: BoxFit.cover,
+          //           ),
+          //         ),
+          //       );
+          //     },
+          //   ),
 
 
 
@@ -190,64 +205,64 @@ class _ShowTextScreenState extends State<ShowTextScreen> {
 
 
 
-          // isLoading
-          //     ? const CircularProgressIndicator()
-          //     : messages.isEmpty
-          //         ? const Text('No messages available.')
-          //         : Expanded(
-          //             child: ListView.builder(
-          //               reverse: true,
-          //               physics: const ClampingScrollPhysics(),
-          //               itemCount: messages.length,
-          //               itemBuilder: (context, index) {
-          //                 final email = messages[index]['email'];
+          isLoading
+              ? const CircularProgressIndicator()
+              : messages.isEmpty
+                  ? const Text('No messages available.')
+                  : Expanded(
+                      child: ListView.builder(
+                        reverse: true,
+                        physics: const ClampingScrollPhysics(),
+                        itemCount: messages.length,
+                        itemBuilder: (context, index) {
+                          final email = messages[index]['email'];
 
-          //                 return Padding(
-          //                   padding: const EdgeInsets.all(8.0),
-          //                   child: Column(
-          //                     crossAxisAlignment: CrossAxisAlignment.start,
-          //                     children: [
-          //                       Text(
-          //                         '   Email: $email',
-          //                         style: const TextStyle(
-          //                           fontSize: 16,
-          //                           fontWeight: FontWeight.bold,
-          //                         ),
-          //                       ),
-          //                       const SizedBox(height: 8.0),
-          //                       ListView.builder(
-          //                         shrinkWrap: true,
-          //                         physics: const ClampingScrollPhysics(),
-          //                         itemCount: messages[index]['texts'].length,
-          //                         itemBuilder: (context, index1) {
-          //                           final text = messages[index]['texts']
-          //                               [index1]['text'];
-          //                           return Card(
-          //                             elevation: 2.0,
-          //                             shape: RoundedRectangleBorder(
-          //                               borderRadius:
-          //                                   BorderRadius.circular(12.0),
-          //                             ),
-          //                             color: const Color.fromARGB(255, 47, 18, 59),
-          //                             child: ListTile(
-          //                               title: Text(
-          //                                 text,
-          //                                 style: const TextStyle(
-          //                                   fontSize: 14.0,
-          //                                   color: Colors.white,
-          //                                 ),
-          //                               ),
-          //                             ),
-          //                           );
-          //                         },
-          //                       ),
-          //                       const Divider(),
-          //                     ],
-          //                   ),
-          //                 );
-          //               },
-          //             ),
-          //           ),
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '   Email: $email',
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 8.0),
+                                ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const BouncingScrollPhysics(),
+                                  itemCount: messages[index]['texts'].length,
+                                  itemBuilder: (context, index1) {
+                                    final text = messages[index]['texts']
+                                        [index1]['text'];
+                                    return Card(
+                                      elevation: 2.0,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
+                                      ),
+                                      color: const Color.fromARGB(255, 47, 18, 59),
+                                      child: ListTile(
+                                        title: Text(
+                                          text,
+                                          style: const TextStyle(
+                                            fontSize: 14.0,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                                const Divider(),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
         ],
       ),
     );
@@ -256,23 +271,26 @@ class _ShowTextScreenState extends State<ShowTextScreen> {
 
 
 
-class ImageDetailScreen extends StatelessWidget {
-  final String imageUrl;
+// class ImageDetailScreen extends StatelessWidget {
+//   final String imageUrl;
 
-  ImageDetailScreen({required this.imageUrl});
+//   ImageDetailScreen({required this.imageUrl});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Image Detail'),
-      ),
-      body: Center(
-        child: Image.network(
-          imageUrl,
-          fit: BoxFit.contain,
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Image Detail'),
+//       ),
+//       body: Center(
+//         child: Image.network(
+//           imageUrl,
+//           fit: BoxFit.contain,
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+
+
