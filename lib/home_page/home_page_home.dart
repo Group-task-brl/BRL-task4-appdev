@@ -14,8 +14,8 @@ class HomeNav extends StatefulWidget {
 class _HomeNavState extends State<HomeNav> {
   int _selectedIndex = 0;
   final List _pages = [
-    const Center(child: TeamPage()),
     const Center(child: TaskContainer()),
+    const Center(child: TeamPage()),
   ];
 
   @override
@@ -34,8 +34,8 @@ class _HomeNavState extends State<HomeNav> {
               height: buttonHeight*0.075,
               child: CupertinoSegmentedControl<int>(
                 children: const {
-                  0: Text('Teams'),
-                  1: Text('To-Do List'),
+                  0: Text('To-Do List'),
+                  1: Text('Teams'),
                 },
                 onValueChanged: (index) {
                   _onNavItemTapped(index);

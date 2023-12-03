@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:brl_task4/home_page/progress.dart';
 
 class TaskContainer extends StatefulWidget {
-  const TaskContainer({super.key});
+  const TaskContainer({Key? key}) : super(key: key);
 
   @override
   State<TaskContainer> createState() => _TaskContainerState();
@@ -30,7 +30,7 @@ class _TaskContainerState extends State<TaskContainer> {
 
   Future<void> incompTaskAPI() async {
     dynamic storedValue = await secureStorage.readSecureData(key);
-  
+
     const String apiUrl =
         'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/team/incompleteTasks';
 
@@ -51,7 +51,6 @@ class _TaskContainerState extends State<TaskContainer> {
       print(' ${response.statusCode}');
       print('Error Message: ${response.body}');
     }
-    
   }
 
   Future<void> compTaskAPI() async {
@@ -61,7 +60,7 @@ class _TaskContainerState extends State<TaskContainer> {
 
     final response = await http.get(
       Uri.parse(apiUrl),
-      headers:{
+      headers: {
         'Authorization': storedValue,
       },
     );
@@ -78,60 +77,47 @@ class _TaskContainerState extends State<TaskContainer> {
     }
   }
 
-  // void navigateToProgressChart(int compTask,int incompTask) {
-  //   Navigator.push(
-  //     context,
-  //     MaterialPageRoute(
-  //       builder: (context) => ProgressChart(
-  //         compNum: compTask,
-  //         incompNum: incompTask,
-  //       ),
-  //     ),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              'lib/assets/task.png',
-              width: MediaQuery.of(context).size.width * 0.4,
-              height: MediaQuery.of(context).size.height * 0.2,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  'Tasks',
-                  style: TextStyle(
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
+      body: Scrollbar(
+        thickness: 8,
+        trackVisibility: true,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(
+                'lib/assets/task.png',
+                width: MediaQuery.of(context).size.width * 0.4,
+                height: MediaQuery.of(context).size.height * 0.2,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Tasks',
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                SizedBox(width: 20,),
-                // FloatingActionButton(
-                //   onPressed: () { 
-                //       navigateToProgressChart(compTasks!.length, incompTasks!.length);
-                //   },
-                //   backgroundColor: Colors.lightGreen,
-                //   child: const Icon(Icons.update),
-                // ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            const Text('Incomplete Tasks:-\n', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-            showIncompletetask(),
-            const SizedBox(height: 20,),
-            const Text('Completed Tasks:-\n',style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),),
-            showCompletedtask(),
-          ],
+                  SizedBox(width: 20,),
+                ],
+              ),
+              const SizedBox(height: 10),
+              const Text('Incomplete Tasks:-\n',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              showIncompletetask(),
+              const SizedBox(height: 20,),
+              const Text('Completed Tasks:-\n',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  )),
+              showCompletedtask(),
+            ],
+          ),
         ),
       ),
     );
@@ -159,27 +145,26 @@ class _TaskContainerState extends State<TaskContainer> {
             child: ListView.builder(
               itemCount: incompTasks!.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: TextButton(
-                    onPressed: () {
-                      _showAlert(incompTasks![index]['description'],compTasks![index]['assignedTo'],
-                          incompTasks![index]['deadline']);
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * 0.1,
-                      color: const Color.fromARGB(255, 147, 78, 158),
-                      child: Row(
-                        children: [
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Text(
-                            incompTasks![index]['description'] ?? "No tasks",
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
+                return TextButton(
+                  onPressed: () {
+                    _showAlert(incompTasks![index]['description'],
+                        incompTasks![index]['assignedTo'],
+                        incompTasks![index]['deadline']);
+                  },
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    color: const Color.fromARGB(255, 147, 78, 158),
+                    child: Row(
+                      children: [
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          incompTasks![index]['description'] ?? "No tasks",
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ],
                     ),
                   ),
                 );
@@ -208,32 +193,31 @@ class _TaskContainerState extends State<TaskContainer> {
             return const Text("No tasks");
           }
           return Container(
-           color: Color.fromARGB(255, 143, 218, 217),
+            color: Color.fromARGB(255, 143, 218, 217),
             height: 300,
             child: ListView.builder(
               itemCount: compTasks!.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: TextButton(
-                    onPressed: () {
-                      _showAlert(compTasks![index]['description'],compTasks![index]['assignedTo'],
-                          compTasks![index]['deadline']);
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * 0.1,
-                      color: const Color.fromARGB(255, 147, 78, 158),
-                      child: Row(
-                        children: [
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Text(
-                            compTasks![index]['description'] ?? "No tasks",
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
+                return TextButton(
+                  onPressed: () {
+                    _showAlert(compTasks![index]['description'],
+                        compTasks![index]['assignedTo'],
+                        compTasks![index]['deadline']);
+                  },
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    color: const Color.fromARGB(255, 147, 78, 158),
+                    child: Row(
+                      children: [
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          compTasks![index]['description'] ?? "No tasks",
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ],
                     ),
                   ),
                 );
@@ -245,13 +229,14 @@ class _TaskContainerState extends State<TaskContainer> {
     );
   }
 
-  void _showAlert(String message, String assignedTo,String deadline) {
+  void _showAlert(String message, String assignedTo, String deadline) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text("Task Details"),
-          content: Text("Task: $message\nDeadline: $deadline\n\nAssigned To: $assignedTo"),
+          content: Text(
+              "Task: $message\nDeadline: $deadline\n\nAssigned To: $assignedTo"),
           actions: [
             TextButton(
               onPressed: () {
