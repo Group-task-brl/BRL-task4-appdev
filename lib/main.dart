@@ -2,23 +2,17 @@
 // only push here in dev branch 
 // do not merge in main branch
 
-import 'package:brl_task4/screens/MResign.dart';
 import 'package:brl_task4/screens/MarkTaskDone.dart';
-import 'package:brl_task4/screens/addTask.dart';
 import 'package:brl_task4/screens/dashboard.dart';
 import 'package:brl_task4/screens/join_team.dart';
 import 'package:brl_task4/screens/signup.dart';
 import 'package:brl_task4/screens/login.dart';
-import 'package:brl_task4/screens/teamDetail.dart';
 import 'package:brl_task4/utils/Routes.dart';
 import'package:flutter/material.dart';
-import 'package:brl_task4/home_page/todo.dart';
 import 'create&join-Team/create-team.dart';
 import 'home_page/bottomnavbar.dart';
-import 'home_page/home_page_home.dart';
 import 'package:brl_task4/screens/forgot%20password/forgot_pass.dart';
-import 'home_page/teams.dart';
-import 'home_page/tasks.dart';
+import 'package:brl_task4/leave approval/leave.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   dynamic storedValue = await secureStorage.readSecureData(key);
@@ -42,18 +36,18 @@ class MyApp extends StatelessWidget {
 
         initialRoute: '/',
         routes: {
-          '/':(context)=>SignUp(),
+          '/':(context)=>const SignUp(),
 
           // '/': (context) => (storedValue==null)?SignUp():BottomNavBar(),
-        MyRoutes.SignUpRoutes: (context) => SignUp(),
-        MyRoutes.LoginRoutes: (context) => Login(),
-        MyRoutes.dashbMemRoutes: (context) => dashb_mem(),
-        MyRoutes.jointeamRoutes: (context) => join_team(),
-        MyRoutes.CreateTeamScreen: (context) => CreateTeamScreen(),
-        MyRoutes.BottomNavBar:(context) => BottomNavBar(),
-        MyRoutes.DoneTask:(context) => doneTask(),
+        MyRoutes.SignUpRoutes: (context) => const SignUp(),
+        MyRoutes.LoginRoutes: (context) => const Login(),
+        MyRoutes.dashbMemRoutes: (context) => const dashb_mem(),
+        MyRoutes.jointeamRoutes: (context) => const join_team(),
+        MyRoutes.CreateTeamScreen: (context) => const CreateTeamScreen(),
+        MyRoutes.BottomNavBar:(context) => const BottomNavBar(),
+        MyRoutes.DoneTask:(context) => const doneTask(),
         // MyRoutes.Todo:(context) => TodoList(),
-        MyRoutes.Reset:(context) => ResetPass(),
+        MyRoutes.Reset:(context) => const ResetPass(),
           }
         );
   }
@@ -71,16 +65,16 @@ class MyApp2 extends StatelessWidget {
 
         initialRoute: '/',
         routes: {
-          '/':(context)=>BottomNavBar(),
+          '/':(context)=>const BottomNavBar(),
 
           // '/': (context) => (storedValue==null)?SignUp():BottomNavBar(),
-          MyRoutes.SignUpRoutes: (context) => SignUp(),
-          MyRoutes.LoginRoutes: (context) => Login(),
-          MyRoutes.dashbMemRoutes: (context) => dashb_mem(),
-          MyRoutes.jointeamRoutes: (context) => join_team(),
-          MyRoutes.CreateTeamScreen: (context) => CreateTeamScreen(),
-          MyRoutes.BottomNavBar:(context) => BottomNavBar(),
-          MyRoutes.DoneTask:(context) => doneTask(),
+          MyRoutes.SignUpRoutes: (context) => const SignUp(),
+          MyRoutes.LoginRoutes: (context) => const Login(),
+          MyRoutes.dashbMemRoutes: (context) => const dashb_mem(),
+          MyRoutes.jointeamRoutes: (context) => const join_team(),
+          MyRoutes.CreateTeamScreen: (context) => const CreateTeamScreen(),
+          MyRoutes.BottomNavBar:(context) => const BottomNavBar(),
+          MyRoutes.DoneTask:(context) => const doneTask(),
           // MyRoutes.Todo:(context) => TodoList(),
         }
     );

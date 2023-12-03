@@ -5,15 +5,17 @@ import 'package:brl_task4/home_page/teams.dart';
 import 'package:brl_task4/home_page/tasks.dart';
 
 class HomeNav extends StatefulWidget {
+  const HomeNav({super.key});
+
   @override
   _HomeNavState createState() => _HomeNavState();
 }
 
 class _HomeNavState extends State<HomeNav> {
   int _selectedIndex = 0;
-  List _pages = [
-    Center(child: TeamPage()),
-    Center(child: TaskContainer()),
+  final List _pages = [
+    const Center(child: TaskContainer()),
+    const Center(child: TeamPage()),
   ];
 
   @override
@@ -22,7 +24,7 @@ class _HomeNavState extends State<HomeNav> {
     double buttonWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: MyAppBar(),
+      appBar: const MyAppBar(),
       body: Column(
         children: [
           Padding(
@@ -31,16 +33,16 @@ class _HomeNavState extends State<HomeNav> {
               width: buttonWidth,
               height: buttonHeight*0.075,
               child: CupertinoSegmentedControl<int>(
-                children: {
-                  0: Text('Teams'),
-                  1: Text('To-Do List'),
+                children: const {
+                  0: Text('To-Do List'),
+                  1: Text('Teams'),
                 },
                 onValueChanged: (index) {
                   _onNavItemTapped(index);
                 },
                 groupValue: _selectedIndex,
                 // borderColor: Theme.of(context).primaryColor,
-                selectedColor: Color.fromARGB(255, 101, 56, 108),
+                selectedColor: const Color.fromARGB(255, 101, 56, 108),
                 unselectedColor: Colors.white,
               ),
             ),

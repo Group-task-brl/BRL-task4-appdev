@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 class ShowTextScreen extends StatefulWidget {
   final String teamId;
-  ShowTextScreen(this.teamId);
+  const ShowTextScreen(this.teamId, {super.key});
 
   @override
   _ShowTextScreenState createState() => _ShowTextScreenState();

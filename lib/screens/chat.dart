@@ -8,7 +8,7 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 class ChatScreen extends StatefulWidget {
   final String name;
 
-  ChatScreen(this.name);
+  const ChatScreen(this.name, {super.key});
 
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -109,20 +109,22 @@ class _ChatScreenState extends State<ChatScreen> {
         elevation: 12,
         shadowColor: Colors.black,
         foregroundColor: Colors.white,
-        backgroundColor: Color.fromARGB(255, 40, 8, 43),
+        backgroundColor: const Color.fromARGB(255, 40, 8, 43),
         actions: [
           IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.history,
                 color: Colors.white,
               ),
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ChatScreenfetch()));
+                    MaterialPageRoute(builder: (context) => const ChatScreenfetch()));
               }),
         ],
+        
         title: Text(
           'Chat </>',
+    
           style: TextStyle(
             color: Colors.white,
           ),
@@ -145,17 +147,17 @@ class _ChatScreenState extends State<ChatScreen> {
                       ? Alignment.centerRight
                       : Alignment.centerLeft,
                   child: Container(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     margin:
-                        EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+                        const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
                     decoration: BoxDecoration(
                       color: userColors[username] ??
-                          Color.fromARGB(255, 92, 92, 214),
+                          const Color.fromARGB(255, 92, 92, 214),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: Text(
                       '$username:\n $message',
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                 );
@@ -175,7 +177,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         capital: TextCapitalization.none,
                         nameController1: _controller)),
                 IconButton(
-                  icon: Icon(Icons.send_sharp),
+                  icon: const Icon(Icons.send_sharp),
                   onPressed: _sendMessage,
                 ),
               ],

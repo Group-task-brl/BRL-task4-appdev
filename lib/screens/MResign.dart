@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import '../Utils/Routes.dart';
 import 'login.dart';
 class Mresign extends StatefulWidget {
-   Mresign({required this.teamId,required this.emailId});
+   Mresign({super.key, required this.teamId,required this.emailId});
    String? teamId;
    String? emailId;
 
@@ -33,7 +33,7 @@ class _MresignState extends State<Mresign> {
     if (response.statusCode == 200) {
       // print('API Response: ${response.body}');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Email Send"),),);
+        const SnackBar(content: Text("Email Send"),),);
       Navigator.pushReplacementNamed(context, MyRoutes.BottomNavBar);
     } else {
       print( ' ${response.statusCode}');
@@ -60,10 +60,10 @@ class _MresignState extends State<Mresign> {
             child: Form(
               child: Column(
                 children: [
-                  SizedBox(height: 100,),
+                  const SizedBox(height: 100,),
 
-                  Text("Resign",style:TextStyle(color: Colors.white,fontSize:40,fontWeight: FontWeight.w700),),
-                  SizedBox(height: 30,),
+                  const Text("Resign",style:TextStyle(color: Colors.white,fontSize:40,fontWeight: FontWeight.w700),),
+                  const SizedBox(height: 30,),
 
 
                   Container(
@@ -93,7 +93,7 @@ class _MresignState extends State<Mresign> {
                                   // prefixIcon:Icon(Icons.group),
                                   // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
                                   hintText: "Message to leader",
-                                  contentPadding: EdgeInsets.symmetric(vertical: 2.0),
+                                  contentPadding: const EdgeInsets.symmetric(vertical: 2.0),
                                   // suffixIcon: Icon(Icons.visibility),
                                   border:OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(5.0),
@@ -103,17 +103,17 @@ class _MresignState extends State<Mresign> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 25,),
+                        const SizedBox(height: 25,),
                         ElevatedButton(onPressed: (){
                           MresignApi(widget.teamId, widget.emailId);
                           // joinTeamAPI();
                         },
                           style:ElevatedButton.styleFrom(
-                            backgroundColor:Color.fromARGB(255, 225, 169, 229),
+                            backgroundColor:const Color.fromARGB(255, 225, 169, 229),
                             // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
 
                           ),
-                          child:Row(
+                          child:const Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text("Send Resign"),

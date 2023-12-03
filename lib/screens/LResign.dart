@@ -4,7 +4,7 @@ import '../Utils/Routes.dart';
 import 'login.dart';
 
 class Resign extends StatefulWidget {
-  Resign({required this.teamId});
+  Resign({super.key, required this.teamId});
   String? teamId;
 // print(teamID);
   @override
@@ -34,7 +34,7 @@ class _ResignState extends State<Resign> {
     if (response.statusCode == 200) {
       // print('API Response: ${response.body}');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Removed"),),);
+        const SnackBar(content: Text("Removed"),),);
       Navigator.pushReplacementNamed(context, MyRoutes.BottomNavBar);
     } else {
       print( ' ${response.statusCode}');
@@ -62,7 +62,7 @@ class _ResignState extends State<Resign> {
     if (response.statusCode == 200) {
       // print('API Response: ${response.body}');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Assigned"),),);
+        const SnackBar(content: Text("Assigned"),),);
       Navigator.pushReplacementNamed(context, MyRoutes.BottomNavBar);
     } else {
       print( ' ${response.statusCode}');
@@ -93,7 +93,7 @@ class _ResignState extends State<Resign> {
                   // SizedBox(height: 30,),
                   //
                   // // Text("Remove",style:TextStyle(color: Colors.white,fontSize:40,fontWeight: FontWeight.w700),),
-                  SizedBox(height: 70,),
+                  const SizedBox(height: 70,),
                   Container(
                     width: 303,
                     height: 200,
@@ -106,10 +106,10 @@ class _ResignState extends State<Resign> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Remove Member",style:TextStyle(color: Colors.white,fontSize:30,fontWeight: FontWeight.w700),),
-                        SizedBox(height: 10,),
+                        const Text("Remove Member",style:TextStyle(color: Colors.white,fontSize:30,fontWeight: FontWeight.w700),),
+                        const SizedBox(height: 10,),
                         ClipRRect(
-                          borderRadius: BorderRadiusDirectional.all(Radius.circular(30)),
+                          borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
                           child: Container(
                             height: 48,
                             width: 270,
@@ -117,10 +117,10 @@ class _ResignState extends State<Resign> {
                             child: TextFormField(
                               controller: MEmailController,
                               decoration: InputDecoration(
-                                prefixIcon:Icon(Icons.email),
+                                prefixIcon:const Icon(Icons.email),
                                 // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
                                 hintText: "Email",
-                                contentPadding: EdgeInsets.symmetric(vertical: 2.0),
+                                contentPadding: const EdgeInsets.symmetric(vertical: 2.0),
                                 // suffixIcon: Icon(Icons.visibility),
                                 border:OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5.0),
@@ -129,16 +129,16 @@ class _ResignState extends State<Resign> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 25,),
+                        const SizedBox(height: 25,),
                         ElevatedButton(onPressed: (){
                           removeApi(widget.teamId);
                         },
                           style:ElevatedButton.styleFrom(
-                            backgroundColor:Color.fromARGB(255, 225, 169, 229),
+                            backgroundColor:const Color.fromARGB(255, 225, 169, 229),
                             // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
 
                           ),
-                          child:Row(
+                          child:const Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text("Remove"),
@@ -150,19 +150,19 @@ class _ResignState extends State<Resign> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 40,),
+                  const SizedBox(height: 40,),
 
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Container(height: 2, width: 138,color: Colors.white,),
-                        Text(" OR ",style:TextStyle(color: Colors.white,fontSize:20,fontWeight: FontWeight.w700),),
+                        const Text(" OR ",style:TextStyle(color: Colors.white,fontSize:20,fontWeight: FontWeight.w700),),
                       Container(height: 2,width:138,color: Colors.white,),
                     ],
                   ),
 
                   // Text("Resign",style:TextStyle(color: Colors.white,fontSize:40,fontWeight: FontWeight.w700),),
-                  SizedBox(height: 40,),
+                  const SizedBox(height: 40,),
 
 
                   Container(
@@ -177,10 +177,10 @@ class _ResignState extends State<Resign> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Assign New Leader",style:TextStyle(color: Colors.white,fontSize:30,fontWeight: FontWeight.w700),),
-                        SizedBox(height: 10,),
+                        const Text("Assign New Leader",style:TextStyle(color: Colors.white,fontSize:30,fontWeight: FontWeight.w700),),
+                        const SizedBox(height: 10,),
                         ClipRRect(
-                          borderRadius: BorderRadiusDirectional.all(Radius.circular(30)),
+                          borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
                           child: Container(
                             height: 48,
                             width: 270,
@@ -188,10 +188,10 @@ class _ResignState extends State<Resign> {
                             child: TextFormField(
                               controller: EmailController,
                               decoration: InputDecoration(
-                                prefixIcon:Icon(Icons.email),
+                                prefixIcon:const Icon(Icons.email),
                                 // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
                                 hintText: "Email",
-                                contentPadding: EdgeInsets.symmetric(vertical: 2.0),
+                                contentPadding: const EdgeInsets.symmetric(vertical: 2.0),
                                 // suffixIcon: Icon(Icons.visibility),
                                 border:OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5.0),
@@ -200,16 +200,16 @@ class _ResignState extends State<Resign> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 25,),
+                        const SizedBox(height: 25,),
                         ElevatedButton(onPressed: (){
                           resignApi(widget.teamId);
                         },
                           style:ElevatedButton.styleFrom(
-                            backgroundColor:Color.fromARGB(255, 225, 169, 229),
+                            backgroundColor:const Color.fromARGB(255, 225, 169, 229),
                             // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
 
                           ),
-                          child:Row(
+                          child:const Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text("Assign"),

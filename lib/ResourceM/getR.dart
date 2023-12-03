@@ -113,7 +113,7 @@ class _PostTextScreenState extends State<PostTextScreen> {
       }
     } catch (e) {
       print('Error posting text: $e');
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('An error occurred while posting text.'),
        
       ));
@@ -195,7 +195,7 @@ class _PostTextScreenState extends State<PostTextScreen> {
                   ),
                   Text(
                     _responseMessage,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color.fromARGB(255, 43, 16, 53),
                     ),
                   ),

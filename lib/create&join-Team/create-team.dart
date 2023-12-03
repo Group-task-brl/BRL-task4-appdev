@@ -16,6 +16,8 @@ class Domain {
 
 
 class CreateTeamScreen extends StatefulWidget {
+  const CreateTeamScreen({super.key});
+
   @override
   _CreateTeamScreenState createState() => _CreateTeamScreenState();
 }

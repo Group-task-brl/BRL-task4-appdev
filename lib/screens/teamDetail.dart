@@ -1,15 +1,14 @@
-import 'package:brl_task4/screens/teamD2.dart';
 import 'package:brl_task4/ResourceM/Resources.dart';
 import 'package:brl_task4/screens/chat.dart';
 import "package:flutter/material.dart";
-import 'package:table_calendar/table_calendar.dart';
 import '../utils/Routes.dart';
 import 'LResign.dart';
 import 'MResign.dart';
 import 'addTask.dart';
 import 'dashboard.dart';
+import 'package:brl_task4/leave approval/leave.dart';
 class t_detail extends StatefulWidget {
-   t_detail({required this.team});
+   t_detail({super.key, required this.team});
   dynamic team;
   @override
   State<t_detail> createState() => _t_detailState();
@@ -24,7 +23,9 @@ class _t_detailState extends State<t_detail> {
   String? teamName;
   String? teamCode;
   String? teamId;
+  String teamId2="";
   Future<void>? _futureData;
+  @override
   void initState() {
     super.initState();
     // _futureData =api();
@@ -33,6 +34,7 @@ class _t_detailState extends State<t_detail> {
   Future<void> data (dynamic teams) async{
       setState(() {
         teamId = teams['_id'];
+        teamId2 = teams['_id'];
         teamName=teams['teamName'];
         domains = teams['domains'];
         leaderEmail= teams['leaderEmail'];
@@ -72,15 +74,15 @@ class _t_detailState extends State<t_detail> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children:[
-              SizedBox(height: 30,),
-              Text("Team: $teamName",style: TextStyle(color:Colors.white,fontSize: 35,fontWeight: FontWeight.w700 ),),
-              SizedBox(height: 5,),
-              Text("Leader: "+leaderEmail!.substring(0,leaderEmail!.indexOf('@')),
-              style: TextStyle(color:Colors.white,fontSize: 25,fontWeight: FontWeight.w700 ),),
-              Text("Team Code: "+teamCode!,
-                style: TextStyle(color:Colors.white,fontSize: 25,fontWeight: FontWeight.w700 ),),
+              const SizedBox(height: 30,),
+              Text("Team: $teamName",style: const TextStyle(color:Colors.white,fontSize: 35,fontWeight: FontWeight.w700 ),),
+              const SizedBox(height: 5,),
+              Text("Leader: ${leaderEmail!.substring(0,leaderEmail!.indexOf('@'))}",
+              style: const TextStyle(color:Colors.white,fontSize: 25,fontWeight: FontWeight.w700 ),),
+              Text("Team Code: ${teamCode!}",
+                style: const TextStyle(color:Colors.white,fontSize: 25,fontWeight: FontWeight.w700 ),),
 
-              SizedBox(height:10),
+              const SizedBox(height:10),
 
 
               // SizedBox(height: 10,),
@@ -88,7 +90,7 @@ class _t_detailState extends State<t_detail> {
                 future: _futureData,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(
                         color:Colors.white,
                       ),
@@ -112,9 +114,9 @@ class _t_detailState extends State<t_detail> {
                                 child: Column(
                                   children: [
                                     Text("Domain: "+domains![index]['name'],
-                                        style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.w600),),
-                                    SizedBox(height:10),
-                                    Text("Members: ",style: TextStyle(color: Colors.white)),
+                                        style: const TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.w600),),
+                                    const SizedBox(height:10),
+                                    const Text("Members: ",style: TextStyle(color: Colors.white)),
                                     ListView.builder(
                                       shrinkWrap: true,
                                         itemCount:domains![index]['members']!.length,
@@ -123,25 +125,25 @@ class _t_detailState extends State<t_detail> {
                                             title: Column(
                                                 children: [
                                                   Text(domains![index]['members'][index1],
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     color: Colors.white,fontSize: 17
                                                   ),),
                                                   // SizedBox(height: 10,),
                                                 ]),);}),
-                                    SizedBox(height: 10,),
+                                    const SizedBox(height: 10,),
                                     Table(
-                                      columnWidths: {
+                                      columnWidths: const {
                                         0: FixedColumnWidth(60.0),
                                         1: FixedColumnWidth(80.0),
                                         2: FixedColumnWidth(85.0),
                                         3: FixedColumnWidth(80.0),
                                       },
-                                      border: TableBorder(
+                                      border: const TableBorder(
                                           top: BorderSide(width: 2.0, color: Colors.white),
                                       left: BorderSide(width: 2.0, color: Colors.white),
                                       right: BorderSide(width: 2.0, color: Colors.white),
                                       bottom: BorderSide(width: 2.0, color: Colors.white)),
-                                      children: [
+                                      children: const [
                                         TableRow(
                                           children: [
                                             TableCell(
@@ -158,7 +160,7 @@ class _t_detailState extends State<t_detail> {
                                             ),
                                           ],
                                         ),],),
-                                        SizedBox(height: 10,),
+                                        const SizedBox(height: 10,),
                                     ListView.builder(
                                       shrinkWrap: true,
                                         itemCount:domains![index]['tasks']!.length,
@@ -167,7 +169,7 @@ class _t_detailState extends State<t_detail> {
                                         padding: const EdgeInsets.all(0.0),
                                         child: ListTile(
                                             title:Table(
-                                              columnWidths: {
+                                              columnWidths: const {
                                                 0: FixedColumnWidth(40.0),
                                                 1: FixedColumnWidth(85.0),
                                                 2: FixedColumnWidth(80.0),
@@ -187,17 +189,17 @@ class _t_detailState extends State<t_detail> {
                                                         child: Center(child: Text(
                                                             domains![index]['tasks']![index2]!["assignedTo"].
                                                             substring(0,domains![index]['tasks']![index2]!["assignedTo"].indexOf('@')),
-                                                        style: TextStyle(color: Colors.white),)),
+                                                        style: const TextStyle(color: Colors.white),)),
                                                       ),
                                                       TableCell(
                                                         child: Center(
                                                             child: Text(domains![index]['tasks']![index2]!["description"],
-                                                                style: TextStyle(color: Colors.white))),
+                                                                style: const TextStyle(color: Colors.white))),
                                                       ),
                                                       TableCell(
                                                         child: Center(
                                                             child: Text(domains![index]['tasks']![index2]!["deadline"],
-                                                                style: TextStyle(color: Colors.white))),
+                                                                style: const TextStyle(color: Colors.white))),
                                                       ),
                                                     ]
                                                 )
@@ -226,51 +228,99 @@ class _t_detailState extends State<t_detail> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),),
-                    child: Column(
+
+
+                    child:email!=leaderEmail?
+                        Column(
+                          children:[
+                            const SizedBox(height: 10,),
+                            Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ElevatedButton(
+                                onPressed:(){
+                                  Navigator.pushReplacement(context, MaterialPageRoute(
+            builder: (context) => ApplyLeave(teamid: teamId2,),),);},
+                                style:ElevatedButton.styleFrom(
+                                  backgroundColor:Colors.purple.shade400,),
+                                  // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
+                                  child:Text("Leave",style: const TextStyle(color: Colors.white),),
+                              ),
+                              const SizedBox(width: 20,),
+                              ElevatedButton(onPressed: (){
+                                  Navigator.pushReplacement(context,
+                                      MaterialPageRoute(builder: (context) =>
+                                          Mresign(teamId: teamId,emailId:leaderEmail)));
+                                },
+                                style:ElevatedButton.styleFrom(
+                                  backgroundColor:Colors.purple.shade400,
+                                ),
+                                child:
+                                    Text("Resign",style: const TextStyle(color: Colors.white)),
+                                    ),
+                            ],
+                            ),
+                            const SizedBox(height: 10,),
+                            Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ElevatedButton(onPressed: (){
+
+
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(leaderEmail!)));
+                                // ek string h is page mei email usko call krlo bas
+
+                              },
+                                style:ElevatedButton.styleFrom(
+                                  backgroundColor:Colors.purple.shade400,
+                                  // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
+
+                                ),
+                                child:
+                                    Text("Chat",style: TextStyle(color: Colors.white)),
+                                  ),
+                              const SizedBox(width: 20,),
+                              ElevatedButton(onPressed: (){
+                                // Navigator.push(context, MaterialPageRoute(builder: builder( (context) => ResourceM ) ));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => ResourceM(teamId!)));
+                              },
+                                style:ElevatedButton.styleFrom(
+                                  backgroundColor:Colors.purple.shade400,
+                                  // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
+
+                                ),
+                                child:
+                                    Text("Resources",style: TextStyle(color: Colors.white)),
+                              ),
+                            ],),
+                          ]
+                        ):
+
+                    Column(
                       children: [
 
-                        SizedBox(height: 10,),
+                        const SizedBox(height: 10,),
                         Row(
 
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             ElevatedButton(onPressed: (){
-                              if(email==leaderEmail) {
                                 Navigator.pushReplacementNamed(
                                     context, MyRoutes.DoneTask);
-                              }
-                              else{
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text("Only leader can mark task as done"),),);
-
-                              }// Navigator.push(context, MaterialPageRoute(builder: (context) => addTask(teamcode:teamCode)));
                             },
                               style:ElevatedButton.styleFrom(
-                                // backgroundColor:Color.fromARGB(255, 225, 169, 229),
                                 backgroundColor:Colors.purple.shade400,
                                 // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
-
                               ),
-                              child:Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text("Mark Task Done",style: TextStyle(color: Colors.white),),
-                                  // SizedBox(width:5),
-                                  // Icon(Icons.arrow_circle_right_outlined)
-                                ],
-                              ),),
-                            SizedBox(width: 20,),
+                                 child: Text("Mark Task Done",style: TextStyle(color: Colors.white),),
+                                ),
+                            const SizedBox(width: 20,),
                             ElevatedButton(onPressed: (){
-                              if(email==leaderEmail) {
                                 Navigator.pushReplacement(context,
                                     MaterialPageRoute(builder: (context) =>
                                         Resign(teamId: teamId)));
                                 // Navigator.pushReplacementNamed(context, MyRoutes.DoneTask);
-                              }else{
-                                Navigator.pushReplacement(context,
-                                    MaterialPageRoute(builder: (context) =>
-                                        Mresign(teamId: teamId,emailId:leaderEmail)));
-                              }
+
                               },
                               style:ElevatedButton.styleFrom(
                                 backgroundColor:Colors.purple.shade400,
@@ -278,34 +328,27 @@ class _t_detailState extends State<t_detail> {
                               child:Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-
-                                  Text(email==leaderEmail?"Remove":"Resign",style: TextStyle(color: Colors.white)),
-                                  // SizedBox(width:5),
-                                  // Icon(Icons.arrow_circle_right_outlined)
+                                  Text("Remove",style: const TextStyle(color: Colors.white)),
                                 ],
                               ),),
                           ],
                         ),
-                        SizedBox(height: 10,),
+                        const SizedBox(height: 10,),
                         Row(
 
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             ElevatedButton(onPressed: (){
-                              if(email==leaderEmail) {
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => addTask(teamcode:teamCode)));
-                              }else{
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text("Only leader can add task"),),);
 
-                              }
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => addTask(teamcode:teamCode)));
+
                               },
                               style:ElevatedButton.styleFrom(
                                 backgroundColor:Colors.purple.shade400,
                                 // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
 
                               ),
-                              child:Row(
+                              child:const Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text("Add Task",style: TextStyle(color: Colors.white)),
@@ -313,7 +356,7 @@ class _t_detailState extends State<t_detail> {
                                 // Icon(Icons.arrow_circle_right_outlined)
                                 ],
                               ),),
-                            SizedBox(width: 10,),
+                            const SizedBox(width: 10,),
                             ElevatedButton(onPressed: (){
 
 
@@ -326,7 +369,7 @@ class _t_detailState extends State<t_detail> {
                                 // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
 
                               ),
-                              child:Row(
+                              child:const Row(
                                 mainAxisSize: MainAxisSize.min,
 
                                 children: [
@@ -335,7 +378,7 @@ class _t_detailState extends State<t_detail> {
                                   // Icon(Icons.arrow_circle_right_outlined)
                                 ],
                               ),),
-                          SizedBox(width: 10,),
+                          const SizedBox(width: 10,),
                               ElevatedButton(onPressed: (){
                                // Navigator.push(context, MaterialPageRoute(builder: builder( (context) => ResourceM ) ));
                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ResourceM(teamId!)));
@@ -345,7 +388,7 @@ class _t_detailState extends State<t_detail> {
                                   // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
 
                                 ),
-                                child:Row(
+                                child:const Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Text("Resources",style: TextStyle(color: Colors.white)),

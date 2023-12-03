@@ -36,11 +36,13 @@ class BarChartPage extends StatelessWidget {
     "additional": 10,
   };
 
+  BarChartPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bar Chart'),
+        title: const Text('Bar Chart'),
       ),
       body: Column(
         children: [
@@ -75,7 +77,7 @@ class BarChartPage extends StatelessWidget {
                     color: getRandomColor(),
                     shadowColor: Colors.black,
                     elevation: 3,
-                    margin: EdgeInsets.symmetric(vertical: 8),
+                    margin: const EdgeInsets.symmetric(vertical: 8),
                     child: ListTile(
                       title: Text(dataMap.keys.toList()[index]),
                       trailing: Text(dataMap.values.toList()[index].toString()),
