@@ -19,12 +19,12 @@ class _ChangePasswordState extends State<ChangePassword> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Future<String?> takePassAPI(String password, String confirmpass) async {
-    dynamic storedValue = await secureStorage.readSecureData(key);
+    // dynamic storedValue = await secureStorage.readSecureData(key);
 
-    if (storedValue == null) {
-      print('Error: Authorization key not found');
-      return 'Authorization key not found';
-    }
+    // if (storedValue == null) {
+    //   print('Error: Authorization key not found');
+    //   return 'Authorization key not found';
+    // }
 
     final String apiUrl =
         'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/user/newPassword/${widget.email}';
@@ -33,9 +33,9 @@ class _ChangePasswordState extends State<ChangePassword> {
       "newPassword": password,
       "confirmPassword": confirmpass,
     });
-    var headers = <String,String>{
+    var headers = {
       'Content-Type': 'application/json',
-      'Authorization': storedValue,
+      // 'Authorization': storedValue,
     };
 
     try {
@@ -71,6 +71,11 @@ class _ChangePasswordState extends State<ChangePassword> {
           ),
         );
       } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Password Changed Successfully!'),
+          ),
+        );
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -81,48 +86,67 @@ class _ChangePasswordState extends State<ChangePassword> {
     }
   }
 
+  bool obscureText= true;
+  bool obscureText2= true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Change Password'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextFormField(
-                controller: newPasswordController,
-                obscureText: true,
-                decoration: InputDecoration(labelText: 'New Password'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter password';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 20),
-              TextFormField(
-                controller: confirmPasswordController,
-                obscureText: true,
-                decoration: InputDecoration(labelText: 'Confirm Password'),
-                validator: (value) {
-                  if (value != newPasswordController.text) {
-                    return 'Passwords do not match. Please re-enter the correct password.';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () => _passwordchange(context),
-                child: Text('Reset Password'),
-              ),
-            ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextFormField(
+                  controller: newPasswordController,
+                  obscureText: obscureText,
+                  decoration: InputDecoration(labelText: 'New Password',suffixIcon:  IconButton(
+                                    icon: Icon(obscureText? Icons.visibility_off : Icons.visibility),
+                                    onPressed:(){
+                                      setState(() {
+                                        obscureText = !obscureText;
+                                      });
+                                    },
+                              ),),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter password';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  controller: confirmPasswordController,
+                  obscureText: obscureText2,
+                  decoration: InputDecoration(labelText: 'Confirm Password',suffixIcon:  IconButton(
+                                    icon: Icon(obscureText2? Icons.visibility_off : Icons.visibility),
+                                    onPressed:(){
+                                      setState(() {
+                                        obscureText2 = !obscureText2;
+                                      });
+                                    },
+                              ),),
+                  validator: (value) {
+                    if (value != newPasswordController.text) {
+                      return 'Passwords do not match. Please re-enter the correct password.';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () => _passwordchange(context),
+                  child: Text('Reset Password'),
+                ),
+              ],
+            ),
           ),
         ),
       ),

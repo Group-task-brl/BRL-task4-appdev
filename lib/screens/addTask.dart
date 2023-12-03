@@ -4,7 +4,7 @@ import '../Utils/Routes.dart';
 import 'login.dart';
 
 class addTask extends StatefulWidget {
-  addTask({required this.teamcode});
+  addTask({super.key, required this.teamcode});
   dynamic teamcode;
 
   @override
@@ -35,7 +35,7 @@ class _addTaskState extends State<addTask> {
     if (response.statusCode == 200) {
       // print('API Response: ${response.body}');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Task Added"),),);
+        const SnackBar(content: Text("Task Added"),),);
         Navigator.pushReplacementNamed(context, MyRoutes.BottomNavBar);
     } else {
       print( ' ${response.statusCode}');
@@ -66,10 +66,10 @@ class _addTaskState extends State<addTask> {
             child: Form(
               child: Column(
                 children: [
-                  SizedBox(height: 80,),
+                  const SizedBox(height: 80,),
 
-                  Text("Add Task",style:TextStyle(color: Colors.white,fontSize:40,fontWeight: FontWeight.w700),),
-                  SizedBox(height: 30,),
+                  const Text("Add Task",style:TextStyle(color: Colors.white,fontSize:40,fontWeight: FontWeight.w700),),
+                  const SizedBox(height: 30,),
 
 
                   Container(
@@ -85,7 +85,7 @@ class _addTaskState extends State<addTask> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ClipRRect(
-                          borderRadius: BorderRadiusDirectional.all(Radius.circular(30)),
+                          borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
                           child: Container(
                             height: 48,
                             width: 270,
@@ -93,10 +93,10 @@ class _addTaskState extends State<addTask> {
                             child: TextFormField(
                               controller: DomainController,
                               decoration: InputDecoration(
-                                prefixIcon:Icon(Icons.domain),
+                                prefixIcon:const Icon(Icons.domain),
                                 // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
                                 hintText: "Domain",
-                                contentPadding: EdgeInsets.symmetric(vertical: 2.0),
+                                contentPadding: const EdgeInsets.symmetric(vertical: 2.0),
                                 // suffixIcon: Icon(Icons.visibility),
                                 border:OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5.0),
@@ -105,9 +105,9 @@ class _addTaskState extends State<addTask> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 25,),
+                        const SizedBox(height: 25,),
                         ClipRRect(
-                          borderRadius: BorderRadiusDirectional.all(Radius.circular(30)),
+                          borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
                           child: Container(
                             height: 48,
                             width: 265,
@@ -115,10 +115,10 @@ class _addTaskState extends State<addTask> {
                             child: TextFormField(
                               controller: EmailController,
                               decoration: InputDecoration(
-                                prefixIcon:Icon(Icons.person),
+                                prefixIcon:const Icon(Icons.person),
                                 // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
                                 hintText: "Member Email",
-                                contentPadding: EdgeInsets.symmetric(vertical: 2.0),
+                                contentPadding: const EdgeInsets.symmetric(vertical: 2.0),
                                 // suffixIcon: Icon(Icons.visibility),
                                 border:OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5.0),
@@ -126,9 +126,9 @@ class _addTaskState extends State<addTask> {
                               ),
                             ),
                           ),
-                        ),SizedBox(height: 25,),
+                        ),const SizedBox(height: 25,),
                         ClipRRect(
-                          borderRadius: BorderRadiusDirectional.all(Radius.circular(30)),
+                          borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
                           child: Container(
                             height: 48,
                             width: 265,
@@ -136,10 +136,10 @@ class _addTaskState extends State<addTask> {
                             child: TextFormField(
                               controller: TaskController,
                               decoration: InputDecoration(
-                                prefixIcon:Icon(Icons.add_box_rounded),
+                                prefixIcon:const Icon(Icons.add_box_rounded),
                                 // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
                                 hintText: "Task",
-                                contentPadding: EdgeInsets.symmetric(vertical: 2.0),
+                                contentPadding: const EdgeInsets.symmetric(vertical: 2.0),
                                 // suffixIcon: Icon(Icons.visibility),
                                 border:OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5.0),
@@ -148,9 +148,9 @@ class _addTaskState extends State<addTask> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 25,),
+                        const SizedBox(height: 25,),
                         ClipRRect(
-                          borderRadius: BorderRadiusDirectional.all(Radius.circular(30)),
+                          borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
                           child: Container(
                             height: 48,
                             width: 265,
@@ -158,10 +158,10 @@ class _addTaskState extends State<addTask> {
                             child: TextFormField(
                               controller: DeadlineController,
                               decoration: InputDecoration(
-                                prefixIcon:Icon(Icons.calendar_month),
+                                prefixIcon:const Icon(Icons.calendar_month),
                                 // prefixIcon:Image.asset("lib/assets/icon_pass.png",height: 20,),
                                 hintText: "30-11-2023",
-                                contentPadding: EdgeInsets.symmetric(vertical: 2.0),
+                                contentPadding: const EdgeInsets.symmetric(vertical: 2.0),
                                 // suffixIcon: Icon(Icons.visibility),
                                 border:OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5.0),
@@ -170,22 +170,22 @@ class _addTaskState extends State<addTask> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 35,),
+                        const SizedBox(height: 35,),
                         ElevatedButton(onPressed: (){
                           addTaskAPI(widget.teamcode);
                           // joinTeamAPI();
                         },
                           style:ElevatedButton.styleFrom(
-                            backgroundColor:Color.fromARGB(255, 225, 169, 229),
+                            backgroundColor:const Color.fromARGB(255, 225, 169, 229),
                             // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
 
                           ),
                           child:Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text("Add Task"),
-                              SizedBox(width:5),
-                              IconButton(onPressed:(){},icon:Icon(Icons.arrow_circle_right_outlined)),
+                              const Text("Add Task"),
+                              const SizedBox(width:5),
+                              IconButton(onPressed:(){},icon:const Icon(Icons.arrow_circle_right_outlined)),
                             ],
                           ),
                   ),

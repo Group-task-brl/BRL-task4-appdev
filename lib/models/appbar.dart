@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:brl_task4/screens/dashboard.dart';
 // ignore_for_file: prefer_const_constructors
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const MyAppBar({super.key});
+
   
   // String ? userName = name!.substring(0,name!.indexOf('@'));
 
@@ -13,7 +14,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Colors.black, Colors.purple],
+            colors: const [Colors.black, Colors.purple],
             // colors: [Color.fromARGB(255,22,2,25), Color.fromARGB(255, 101,56,108)],
           ),
         ),

@@ -10,7 +10,7 @@ class TeamDetailsScreen extends StatelessWidget {
   final List<Domain> selectedDomains; 
   final String teamname;
   final String teamId;
-  TeamDetailsScreen(this.teamname, this.selectedDomains, this.teamId); 
+  TeamDetailsScreen(this.teamname, this.selectedDomains, this.teamId);
 
   @override
   Widget build(BuildContext context) {
@@ -135,6 +135,8 @@ class InviteMembersScreen extends StatelessWidget {
   final Domain domain;    
   final String teamId;    
 
+  // InviteMembersScreen(this.domain, {super.key, required this.teamId});
+  
   InviteMembersScreen(this.domain, {required this.teamId});
 
   TextEditingController emailController = TextEditingController();

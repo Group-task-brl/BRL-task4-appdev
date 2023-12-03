@@ -39,13 +39,13 @@ class ResourceM extends StatelessWidget {
                 )
               ],
             ),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 16.0, top: 16.0, bottom: 8),
+            child: const Padding(
+              padding: EdgeInsets.only(left: 16.0, top: 16.0, bottom: 8),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   '\nResource Manager',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -87,9 +87,9 @@ class ResourceM extends StatelessWidget {
                   _buildGridItem(
                     context,
                     'Leader assistance ',
-                    LEaderR(),
+                    LeaderResource(teamId),
                     Icons.assistant,
-                    Color.fromARGB(247, 234, 102, 102),
+                    const Color.fromARGB(247, 234, 102, 102),
                   ),
                 ],
               ),
@@ -121,7 +121,7 @@ Widget _buildGridItem(
           BoxShadow(
             color: Colors.black.withOpacity(0.2),
             blurRadius: 6,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -133,10 +133,10 @@ Widget _buildGridItem(
             size: 40,
             color: Colors.white,
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             text,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               color: Colors.white,
               fontWeight: FontWeight.bold,

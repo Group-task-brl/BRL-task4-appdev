@@ -36,16 +36,18 @@ class PieChartPage extends StatelessWidget {
     "additional": 10,
   };
 
+  PieChartPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pie Chart'),
+        title: const Text('Pie Chart'),
       ),
       body: Column(children: [
         Expanded(
           child: PieChart(
-            swapAnimationDuration: Duration(milliseconds: 150),
+            swapAnimationDuration: const Duration(milliseconds: 150),
             PieChartData(
               sectionsSpace: 3.0,
               centerSpaceRadius: 30.0,
@@ -58,18 +60,18 @@ class PieChartPage extends StatelessWidget {
                   value: entry.value,
                   title: '${entry.key}\n${percentage.toStringAsFixed(2)}%',
                   radius: 150.0,
-                  titleStyle: TextStyle(
+                  titleStyle: const TextStyle(
                     fontSize: 8.0,
                     fontWeight: FontWeight.bold,
-                    color: const Color.fromARGB(255, 0, 0, 0),
+                    color: Color.fromARGB(255, 0, 0, 0),
                   ),
                 );
               }).toList(),
             ),
           ),
         ),
-        SizedBox(height: 20),
-        Text(
+        const SizedBox(height: 20),
+        const Text(
           'Analysis',
           style: TextStyle(
             fontSize: 20,
@@ -87,17 +89,17 @@ class PieChartPage extends StatelessWidget {
                   color: getRandomColor(),
                   shadowColor: Colors.black,
                   elevation: 3,
-                  margin: EdgeInsets.symmetric(vertical: 8),
+                  margin: const EdgeInsets.symmetric(vertical: 8),
                   child: ListTile(
                     title: Text(
                       dataMap.keys.toList()[index],
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color.fromARGB(255, 255, 255, 255),
                       ),
                     ),
                     trailing: Text(
                       dataMap.values.toList()[index].toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color.fromARGB(255, 255, 255, 255),
                       ),
                     ),
