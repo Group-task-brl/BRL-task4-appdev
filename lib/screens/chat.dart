@@ -55,7 +55,7 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Color _generateRandomColor() {
-    return Color((Random().nextDouble() * 0xFFFFFF).toInt() << 0)
+    return Color((Random().nextDouble() * 0xFFFFFF).toInt())
         .withOpacity(1.0);
   }
 
