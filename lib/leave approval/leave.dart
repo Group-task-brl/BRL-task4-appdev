@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class ApplyLeave extends StatefulWidget {
-  final String? teamid;
+  final String teamid;
 
   ApplyLeave({required this.teamid});
 
@@ -36,6 +36,7 @@ class _ApplyLeaveState extends State<ApplyLeave> {
     var headers = <String, String>{
       'Content-Type': 'application/json',
       'Authorization': storedValue,
+      'teamId' : widget.teamid,
     };
 
     try {
@@ -66,8 +67,9 @@ class _ApplyLeaveState extends State<ApplyLeave> {
     var headers = <String, String>{
       'Content-Type': 'application/json',
       'Authorization': storedValue,
+      'leaveId' : StoreLeaveID,
     };
-
+     http.post(Uri.parse(apiUrl), headers: headers);
   }
 
   @override

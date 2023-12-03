@@ -23,6 +23,7 @@ class _t_detailState extends State<t_detail> {
   String? teamName;
   String? teamCode;
   String? teamId;
+  String teamId2="";
   Future<void>? _futureData;
   @override
   void initState() {
@@ -33,6 +34,7 @@ class _t_detailState extends State<t_detail> {
   Future<void> data (dynamic teams) async{
       setState(() {
         teamId = teams['_id'];
+        teamId2 = teams['_id'];
         teamName=teams['teamName'];
         domains = teams['domains'];
         leaderEmail= teams['leaderEmail'];
@@ -238,7 +240,7 @@ class _t_detailState extends State<t_detail> {
                               ElevatedButton(
                                 onPressed:(){
                                   Navigator.pushReplacement(context, MaterialPageRoute(
-            builder: (context) => ApplyLeave(teamid: teamId,),),);},
+            builder: (context) => ApplyLeave(teamid: teamId2,),),);},
                                 style:ElevatedButton.styleFrom(
                                   backgroundColor:Colors.purple.shade400,),
                                   // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
