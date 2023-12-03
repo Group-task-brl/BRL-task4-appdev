@@ -82,13 +82,13 @@ class _ShowTextScreenState extends State<ShowTextScreen> {
                 )
               ],
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(18.0),
+            child: const Padding(
+              padding: EdgeInsets.all(18.0),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   '\nResource Manager',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -97,15 +97,15 @@ class _ShowTextScreenState extends State<ShowTextScreen> {
               ),
             ),
           ),
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
           isLoading
-              ? CircularProgressIndicator()
+              ? const CircularProgressIndicator()
               : messages.isEmpty
-                  ? Text('No messages available.')
+                  ? const Text('No messages available.')
                   : Expanded(
                       child: ListView.builder(
                         reverse: true,
-                        physics: ClampingScrollPhysics(),
+                        physics: const ClampingScrollPhysics(),
                         itemCount: messages.length,
                         itemBuilder: (context, index) {
                           final email = messages[index]['email'];
@@ -117,15 +117,15 @@ class _ShowTextScreenState extends State<ShowTextScreen> {
                               children: [
                                 Text(
                                   '   Email: $email',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                SizedBox(height: 8.0),
+                                const SizedBox(height: 8.0),
                                 ListView.builder(
                                   shrinkWrap: true,
-                                  physics: ClampingScrollPhysics(),
+                                  physics: const ClampingScrollPhysics(),
                                   itemCount: messages[index]['texts'].length,
                                   itemBuilder: (context, index1) {
                                     final text = messages[index]['texts']
@@ -136,11 +136,11 @@ class _ShowTextScreenState extends State<ShowTextScreen> {
                                         borderRadius:
                                             BorderRadius.circular(12.0),
                                       ),
-                                      color: Color.fromARGB(255, 47, 18, 59),
+                                      color: const Color.fromARGB(255, 47, 18, 59),
                                       child: ListTile(
                                         title: Text(
                                           text,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 14.0,
                                             color: Colors.white,
                                           ),
@@ -149,7 +149,7 @@ class _ShowTextScreenState extends State<ShowTextScreen> {
                                     );
                                   },
                                 ),
-                                Divider(),
+                                const Divider(),
                               ],
                             ),
                           );
