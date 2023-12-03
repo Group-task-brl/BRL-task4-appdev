@@ -225,7 +225,76 @@ class _t_detailState extends State<t_detail> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),),
-                    child: Column(
+
+
+                    child:email!=leaderEmail?
+                        Column(
+                          children:[
+                            const SizedBox(height: 10,),
+                            Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ElevatedButton(
+                                onPressed:(){
+
+
+                                },
+                                style:ElevatedButton.styleFrom(
+                                  backgroundColor:Colors.purple.shade400,),
+                                  // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
+                                  child:Text("Leave",style: const TextStyle(color: Colors.white),),
+                              ),
+                              const SizedBox(width: 20,),
+                              ElevatedButton(onPressed: (){
+                                  Navigator.pushReplacement(context,
+                                      MaterialPageRoute(builder: (context) =>
+                                          Mresign(teamId: teamId,emailId:leaderEmail)));
+                                },
+                                style:ElevatedButton.styleFrom(
+                                  backgroundColor:Colors.purple.shade400,
+                                ),
+                                child:
+                                    Text("Resign",style: const TextStyle(color: Colors.white)),
+                                    ),
+                            ],
+                            ),
+                            const SizedBox(height: 10,),
+                            Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ElevatedButton(onPressed: (){
+
+
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(leaderEmail!)));
+                                // ek string h is page mei email usko call krlo bas
+
+                              },
+                                style:ElevatedButton.styleFrom(
+                                  backgroundColor:Colors.purple.shade400,
+                                  // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
+
+                                ),
+                                child:
+                                    Text("Chat",style: TextStyle(color: Colors.white)),
+                                  ),
+                              const SizedBox(width: 20,),
+                              ElevatedButton(onPressed: (){
+                                // Navigator.push(context, MaterialPageRoute(builder: builder( (context) => ResourceM ) ));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => ResourceM(teamId!)));
+                              },
+                                style:ElevatedButton.styleFrom(
+                                  backgroundColor:Colors.purple.shade400,
+                                  // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
+
+                                ),
+                                child:
+                                    Text("Resources",style: TextStyle(color: Colors.white)),
+                              ),
+                            ],),
+                          ]
+                        ):
+
+                    Column(
                       children: [
 
                         const SizedBox(height: 10,),
@@ -234,42 +303,22 @@ class _t_detailState extends State<t_detail> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             ElevatedButton(onPressed: (){
-                              if(email==leaderEmail) {
                                 Navigator.pushReplacementNamed(
                                     context, MyRoutes.DoneTask);
-                              }
-                              else{
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text("Only leader can mark task as done"),),);
-
-                              }// Navigator.push(context, MaterialPageRoute(builder: (context) => addTask(teamcode:teamCode)));
                             },
                               style:ElevatedButton.styleFrom(
-                                // backgroundColor:Color.fromARGB(255, 225, 169, 229),
                                 backgroundColor:Colors.purple.shade400,
                                 // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
-
                               ),
-                              child:const Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text("Mark Task Done",style: TextStyle(color: Colors.white),),
-                                  // SizedBox(width:5),
-                                  // Icon(Icons.arrow_circle_right_outlined)
-                                ],
-                              ),),
+                                 child: Text("Mark Task Done",style: TextStyle(color: Colors.white),),
+                                ),
                             const SizedBox(width: 20,),
                             ElevatedButton(onPressed: (){
-                              if(email==leaderEmail) {
                                 Navigator.pushReplacement(context,
                                     MaterialPageRoute(builder: (context) =>
                                         Resign(teamId: teamId)));
                                 // Navigator.pushReplacementNamed(context, MyRoutes.DoneTask);
-                              }else{
-                                Navigator.pushReplacement(context,
-                                    MaterialPageRoute(builder: (context) =>
-                                        Mresign(teamId: teamId,emailId:leaderEmail)));
-                              }
+
                               },
                               style:ElevatedButton.styleFrom(
                                 backgroundColor:Colors.purple.shade400,
@@ -277,10 +326,7 @@ class _t_detailState extends State<t_detail> {
                               child:Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-
-                                  Text(email==leaderEmail?"Remove":"Resign",style: const TextStyle(color: Colors.white)),
-                                  // SizedBox(width:5),
-                                  // Icon(Icons.arrow_circle_right_outlined)
+                                  Text("Remove",style: const TextStyle(color: Colors.white)),
                                 ],
                               ),),
                           ],
@@ -291,13 +337,9 @@ class _t_detailState extends State<t_detail> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             ElevatedButton(onPressed: (){
-                              if(email==leaderEmail) {
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => addTask(teamcode:teamCode)));
-                              }else{
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text("Only leader can add task"),),);
 
-                              }
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => addTask(teamcode:teamCode)));
+
                               },
                               style:ElevatedButton.styleFrom(
                                 backgroundColor:Colors.purple.shade400,
