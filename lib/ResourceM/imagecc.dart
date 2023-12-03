@@ -20,12 +20,18 @@ class _ImageListScreenState extends State<ImageListScreen> {
   }
 
   Future<void> fetchImages() async {
-   // String storedValue = await secureStorage.readSecureData(key);
+
+  
+  
+   String storedValue = await secureStorage.readSecureData(key);
+     print('$storedValue');
     var headers = {
+      
+      
       // 'Authorization':
       //    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRXVjbGlkICIsImVtYWlsIjoiZ2F1cmF2MjIxMjAwMkBha2dlYy5hYy5pbiIsImlzTG9nZ2VkSW4iOiJZZXMiLCJpYXQiOjE3MDE1OTYxODJ9.IoU1uvEuoTWzoTheebjF-o9ErQ37_d4FflXcFhC74rc',
-       'Content-Type': 'application/json',
-      'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRXVjbGlkICIsImVtYWlsIjoiZ2F1cmF2MjIxMjAwMkBha2dlYy5hYy5pbiIsImlzTG9nZ2VkSW4iOiJZZXMiLCJpYXQiOjE3MDE1OTYxODJ9.IoU1uvEuoTWzoTheebjF-o9ErQ37_d4FflXcFhC74rc'
+      //'Content-Type': 'application/json',
+      'authorization': 'Bearer $storedValue;'
     };
 
     var request = http.Request(
