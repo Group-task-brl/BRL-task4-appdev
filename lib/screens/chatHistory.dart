@@ -152,11 +152,18 @@ class _ChatScreenfetchState extends State<ChatScreenfetch> {
 
                   ),
           ),
+        );
+      },
+    ),
+  ),
+
           
          
-        ],
-
+        
+          
       ),
+        ]
+    )
     );
   }
 }
