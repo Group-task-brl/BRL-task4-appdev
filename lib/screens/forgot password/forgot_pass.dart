@@ -55,6 +55,11 @@ class _ResetPassState extends State<ResetPass> {
         ),
       );
     } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('OTP sent to $email'),
+          ),
+        );
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -86,6 +91,7 @@ class _ResetPassState extends State<ResetPass> {
                     alignment: Alignment.center,
                     width: 300,
                     child: TextFormField(
+                      keyboardType: TextInputType.emailAddress,
                       controller: emailController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {

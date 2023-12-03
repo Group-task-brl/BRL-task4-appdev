@@ -30,6 +30,8 @@ class _OTPVerifyState extends State<OTPVerify> {
 
       if (response.statusCode == 200) {
         print('OTP verified');
+        ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("OTP verified"),),);
         Navigator.push(
         context,
         MaterialPageRoute(
@@ -41,6 +43,12 @@ class _OTPVerifyState extends State<OTPVerify> {
       } else {
         print('Error: ${response.statusCode}');
         print(jsonDecode(response.body));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error: ${response.body}'),
+            backgroundColor: Colors.red,
+          ),
+        );
         return jsonDecode(response.body)['error'];
       }
     } catch (e) {
@@ -95,6 +103,7 @@ class _OTPVerifyState extends State<OTPVerify> {
               Text('Enter OTP sent to ${widget.email}'),
               TextFormField(
                 controller: otpController,
+                keyboardType: TextInputType.number,
                 decoration: const InputDecoration(labelText: 'OTP'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
