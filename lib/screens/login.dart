@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../models/storeToken.dart';
 import '../utils/Routes.dart';
-import 'package:brl_task4/screens/recaptcha.dart';
+// import 'package:brl_task4/screens/recaptcha.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -166,7 +166,7 @@ class _LoginState extends State<Login> {
                         }, child: const Text("Sign up",style:TextStyle(fontWeight: FontWeight.w500,color: Colors.black)))
                       ],
                     ),
-                    Recaptcha(),
+                    // Recaptcha(),
                   ],
                 ),),],
               ),

@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 class ResourceM extends StatelessWidget {
   final String teamId;
-  const ResourceM(this.teamId, {super.key});
+  ResourceM(this.teamId);
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,7 @@ class ResourceM extends StatelessWidget {
                   _buildGridItem(
                     context,
                     'Documentation',
-                    const DocumentationPage(),
+                    DocumentationPage(),
                     Icons.book,
                     Colors.blue,
                   ),

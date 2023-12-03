@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../Utils/Routes.dart';
+import 'package:brl_task4/screens/recaptcha.dart';
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
 
@@ -230,6 +231,7 @@ class _SignUpState extends State<SignUp> {
 
                               child: const Text("Sign up",style:TextStyle(color: Colors.white)),),
                           ),
+                          // Recaptcha(),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [

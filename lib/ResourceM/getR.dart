@@ -9,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 
 class PostTextScreen extends StatefulWidget {
   final String teamId;
-  const PostTextScreen(this.teamId, {super.key});
+  PostTextScreen(this.teamId);
 
   @override
   _PostTextScreenState createState() => _PostTextScreenState();
