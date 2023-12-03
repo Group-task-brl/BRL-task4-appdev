@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class ApplyLeave extends StatefulWidget {
+  final String? teamid;
+
+  ApplyLeave({required this.teamid});
+
   @override
   _ApplyLeaveState createState() => _ApplyLeaveState();
 }
@@ -17,9 +21,11 @@ class _ApplyLeaveState extends State<ApplyLeave> {
 
   Future<String?> applyLeaveAPI(
       String startDate, String endDate, String reason) async {
+
+    String StoreLeaveId;
     dynamic storedValue = await secureStorage.readSecureData(key);
     final String apiUrl =
-        'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/leave/applyLeave/:teamId';
+        'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/leave/applyLeave/${widget.teamid}';
 
     var body = jsonEncode({
       "startDate": startDate,
@@ -27,7 +33,7 @@ class _ApplyLeaveState extends State<ApplyLeave> {
       "reason": reason,
     });
 
-    var headers = <String,String>{
+    var headers = <String, String>{
       'Content-Type': 'application/json',
       'Authorization': storedValue,
     };
@@ -38,7 +44,9 @@ class _ApplyLeaveState extends State<ApplyLeave> {
 
       if (response.statusCode == 200) {
         print('Leave applied successfully');
+        StoreLeaveId = jsonDecode(response.body);
         print(jsonDecode(response.body));
+        LeaveID(StoreLeaveId);
         return null;
       } else {
         print('Error: ${response.statusCode}');
@@ -49,6 +57,17 @@ class _ApplyLeaveState extends State<ApplyLeave> {
       print('Error: $e');
       return 'An error occurred';
     }
+  }
+
+  Future<void> LeaveID(String StoreLeaveID) async {    dynamic storedValue = await secureStorage.readSecureData(key);
+    final String apiUrl =
+        'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/leave/leaveResult/$StoreLeaveID';
+
+    var headers = <String, String>{
+      'Content-Type': 'application/json',
+      'Authorization': storedValue,
+    };
+
   }
 
   @override

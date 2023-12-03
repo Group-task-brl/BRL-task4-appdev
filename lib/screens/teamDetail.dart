@@ -6,6 +6,7 @@ import 'LResign.dart';
 import 'MResign.dart';
 import 'addTask.dart';
 import 'dashboard.dart';
+import 'package:brl_task4/leave approval/leave.dart';
 class t_detail extends StatefulWidget {
    t_detail({super.key, required this.team});
   dynamic team;
@@ -236,9 +237,8 @@ class _t_detailState extends State<t_detail> {
                             children: [
                               ElevatedButton(
                                 onPressed:(){
-
-
-                                },
+                                  Navigator.pushReplacement(context, MaterialPageRoute(
+            builder: (context) => ApplyLeave(teamid: teamId,),),);},
                                 style:ElevatedButton.styleFrom(
                                   backgroundColor:Colors.purple.shade400,),
                                   // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
