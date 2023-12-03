@@ -108,14 +108,14 @@ class _PostTextScreenState extends State<PostTextScreen> {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content:
               Text('Failed to post text. Status code: ${response.statusCode}'),
-          backgroundColor: Colors.red,
+        
         ));
       }
     } catch (e) {
       print('Error posting text: $e');
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('An error occurred while posting text.'),
-        backgroundColor: Colors.red,
+       
       ));
     } finally {
       _textController.clear();

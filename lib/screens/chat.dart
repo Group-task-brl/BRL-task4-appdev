@@ -220,6 +220,7 @@ class MyTextField3 extends StatelessWidget {
       ),
       child: TextFormField(
         //maxLines: 5,
+        maxLength: 35,
         style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
         controller: nameController1,
         keyboardType: inputType,
