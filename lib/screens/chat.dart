@@ -78,7 +78,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void saveMessage(Map<String, dynamic> message) async {
     final prefs = await SharedPreferences.getInstance();
     final messagesJson = prefs.getString('chat_messages');
-
+    
     List<Map<String, dynamic>> messages = [];
 
     if (messagesJson != null) {
