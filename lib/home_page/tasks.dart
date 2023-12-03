@@ -56,7 +56,7 @@ class _TaskContainerState extends State<TaskContainer> {
 
     final response = await http.get(
       Uri.parse(apiUrl),
-      headers: <String, String>{
+      headers:{
         'Authorization': storedValue,
       },
     );
@@ -92,10 +92,10 @@ class _TaskContainerState extends State<TaskContainer> {
               ),
             ),
             const SizedBox(height: 10),
-            const Text('Incomplete Tasks:- ',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            const Text('Incomplete Tasks:-\n',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
             showIncompletetask(),
             const SizedBox(height: 20,),
-            const Text('Completed Tasks:- ',style: TextStyle(
+            const Text('Completed Tasks:-\n',style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),),
@@ -122,7 +122,8 @@ class _TaskContainerState extends State<TaskContainer> {
           if (incompTasks == null || incompTasks!.isEmpty) {
             return const Text("No incomplete tasks");
           }
-          return SizedBox(
+          return Container(
+            color: Color.fromARGB(255, 143, 218, 217),
             height: 300,
             child: ListView.builder(
               itemCount: incompTasks!.length,
@@ -130,7 +131,7 @@ class _TaskContainerState extends State<TaskContainer> {
                 return ListTile(
                   title: TextButton(
                     onPressed: () {
-                      _showAlert(incompTasks![index]['description'],
+                      _showAlert(incompTasks![index]['description'],compTasks![index]['assignedTo'],
                           incompTasks![index]['deadline']);
                     },
                     child: Container(
@@ -175,7 +176,8 @@ class _TaskContainerState extends State<TaskContainer> {
           if (compTasks == null || compTasks!.isEmpty) {
             return const Text("No tasks");
           }
-          return SizedBox(
+          return Container(
+           color: Color.fromARGB(255, 143, 218, 217),
             height: 300,
             child: ListView.builder(
               itemCount: compTasks!.length,
@@ -183,7 +185,7 @@ class _TaskContainerState extends State<TaskContainer> {
                 return ListTile(
                   title: TextButton(
                     onPressed: () {
-                      _showAlert(compTasks![index]['description'],
+                      _showAlert(compTasks![index]['description'],compTasks![index]['assignedTo'],
                           compTasks![index]['deadline']);
                     },
                     child: Container(
@@ -212,13 +214,13 @@ class _TaskContainerState extends State<TaskContainer> {
     );
   }
 
-  void _showAlert(String message, String deadline) {
+  void _showAlert(String message, String assignedTo,String deadline) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text("Task Details"),
-          content: Text("Task: $message\nDeadline: $deadline"),
+          content: Text("Task: $message\nDeadline: $deadline\n\nAssigned To: $assignedTo"),
           actions: [
             TextButton(
               onPressed: () {
