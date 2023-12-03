@@ -121,8 +121,10 @@ class _ChatScreenState extends State<ChatScreen> {
                     MaterialPageRoute(builder: (context) => const ChatScreenfetch()));
               }),
         ],
-        title: const Text(
-          'Flutter Chat App',
+        
+        title: Text(
+          'Chat </>',
+    
           style: TextStyle(
             color: Colors.white,
           ),
