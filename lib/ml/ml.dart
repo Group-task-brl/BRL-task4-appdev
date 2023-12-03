@@ -16,6 +16,7 @@ class MLWOW extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
@@ -23,6 +24,7 @@ class MLWOW extends StatelessWidget {
         },
         child: const Icon(Icons.music_note),
       ),
+
       body: Column(
         children: [
           Container(
@@ -158,139 +160,3 @@ Widget _buildGridItem(
 }
 
 
-
-
-
-/*
-
-
-
-code before decoration
-
-Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: GridView.count(
-                crossAxisCount: 2,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => DocumentationPage()),
-                      );
-                    },
-                    child: Text('Documentation'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => AvailabilityCalendarPage()),
-                      );
-                    },
-                    child: Text('Fetch Resources'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => BenchEmployeePage()),
-                      );
-                    },
-                    child: Text('Post Resources'),
-                  ),
-                ],
-              ),
-            ),
-          )
-
-
-
-            appBar: AppBar(
-        title: Text('Resource Manager'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => DocumentationPage()),
-                );
-              },
-              child: Text('Documentation'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AvailabilityCalendarPage()),
-                );
-              },
-              child: Text('Availability Calendar'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BenchEmployeePage()),
-                );
-              },
-              child: Text('Bench Employee'),
-            ),
-          ],
-        ),
-      ),
-
-
-code before decoration
-
-Widget _buildGridItem(
-  BuildContext context,
-  String text,
-  Widget destination,
-  IconData icon,
-  Color color,
-) {
-  return GestureDetector(
-    onTap: () {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => destination));
-    },
-    child: Card(
-      elevation: 3,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
-      color: color,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            icon,
-            size: 40,
-            color: Colors.white,
-          ),
-          SizedBox(height: 8),
-          Text(
-            text,
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
-
-
-
-*/

@@ -48,6 +48,8 @@ dependencies:
   cached_network_image: ^3.3.0
   audioplayers: ^5.2.1
   webview_flutter_plus: ^0.3.0+2
+  image_picker: ^1.0.4
+  dio: ^5.4.0
 
 
 
