@@ -31,12 +31,16 @@ class _OTPVerifyState extends State<OTPVerify> {
       if (response.statusCode == 200) {
         print('OTP verified');
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("OTP verified"),),
+          const SnackBar(
+            content: Text("OTP verified"),
+          ),
         );
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ChangePassword(email: widget.email,),
+            builder: (context) => ChangePassword(
+              email: widget.email,
+            ),
           ),
         );
         print(jsonDecode(response.body));
@@ -91,67 +95,78 @@ class _OTPVerifyState extends State<OTPVerify> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: Image.asset(
-                    "lib/assets/login.png",
-                    fit: BoxFit.fitWidth,
-                    height: 200,
+      body: Stack(children: [
+        Opacity(
+          opacity: 0.5,
+          child: Image.asset(
+            "lib/assets/back.png",
+            width: double.infinity,
+            height: MediaQuery.of(context).size.height,
+            fit: BoxFit.cover,
+          ),
+        ),
+        Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: Image.asset(
+                      "lib/assets/reset.png",
+                      fit: BoxFit.fitWidth,
+                      height: 200,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 20),
-                const Text(
-                  'Enter OTP',
-                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.w500),
-                ),
-                Text(
-                  "Enter OTP sent to ${widget.email}",
-                  style: TextStyle(
-                    fontSize: 14,
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Enter OTP',
+                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.w500),
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 20),
-                Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        controller: otpController,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'OTP',
-                          contentPadding: EdgeInsets.symmetric(vertical: 15),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30.0),
+                  Text(
+                    "Enter OTP sent to ${widget.email}",
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 20),
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          controller: otpController,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            labelText: 'OTP',
+                            contentPadding: EdgeInsets.symmetric(vertical: 15),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
                           ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter OTP';
+                            }
+                            return null;
+                          },
                         ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter OTP';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      ElevatedButton(
-                        onPressed: () => _verifyOTP(context),
-                        child: const Text('Verify and proceed'),
-                      ),
-                    ],
+                        const SizedBox(height: 20),
+                        ElevatedButton(
+                          onPressed: () => _verifyOTP(context),
+                          child: const Text('Verify and proceed'),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
-      ),
+      ]),
     );
   }
 }
