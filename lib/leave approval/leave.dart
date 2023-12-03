@@ -27,16 +27,17 @@ class _ApplyLeaveState extends State<ApplyLeave> {
     final String apiUrl =
         'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/leave/applyLeave/${widget.teamid}';
 
-    var body = jsonEncode({
+    var body = jsonEncode({"leaves": [   
+    {
       "startDate": startDate,
       "endDate": endDate,
       "reason": reason,
+    }]
     });
 
     var headers = <String, String>{
       'Content-Type': 'application/json',
       'Authorization': storedValue,
-      'teamId' : widget.teamid,
     };
 
     try {
@@ -45,18 +46,30 @@ class _ApplyLeaveState extends State<ApplyLeave> {
 
       if (response.statusCode == 200) {
         print('Leave applied successfully');
-        StoreLeaveId = jsonDecode(response.body);
+        StoreLeaveId = jsonDecode(response.body)['_id'];
         print(jsonDecode(response.body));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Leave applied successfully!'),
+          ),
+        );
         LeaveID(StoreLeaveId);
         return null;
       } else {
         print('Error: ${response.statusCode}');
         print(jsonDecode(response.body));
+        String error = jsonDecode(response.body)['error'];
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error: $error'),
+          ),
+        );
         return jsonDecode(response.body)['error'];
+        
       }
     } catch (e) {
       print('Error: $e');
-      return 'An error occurred';
+      // return 'An error occurred';
     }
   }
 
@@ -191,21 +204,21 @@ class _ApplyLeaveState extends State<ApplyLeave> {
       String endDate = endDateController.text;
       String reason = reasonController.text;
 
-      String? result = await applyLeaveAPI(startDate, endDate, reason);
+      await applyLeaveAPI(startDate, endDate, reason);
 
-      if (result == null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Leave applied successfully!'),
-          ),
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Error: $result'),
-          ),
-        );
-      }
+      // if (result == null) {
+      //   ScaffoldMessenger.of(context).showSnackBar(
+      //     SnackBar(
+      //       content: Text('Leave applied successfully!'),
+      //     ),
+      //   );
+      // } else {
+      //   ScaffoldMessenger.of(context).showSnackBar(
+      //     SnackBar(
+      //       content: Text('Error: $result'),
+      //     ),
+      //   );
+      // }
     }
   }
 }
