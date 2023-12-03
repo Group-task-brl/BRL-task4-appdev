@@ -80,9 +80,9 @@ class _TaskContainerState extends State<TaskContainer> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
-              'lib/assets/login.png',
-              width: MediaQuery.of(context).size.width * 0.15,
-              height: MediaQuery.of(context).size.height * 0.15,
+              'lib/assets/task.png',
+              width: MediaQuery.of(context).size.width * 0.4,
+              height: MediaQuery.of(context).size.height * 0.2,
             ),
             const Text(
               'Tasks',
@@ -92,7 +92,7 @@ class _TaskContainerState extends State<TaskContainer> {
               ),
             ),
             const SizedBox(height: 10),
-            const Text('Incomplete Tasks:-\n',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            const Text('Incomplete Tasks:-\n', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
             showIncompletetask(),
             const SizedBox(height: 20,),
             const Text('Completed Tasks:-\n',style: TextStyle(
