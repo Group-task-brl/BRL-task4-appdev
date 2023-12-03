@@ -1,7 +1,11 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:brl_task4/ResourceM/Leaderassist.dart';
+import 'package:brl_task4/create&join-Team/create-team.dart';
 import 'package:brl_task4/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 
 class PostTextScreen extends StatefulWidget {
   final String teamId;
@@ -13,7 +17,68 @@ class PostTextScreen extends StatefulWidget {
 
 class _PostTextScreenState extends State<PostTextScreen> {
   final TextEditingController _textController = TextEditingController();
+  final TextEditingController _imageController = TextEditingController();
   String _responseMessage = '';
+  final picker = ImagePicker();
+  File? _image;
+
+  Future getImageGallery() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected');
+      }
+    });
+  }
+
+  Future<void> postImage() async {
+    String storedValue = await secureStorage.readSecureData(key);
+    try {
+      var apiUrl =
+          'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/image/addImage';
+
+      var headers = {
+        'Authorization': storedValue,
+      };
+
+      var request = http.MultipartRequest('POST', Uri.parse(apiUrl));
+
+      request.headers.addAll(headers);
+
+      request.fields.addAll({
+        'imgName': _imageController.text,
+        'teamId': '${widget.teamId}',
+      });
+
+      if (_image != null) {
+        request.files
+            .add(await http.MultipartFile.fromPath('photo', _image!.path));
+      } else {
+        print('Image is null');
+        return;
+      }
+
+      var response = await request.send();
+
+      if (response.statusCode == 200) {
+        print('Image uploaded successfully');
+        print(await response.stream.bytesToString());
+      } else {
+        print('Failed to upload image. Status code: ${response.statusCode}');
+        print(response.reasonPhrase);
+      }
+    } catch (e) {
+      print('Error uploading image: $e');
+    } finally {
+      setState(() {
+        _image = null;
+        _imageController.clear();
+      });
+    }
+  }
 
   Future<void> postText() async {
     try {
@@ -60,50 +125,50 @@ class _PostTextScreenState extends State<PostTextScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 420,
-            height: 150,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                alignment: Alignment(1, 0),
-                image: AssetImage('lib/assets/test1.png'),
-                fit: BoxFit.scaleDown,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 420,
+              height: 150,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  alignment: Alignment(1, 0),
+                  image: AssetImage('lib/assets/test1.png'),
+                  fit: BoxFit.scaleDown,
+                ),
+                gradient: LinearGradient(
+                  begin: Alignment(0.98, -0.21),
+                  end: Alignment(-0.98, 0.21),
+                  colors: [Color(0xFF150218), Color(0xFF65386C)],
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0x4C000000),
+                    blurRadius: 4,
+                    offset: Offset(0, 4),
+                    spreadRadius: 0,
+                  )
+                ],
               ),
-              gradient: LinearGradient(
-                begin: Alignment(0.98, -0.21),
-                end: Alignment(-0.98, 0.21),
-                colors: [Color(0xFF150218), Color(0xFF65386C)],
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0x4C000000),
-                  blurRadius: 4,
-                  offset: Offset(0, 4),
-                  spreadRadius: 0,
-                )
-              ],
-            ),
-            child: const Padding(
-              padding: EdgeInsets.all(18.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  '\n\nPost resources',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+              child: const Padding(
+                padding: EdgeInsets.all(18.0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '\n\nPost resources',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          const SizedBox(height: 16),
-          Expanded(
-            child: Padding(
+            const SizedBox(height: 16),
+            Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,12 +185,13 @@ class _PostTextScreenState extends State<PostTextScreen> {
                   Padding(
                     padding: const EdgeInsets.only(left: 90.0),
                     child: Buttonkii(
-                        buttonName: 'Post Data',
-                        onTap: () {
-                          postText();
-                        },
-                        bgColor: const Color.fromARGB(255, 54, 11, 60),
-                        textColor: Colors.white),
+                      buttonName: 'Post Data',
+                      onTap: () {
+                        postText();
+                      },
+                      bgColor: const Color.fromARGB(255, 54, 11, 60),
+                      textColor: Colors.white,
+                    ),
                   ),
                   Text(
                     _responseMessage,
@@ -133,11 +199,66 @@ class _PostTextScreenState extends State<PostTextScreen> {
                       color: Color.fromARGB(255, 43, 16, 53),
                     ),
                   ),
+                  const SizedBox(height: 16),
+                  Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MyTextField12(
+                            hintText: 'Name of your Image',
+                            inputType: TextInputType.name,
+                            labelText2: 'Image </>',
+                            secure1: false,
+                            capital: TextCapitalization.none,
+                            nameController1: _imageController),
+                        const SizedBox(height: 16),
+                        _image != null
+                            ? Image.file(
+                                _image!,
+                                height: 150,
+                                width: 150,
+                                fit: BoxFit.cover,
+                              )
+                            : Container(
+                                height: 150,
+                                width: 150,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color(0x4C000000),
+                                      blurRadius: 4,
+                                      offset: Offset(0, 4),
+                                      spreadRadius: 0,
+                                    )
+                                  ],
+                                  color: Colors.grey[200],
+                                ),
+                              ),
+                        SizedBox(height: 20),
+                        // ElevatedButton(
+                        //   onPressed: getImageGallery,
+                        //   child: Text('Pick Image from Gallery'),
+                        // ),
+                        Buttonkii(
+                            buttonName: 'Select Image',
+                            onTap: getImageGallery,
+                            bgColor: Colors.black,
+                            textColor: Colors.white),
+                        SizedBox(height: 20),
+                        Buttonkii(
+                            buttonName: 'Post Image',
+                            onTap: postImage,
+                            bgColor: Colors.black,
+                            textColor: Colors.white),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
