@@ -122,7 +122,7 @@ class _ChatScreenState extends State<ChatScreen> {
               }),
         ],
         title: Text(
-          'Flutter Chat App',
+          'Chat </>',
           style: TextStyle(
             color: Colors.white,
           ),
