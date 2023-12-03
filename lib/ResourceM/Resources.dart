@@ -87,7 +87,7 @@ class ResourceM extends StatelessWidget {
                   _buildGridItem(
                     context,
                     'Leader assistance ',
-                    const LEaderR(),
+                    LeaderResource(teamId),
                     Icons.assistant,
                     const Color.fromARGB(247, 234, 102, 102),
                   ),
