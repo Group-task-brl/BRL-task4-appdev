@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:brl_task4/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:brl_task4/home_page/progress.dart';
 
 class TaskContainer extends StatefulWidget {
   const TaskContainer({super.key});
@@ -9,6 +10,9 @@ class TaskContainer extends StatefulWidget {
   @override
   State<TaskContainer> createState() => _TaskContainerState();
 }
+
+int? completedTaskNum;
+int? incompleteTaskNum;
 
 class _TaskContainerState extends State<TaskContainer> {
   Future<void>? _futureData;
@@ -26,7 +30,7 @@ class _TaskContainerState extends State<TaskContainer> {
 
   Future<void> incompTaskAPI() async {
     dynamic storedValue = await secureStorage.readSecureData(key);
-
+  
     const String apiUrl =
         'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/team/incompleteTasks';
 
@@ -41,16 +45,17 @@ class _TaskContainerState extends State<TaskContainer> {
       setState(() {
         incompTasks = jsonDecode(response.body)['incompleteTasks'];
         print(incompTasks);
+        incompleteTaskNum = incompTasks!.length;
       });
     } else {
       print(' ${response.statusCode}');
       print('Error Message: ${response.body}');
     }
+    
   }
 
   Future<void> compTaskAPI() async {
     dynamic storedValue = await secureStorage.readSecureData(key);
-
     const String apiUrl =
         'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/team/completedTasks';
 
@@ -65,12 +70,25 @@ class _TaskContainerState extends State<TaskContainer> {
       setState(() {
         compTasks = jsonDecode(response.body)['completedTasks'];
         print(compTasks);
+        completedTaskNum = compTasks!.length;
       });
     } else {
       print(' ${response.statusCode}');
       print('Error Message: ${response.body}');
     }
   }
+
+  // void navigateToProgressChart(int compTask,int incompTask) {
+  //   Navigator.push(
+  //     context,
+  //     MaterialPageRoute(
+  //       builder: (context) => ProgressChart(
+  //         compNum: compTask,
+  //         incompNum: incompTask,
+  //       ),
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -84,12 +102,25 @@ class _TaskContainerState extends State<TaskContainer> {
               width: MediaQuery.of(context).size.width * 0.4,
               height: MediaQuery.of(context).size.height * 0.2,
             ),
-            const Text(
-              'Tasks',
-              style: TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Tasks',
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(width: 20,),
+                // FloatingActionButton(
+                //   onPressed: () { 
+                //       navigateToProgressChart(compTasks!.length, incompTasks!.length);
+                //   },
+                //   backgroundColor: Colors.lightGreen,
+                //   child: const Icon(Icons.update),
+                // ),
+              ],
             ),
             const SizedBox(height: 10),
             const Text('Incomplete Tasks:-\n', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),

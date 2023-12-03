@@ -1,24 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:brl_task4/models/appbar.dart';
+import 'package:brl_task4/home_page/tasks.dart';
 
-class ProgressChart extends StatelessWidget {
-  //%
-  final double completedTasks = 70.0; 
-  final double incompleteTasks = 30.0;
+class ProgressChart extends StatefulWidget {
+  // int? compNum = completedTaskNum;
+  // final int incompNum;
 
-  const ProgressChart({super.key}); 
+  const ProgressChart({Key? key}) : super(key: key);
 
   @override
+  State<ProgressChart> createState() => _ProgressChartState();
+}
+
+class _ProgressChartState extends State<ProgressChart> {
+  @override
   Widget build(BuildContext context) {
+    double totalTasks = (completedTaskNum! + incompleteTaskNum!).toDouble();
+    double completedTasks = (completedTaskNum! / totalTasks) * 100.0;
+    double incompleteTasks = (incompleteTaskNum! / totalTasks) * 100.0;
+
     return Scaffold(
-      appBar: const MyAppBar(),
+      appBar: MyAppBar(),
       body: Center(
         child: PieChart(
           PieChartData(
             sections: [
               PieChartSectionData(
-                //completed task
                 color: Colors.green,
                 value: completedTasks,
                 title: '$completedTasks%',
@@ -30,8 +38,7 @@ class ProgressChart extends StatelessWidget {
                 ),
               ),
               PieChartSectionData(
-                //incomp task
-                color: Colors.red, 
+                color: Colors.red,
                 value: incompleteTasks,
                 title: '$incompleteTasks%',
                 radius: 80.0,
