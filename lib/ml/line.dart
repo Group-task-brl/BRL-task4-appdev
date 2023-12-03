@@ -41,10 +41,10 @@ class Linechart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Line Chart'),
+          title: const Text('Line Chart'),
         ),
         body: Column(children: [
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
           Expanded(
             child: LineChart(LineChartData(
               lineBarsData: [
@@ -56,7 +56,7 @@ class Linechart extends StatelessWidget {
                       .toList(),
                   isCurved: true,
                   color: Colors.amber, // Line color
-                  dotData: FlDotData(show: true),
+                  dotData: const FlDotData(show: true),
                   belowBarData: BarAreaData(show: true),
                 ),
               ],
@@ -72,17 +72,17 @@ class Linechart extends StatelessWidget {
                     color: Colors.amber,
                     shadowColor: Colors.black,
                     elevation: 3,
-                    margin: EdgeInsets.symmetric(vertical: 8),
+                    margin: const EdgeInsets.symmetric(vertical: 8),
                     child: ListTile(
                       title: Text(
                         dataMap.keys.toList()[index],
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Color.fromARGB(255, 93, 96, 111),
                         ),
                       ),
                       trailing: Text(
                         dataMap.values.toList()[index].toString(),
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Color.fromARGB(255, 93, 96, 111),
                         ),
                       ),

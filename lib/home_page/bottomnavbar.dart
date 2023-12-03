@@ -1,7 +1,5 @@
 import 'package:brl_task4/ml/ml.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:brl_task4/screens/teamDetail.dart';
 import 'package:brl_task4/home_page/home_page_home.dart';
 import 'package:brl_task4/home_page/progress.dart';
 import 'package:brl_task4/home_page/profile.dart';
@@ -23,7 +21,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     return Scaffold(
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Color.fromARGB(255, 147, 78, 158),
               blurRadius: 10,

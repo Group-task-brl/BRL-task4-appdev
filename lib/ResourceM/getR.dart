@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 class PostTextScreen extends StatefulWidget {
   final String teamId;
-  PostTextScreen(this.teamId);
+  const PostTextScreen(this.teamId, {super.key});
 
   @override
   _PostTextScreenState createState() => _PostTextScreenState();
@@ -48,7 +48,7 @@ class _PostTextScreenState extends State<PostTextScreen> {
       }
     } catch (e) {
       print('Error posting text: $e');
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('An error occurred while posting text.'),
         backgroundColor: Colors.red,
       ));
@@ -129,7 +129,7 @@ class _PostTextScreenState extends State<PostTextScreen> {
                   ),
                   Text(
                     _responseMessage,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color.fromARGB(255, 43, 16, 53),
                     ),
                   ),

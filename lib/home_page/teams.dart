@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../Utils/Routes.dart';
 
 class TeamPage extends StatefulWidget {
+  const TeamPage({super.key});
+
   @override
   State<TeamPage> createState() => _TeamPageState();
 }
@@ -22,12 +24,12 @@ class _TeamPageState extends State<TeamPage> {
                 Navigator.pushNamed(context, MyRoutes.CreateTeamScreen);
               },
               style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 maximumSize: Size(buttonWidth, buttonHeight),
-                side: BorderSide(
+                side: const BorderSide(
                   color: Color.fromARGB(255, 101, 56, 108),
                   width: 2,
                 ),
@@ -35,11 +37,11 @@ class _TeamPageState extends State<TeamPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'Create Team',
                     style: TextStyle(fontSize: 20),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -53,25 +55,25 @@ class _TeamPageState extends State<TeamPage> {
                           Navigator.pushNamed(
                               context, MyRoutes.CreateTeamScreen);
                         },
-                        icon: Icon(Icons.add),
+                        icon: const Icon(Icons.add),
                       )
                     ],
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, MyRoutes.jointeamRoutes);
               },
               style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 maximumSize: Size(buttonWidth, buttonHeight),
-                side: BorderSide(
+                side: const BorderSide(
                   color: Color.fromARGB(255, 101, 56, 108),
                   width: 2,
                 ),
@@ -79,11 +81,11 @@ class _TeamPageState extends State<TeamPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'Join Team',
                     style: TextStyle(fontSize: 20),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -96,7 +98,7 @@ class _TeamPageState extends State<TeamPage> {
                         onPressed: () {
                           Navigator.pushNamed(context, MyRoutes.jointeamRoutes);
                         },
-                        icon: Icon(Icons.add),
+                        icon: const Icon(Icons.add),
                       )
                     ],
                   ),
