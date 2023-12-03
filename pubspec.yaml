@@ -46,6 +46,8 @@ dependencies:
   cached_network: ^2.0.1
   cached_network_image: ^3.3.0
   audioplayers: ^5.2.1
+  image_picker: ^1.0.4
+  dio: ^5.4.0
 
 
 dev_dependencies:
