@@ -55,7 +55,7 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Color _generateRandomColor() {
-    return Color((Random().nextDouble() * 0xFFFFFF).toInt() << 0)
+    return Color((Random().nextDouble() * 0xFFFFFF).toInt())
         .withOpacity(1.0);
   }
 
@@ -118,11 +118,13 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const ChatScreenfetch()));
+                    MaterialPageRoute(builder: (context) =>  ChatScreenfetch()));
               }),
         ],
-        title: const Text(
-          'Flutter Chat App',
+        
+        title: Text(
+          'Chat </>',
+    
           style: TextStyle(
             color: Colors.white,
           ),
@@ -220,6 +222,7 @@ class MyTextField3 extends StatelessWidget {
       ),
       child: TextFormField(
         //maxLines: 5,
+        maxLength: 35,
         style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
         controller: nameController1,
         keyboardType: inputType,
