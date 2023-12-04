@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 class BarChartPage extends StatelessWidget {
-  final Map<String, double> dataMap = {
+  final Map<String , double > dataMap = {
     "client": 81,
     "team": 71,
     "meeting": 56,
