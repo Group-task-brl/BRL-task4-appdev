@@ -205,13 +205,19 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
 
 
 
-    List<Map<String, dynamic>> domainList = selectedDomains.map((domain) {  
-      return {
-        "name": domain.name, 
-        "members": [],       
-      };
-    }).toList();
+    // List<Map<String, dynamic>> domainList = selectedDomains.map((domain) {  
+    //   return {
+    //     "name": domain.name, 
+    //     "members": [],       
+    //   };
+    // }).toList();
 
+  List<Map<String, dynamic>> domainList = selectedDomains.map((domain){
+      return {
+        "name": domain.name,
+        "members": [],
+      };
+  }).toList();
 
    
 
