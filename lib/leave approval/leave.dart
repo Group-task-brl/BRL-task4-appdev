@@ -124,6 +124,7 @@ class _ApplyLeaveState extends State<ApplyLeave> {
                     const SizedBox(height: 30),
                     TextFormField(
                       controller: startDateController,
+                      keyboardType: TextInputType.numberWithOptions(signed: false, decimal: false),
                       decoration: InputDecoration(
                         labelText: 'Start Date: 02-12-2023',
                         prefixIcon: Icon(Icons.calendar_today, color: Colors.white),
@@ -133,6 +134,7 @@ class _ApplyLeaveState extends State<ApplyLeave> {
                         ),
                         labelStyle: TextStyle(color: Colors.white),
                       ),
+                      style: TextStyle(color: Colors.white),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter the start date';
@@ -143,6 +145,7 @@ class _ApplyLeaveState extends State<ApplyLeave> {
                     const SizedBox(height: 20),
                     TextFormField(
                       controller: endDateController,
+                      keyboardType: TextInputType.numberWithOptions(signed: false, decimal: false),
                       decoration: InputDecoration(
                         labelText: 'End Date: 23-12-2023',
                         prefixIcon: Icon(Icons.calendar_today, color: Colors.white),
@@ -152,6 +155,7 @@ class _ApplyLeaveState extends State<ApplyLeave> {
                         ),
                         labelStyle: TextStyle(color: Colors.white),
                       ),
+                      style: TextStyle(color: Colors.white),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter the end date';
@@ -171,6 +175,7 @@ class _ApplyLeaveState extends State<ApplyLeave> {
                         ),
                         labelStyle: TextStyle(color: Colors.white),
                       ),
+                      style: TextStyle(color: Colors.white),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter the reason for leave';
