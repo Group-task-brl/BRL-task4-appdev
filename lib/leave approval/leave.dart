@@ -208,6 +208,20 @@ class _ApplyLeaveState extends State<ApplyLeave> {
       String reason = reasonController.text;
 
       await applyLeaveAPI(startDate, endDate, reason);
+
+      // if (result == null) {
+      //   ScaffoldMessenger.of(context).showSnackBar(
+      //     SnackBar(
+      //       content: Text('Leave applied successfully!'),
+      //     ),
+      //   );
+      // } else {
+      //   ScaffoldMessenger.of(context).showSnackBar(
+      //     SnackBar(
+      //       content: Text('Error: $result'),
+      //     ),
+      //   );
+      // }
     }
   }
 }
