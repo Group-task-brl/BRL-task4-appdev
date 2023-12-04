@@ -22,7 +22,10 @@ class _ProgressChartState extends State<ProgressChart> {
       body: Column(
         children: [
           Expanded(
-            child: PieChart(
+            child: incompleteTaskNum==0 && completedTaskNum==0?
+            Center(child: Text("No tasks assigned yet",style: TextStyle(fontSize: 25),))
+            :
+            PieChart(
               PieChartData(
                 sections: [
                   PieChartSectionData(

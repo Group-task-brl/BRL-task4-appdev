@@ -82,7 +82,7 @@ class dashb_memState extends State<dashb_mem> {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                           return const Center(
                           child: CircularProgressIndicator(
-                          color:Colors.white,
+                          color:Colors.purple,
                           ),
                       );
                     } else if (snapshot.hasError) {
