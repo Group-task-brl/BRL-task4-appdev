@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -19,7 +18,9 @@ class _ChatScreenfetchState extends State<ChatScreenfetch> {
   }
 
   Future<void> fetchChats() async {
+    
     final apiUrl = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/chat/getAllChats';
+
 
     try {
       final response = await http.get(Uri.parse(apiUrl));
@@ -31,7 +32,6 @@ class _ChatScreenfetchState extends State<ChatScreenfetch> {
           _chats = List<Map<String, dynamic>>.from(responseData['chats']);
         });
 
-       
         _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
       } else {
         print('Failed to load chats. Status code: ${response.statusCode}');
@@ -54,7 +54,6 @@ class _ChatScreenfetchState extends State<ChatScreenfetch> {
         },
         child: Icon(Icons.arrow_downward),
       ),
-      
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 49, 12, 56),
         foregroundColor: Colors.white,
@@ -78,7 +77,8 @@ class _ChatScreenfetchState extends State<ChatScreenfetch> {
                       final message = chat['message'];
 
                       return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 16.0),
                         child: Card(
                           color: Color.fromARGB(255, 46, 17, 55),
                           shadowColor: Colors.black,
@@ -88,7 +88,7 @@ class _ChatScreenfetchState extends State<ChatScreenfetch> {
                           ),
                           child: ListTile(
                             title: Text(
-                              '$username:',
+                              '$username:', 
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12.0,
@@ -108,12 +108,8 @@ class _ChatScreenfetchState extends State<ChatScreenfetch> {
                     },
                   ),
           ),
-          
-         
         ],
-
       ),
     );
   }
 }
-
