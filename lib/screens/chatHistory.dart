@@ -88,7 +88,7 @@ class _ChatScreenfetchState extends State<ChatScreenfetch> {
                           ),
                           child: ListTile(
                             title: Text(
-                              '$username:',
+                              '$username:', 
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12.0,
