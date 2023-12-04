@@ -28,11 +28,11 @@ class _ApplyLeaveState extends State<ApplyLeave> {
         'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/leave/applyLeave/${widget.teamid}';
 
     var body = jsonEncode({"leaves": [   
-    {
-      "startDate": startDate,
-      "endDate": endDate,
-      "reason": reason,
-    }]
+      {
+        "startDate": startDate,
+        "endDate": endDate,
+        "reason": reason,
+      }]
     });
 
     var headers = <String, String>{
@@ -73,7 +73,8 @@ class _ApplyLeaveState extends State<ApplyLeave> {
     }
   }
 
-  Future<void> LeaveID(String StoreLeaveID) async {    dynamic storedValue = await secureStorage.readSecureData(key);
+  Future<void> LeaveID(String StoreLeaveID) async {
+    dynamic storedValue = await secureStorage.readSecureData(key);
     final String apiUrl =
         'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/leave/leaveResult/$StoreLeaveID';
 
@@ -82,118 +83,115 @@ class _ApplyLeaveState extends State<ApplyLeave> {
       'Authorization': storedValue,
       'leaveId' : StoreLeaveID,
     };
-     http.post(Uri.parse(apiUrl), headers: headers);
+    http.post(Uri.parse(apiUrl), headers: headers);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Opacity(
-            opacity: 0.5,
-            child: Image.asset(
-              "lib/assets/back.png",
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height,
-              fit: BoxFit.cover,
-            ),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment(0.6, 0.8),
+            end: Alignment(0.6, 0.21),
+            colors: [Color(0xFF150218), Color(0xFF65386C)],
           ),
-          Center(
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
             child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
+              child: Form(
+                key: _formKey,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
                       "Apply for Leave",
-                      style:
-                          TextStyle(fontSize: 40, fontWeight: FontWeight.w500),
+                      style: TextStyle(fontSize: 40, fontWeight: FontWeight.w500, color: Colors.white),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     const Text(
                       "Provide the start date, end date, and reason for leave",
                       style: TextStyle(
                         fontSize: 14,
+                        color: Colors.white,
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 30),
-                    Form(
-                      key: _formKey,
-                      child: Column(
-                        children: [
-                          TextFormField(
-                            controller: startDateController,
-                            decoration: InputDecoration(
-                              labelText: 'Start Date: 02-12-2023',
-                              prefixIcon: Icon(Icons.calendar_today),
-                              contentPadding:
-                                  EdgeInsets.symmetric(vertical: 15),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                            ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter the start date';
-                              }
-                              return null;
-                            },
-                          ),
-                          SizedBox(height: 20),
-                          TextFormField(
-                            controller: endDateController,
-                            decoration: InputDecoration(
-                              labelText: 'End Date: 23-12-2023',
-                              prefixIcon: Icon(Icons.calendar_today),
-                              contentPadding:
-                                  EdgeInsets.symmetric(vertical: 15),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                            ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter the end date';
-                              }
-                              return null;
-                            },
-                          ),
-                          SizedBox(height: 20),
-                          TextFormField(
-                            controller: reasonController,
-                            decoration: InputDecoration(
-                              labelText: 'Reason for Leave',
-                              prefixIcon: Icon(Icons.description),
-                              contentPadding:
-                                  EdgeInsets.symmetric(vertical: 15),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                            ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter the reason for leave';
-                              }
-                              return null;
-                            },
-                          ),
-                          SizedBox(height: 20),
-                          ElevatedButton(
-                            onPressed: () => _applyLeave(context),
-                            child: Text('Apply for Leave'),
-                          ),
-                        ],
+                    const SizedBox(height: 30),
+                    TextFormField(
+                      controller: startDateController,
+                      decoration: InputDecoration(
+                        labelText: 'Start Date: 02-12-2023',
+                        prefixIcon: Icon(Icons.calendar_today, color: Colors.white),
+                        contentPadding: EdgeInsets.symmetric(vertical: 15),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        labelStyle: TextStyle(color: Colors.white),
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter the start date';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      controller: endDateController,
+                      decoration: InputDecoration(
+                        labelText: 'End Date: 23-12-2023',
+                        prefixIcon: Icon(Icons.calendar_today, color: Colors.white),
+                        contentPadding: EdgeInsets.symmetric(vertical: 15),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        labelStyle: TextStyle(color: Colors.white),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter the end date';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      controller: reasonController,
+                      decoration: InputDecoration(
+                        labelText: 'Reason for Leave',
+                        prefixIcon: Icon(Icons.description, color: Colors.white),
+                        contentPadding: EdgeInsets.symmetric(vertical: 15),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        labelStyle: TextStyle(color: Colors.white),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter the reason for leave';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () => _applyLeave(context),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(255, 225, 169, 229),
+                      ),
+                      child: Text('Apply for Leave'),
                     ),
                   ],
                 ),
               ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }
@@ -205,20 +203,6 @@ class _ApplyLeaveState extends State<ApplyLeave> {
       String reason = reasonController.text;
 
       await applyLeaveAPI(startDate, endDate, reason);
-
-      // if (result == null) {
-      //   ScaffoldMessenger.of(context).showSnackBar(
-      //     SnackBar(
-      //       content: Text('Leave applied successfully!'),
-      //     ),
-      //   );
-      // } else {
-      //   ScaffoldMessenger.of(context).showSnackBar(
-      //     SnackBar(
-      //       content: Text('Error: $result'),
-      //     ),
-      //   );
-      // }
     }
   }
 }
