@@ -110,47 +110,7 @@ class _ChatScreenfetchState extends State<ChatScreenfetch> {
                       );
                     },
                   
-      body: _chats.isEmpty
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
-          : ListView.builder(
-           //reverse: true,
-            itemCount: _chats.length,
-            itemBuilder: (context, index) {
-              final chat = _chats[index];
-              final username = chat['username'];
-              final message = chat['message'];
-
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                child: Card(
-                  color: const Color.fromARGB(255, 46, 17, 55),
-                  shadowColor: Colors.black,
-                 // surfaceTintColor: Colors.white,
-                 
-                  elevation: 8.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                  child: ListTile(
-                    title: Text(
-                      '$username:',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12.0,
-                        color: Color.fromARGB(255, 254, 254, 254),
-                      ),
-                    ),
-                    subtitle: Text(
-                      message,
-                      style: const TextStyle(
-                        fontSize: 18.0,
-                        color:Color.fromARGB(255, 220, 228, 73),
-                      ),
-                    ),
-
-                  ),
+                )
           ),
           
          
