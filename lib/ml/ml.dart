@@ -17,13 +17,13 @@ class MLWOW extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const MusicApp()));
-        },
-        child: const Icon(Icons.music_note),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.push(
+      //         context, MaterialPageRoute(builder: (context) => const MusicApp()));
+      //   },
+      //   child: const Icon(Icons.music_note),
+      // ),
 
       body: Column(
         children: [

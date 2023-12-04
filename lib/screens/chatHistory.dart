@@ -3,8 +3,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ChatScreenfetch extends StatefulWidget {
-  const ChatScreenfetch({super.key});
-
   @override
   _ChatScreenfetchState createState() => _ChatScreenfetchState();
 }
@@ -20,8 +18,9 @@ class _ChatScreenfetchState extends State<ChatScreenfetch> {
   }
 
   Future<void> fetchChats() async {
-    const apiUrl =
-        'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/chat/getAllChats';
+    
+    final apiUrl = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/chat/getAllChats';
+
 
     try {
       final response = await http.get(Uri.parse(apiUrl));
@@ -56,11 +55,11 @@ class _ChatScreenfetchState extends State<ChatScreenfetch> {
         child: Icon(Icons.arrow_downward),
       ),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 49, 12, 56),
+        backgroundColor: Color.fromARGB(255, 49, 12, 56),
         foregroundColor: Colors.white,
         elevation: 12,
         shadowColor: Colors.black,
-        title: const Text('Discussion History'),
+        title: Text('Discussion History'),
       ),
       body: Column(
         children: [
