@@ -51,7 +51,9 @@ class _PostTextScreenState extends State<PostTextScreen> {
       request.fields.addAll({
         'imgName': _imageController.text,
         'teamId': '${widget.teamId}',
+        
       });
+      print('${widget.teamId}');
 
       if (_image != null) {
         request.files
@@ -77,7 +79,7 @@ class _PostTextScreenState extends State<PostTextScreen> {
         _image = null;
         _imageController.clear();
       });
-    }
+     }
   }
 
   Future<void> postText() async {

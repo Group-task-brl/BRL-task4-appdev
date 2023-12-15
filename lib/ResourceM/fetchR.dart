@@ -19,46 +19,39 @@ class _ShowTextScreenState extends State<ShowTextScreen> {
   bool isLoadingm = true;
 
 
-  Future<void> fetchImages() async {
-    String storedValue = await secureStorage.readSecureData(key);
-    var headers = {
-      'Authorization':
-         storedValue,
-     // 'Content-Type': 'application/json'
-    };
+ Future<void> getImage() async {
+   dynamic storedValue = await secureStorage.readSecureData(key);
+  String url = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/image/showImage/${widget.teamId}';
+  String token = storedValue;
 
-    var request = http.Request(
-      'GET',
-      Uri.parse(
-          'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/image/showImage/${widget.teamId}'),
+  try {
+    http.Response response = await http.get(
+      Uri.parse(url),
+      headers: {
+        'Authorization': token,
+      },
     );
-    request.headers.addAll(headers);
 
-    try {
-      http.Response response = await http.get(request.url);
-
-      if (response.statusCode == 200) {
-        List<dynamic> data = json.decode(response.body);
-        List<Map<String, String>> fetchedImages = List<Map<String, String>>.from(
-          data.map(
-            (item) => {
-              'imgURL': item['imgURL'],
-            },
-          ),
-        );
-
-        setState(() {
-          images = fetchedImages;
-          isLoading = false;
-        });
-      } else {
-        print('Failed to load images: ${response.reasonPhrase}');
-      }
-    } catch (error) {
-      print('Error: $error');
+    if (response.statusCode == 200) {
+     
+      List<dynamic> responseData = json.decode(response.body);
+      setState(() {
+        images = responseData.map<Map<String, String>>((item) => {
+          'imgURL': item['imgURL'],
+          'imgName': item['imgName'],
+        }).toList();
+        isLoading = false;
+      });
+    } else {
+      
+      print('Failed to retrieve the image. Status code: ${response.statusCode}');
     }
+  } catch (error) {
+  
+    print('Error: $error');
   }
-
+}
+ 
   Future<void> fetchMessages() async {
     try {
       var request = http.Request(
@@ -100,21 +93,21 @@ class _ShowTextScreenState extends State<ShowTextScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: 
+      // floatingActionButton: FloatingActionButton(onPressed: 
 
-      () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ImageListScreen(),
-          ),
+      // () {
+      //   Navigator.push(
+      //     context,
+      //     MaterialPageRoute(
+      //       builder: (context) => ImageListScreen(),
+      //     ),
           
-        );
+      //   );
 
-      },
-      child: Icon(Icons.add),
+      // },
+      // child: Icon(Icons.add),
       
-      ),
+      // ),
       // appBar: AppBar(
       //   title: Text('Resources'),
       // ),

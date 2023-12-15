@@ -2,6 +2,7 @@ import 'package:brl_task4/ResourceM/Leaderassist.dart';
 import 'package:brl_task4/ResourceM/doc.dart';
 import 'package:brl_task4/ResourceM/fetchR.dart';
 import 'package:brl_task4/ResourceM/getR.dart';
+import 'package:brl_task4/ResourceM/imagecc.dart';
 // import 'package:create_team/bench-employee.dart';
 // import 'package:create_team/calendar.dart';
 // import 'package:create_team/doc.dart';
@@ -91,6 +92,12 @@ class ResourceM extends StatelessWidget {
                     Icons.assistant,
                     const Color.fromARGB(247, 234, 102, 102),
                   ),
+                  _buildGridItem(
+                    context,
+                    'Image Resources',
+                    ImageListScreen(teamId),
+                    Icons.image,
+                    Color.fromARGB(247, 49, 55, 12)              ),
                 ],
               ),
             ),

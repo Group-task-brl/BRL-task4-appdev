@@ -1,10 +1,12 @@
-
 import 'dart:convert';
 import 'package:brl_task4/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class ImageListScreen extends StatefulWidget {
+  final String teamId;
+  ImageListScreen(this.teamId);
+
   @override
   _ImageListScreenState createState() => _ImageListScreenState();
 }
@@ -16,64 +18,51 @@ class _ImageListScreenState extends State<ImageListScreen> {
   @override
   void initState() {
     super.initState();
-    fetchImages();
+    getImage();
   }
 
-  Future<void> fetchImages() async {
+ Future<void> getImage() async {
+   dynamic storedValue = await secureStorage.readSecureData(key);
+  String url = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/image/showImage/${widget.teamId}';
+  String token = storedValue;
 
-  
-  
-   String storedValue = await secureStorage.readSecureData(key);
-     print('$storedValue');
-    var headers = {
-      
-      
-      // 'Authorization':
-      //    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRXVjbGlkICIsImVtYWlsIjoiZ2F1cmF2MjIxMjAwMkBha2dlYy5hYy5pbiIsImlzTG9nZ2VkSW4iOiJZZXMiLCJpYXQiOjE3MDE1OTYxODJ9.IoU1uvEuoTWzoTheebjF-o9ErQ37_d4FflXcFhC74rc',
-      //'Content-Type': 'application/json',
-      'authorization': 'Bearer $storedValue;'
-    };
-
-    var request = http.Request(
-      'GET',
-      Uri.parse(
-          'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/image/showImage/656b824c78c1e46e4951910c'),
+  try {
+    http.Response response = await http.get(
+      Uri.parse(url),
+      headers: {
+        'Authorization': token,
+      },
     );
-    request.headers.addAll(headers);
 
-    try {
-      http.Response response = await http.get(request.url);
-
-      if (response.statusCode == 200) {
-        List<dynamic> data = json.decode(response.body);
-        List<Map<String, String>> fetchedImages = List<Map<String, String>>.from(
-          data.map(
-            (item) => {
-              'imgURL': item['imgURL'],
-            },
-          ),
-        );
-
-        setState(() {
-          images = fetchedImages;
-          isLoading = false;
-        });
-      } else {
-        print('Failed to load images: ${response.reasonPhrase}');
-      }
-    } catch (error) {
-      print('Error: $error');
+    if (response.statusCode == 200) {
+     
+      List<dynamic> responseData = json.decode(response.body);
+      setState(() {
+        images = responseData.map<Map<String, String>>((item) => {
+          'imgURL': item['imgURL'],
+          'imgName': item['imgName'],
+        }).toList();
+        isLoading = false;
+      });
+    } else {
+      
+      print('Failed to retrieve the image. Status code: ${response.statusCode}');
     }
+  } catch (error) {
+  
+    print('Error: $error');
   }
+}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Image Viewer'),
+        title: Text('Image Resources'),
       ),
       body: isLoading
           ? Center(
+            
               child: CircularProgressIndicator(),
             )
           : GridView.builder(
@@ -121,7 +110,7 @@ class ImageDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Image Detail'),
+        title: Text('</>'),
       ),
       body: Center(
         child: Image.network(
@@ -132,3 +121,4 @@ class ImageDetailScreen extends StatelessWidget {
     );
   }
 }
+
